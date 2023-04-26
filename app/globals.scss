@@ -1,7 +1,12 @@
 :root {
   --base: 16px;
-  --gap: calc(var(--base) * 3.5);
-  --max-width: 1200px;
+  --gap: 20px;
+  --max-width: 1920px;
+  --grey: #D1D1D1;
+  --green: #15B64C;
+  --pink: #F895D4;
+  --blue: #3FAEDF;
+  --yellow: #F5F500;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,11 +30,51 @@ body {
   color: black;
   background: white;
   font-family: sans-serif;
+  font-size: var(--base);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0 0 var(--base);
   white-space: pre-line;
+  text-align: left;
+  font-weight: 400;
+}
+
+h1, .h1 {
+  font-size: calc(var(--base) * 10.625);
+  // font-size: 170px;
+  // line-height: 140px;
+}
+
+h2, .h2 {
+  font-size: calc(var(--base) * 4.25);
+  // font-size: 68px;
+  // line-height: 72px;
+  letter-spacing: -0.01em;
+}
+
+h3, .h3 {
+  font-size: calc(var(--base) * 2.5);
+  // font-size: 40px;
+  // line-height: 43px;
+}
+
+h4, .h4 {
+  font-size: calc(var(--base) * 1.5625);
+  // font-size: 25px;
+  // line-height: 30px;
+  letter-spacing: -0.01em;
+}
+
+p {
+}
+
+small {
+  font-size: calc(var(--base) * 0.75);
+  // font-size: 12px;
+  // line-height: 14px;
 }
 
 a {
@@ -39,7 +84,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    // color-scheme: dark;
   }
 
   body {
