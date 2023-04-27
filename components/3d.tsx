@@ -46,7 +46,7 @@ export const ExtrudeSVG: FunctionComponent<{
   useFrame(({ clock, pointer }) => {
     mesh.current.rotation.y = pointer.x
     mesh.current.rotation.x = -pointer.y
-    mesh.current.scale.z = pointer.y*8
+    mesh.current.scale.z = pointer.y*8 || 0.01
   })
 
   return <>
@@ -55,7 +55,7 @@ export const ExtrudeSVG: FunctionComponent<{
       {shapes?.map((shape, i) => <Extrude key={i} args={[shape, {
         depth: 20
       }]}>
-        <meshStandardMaterial color="#F5F500" side={DoubleSide} />
+        <meshStandardMaterial color="#F5F500" />
       </Extrude>)}
       </Center>
     </mesh>

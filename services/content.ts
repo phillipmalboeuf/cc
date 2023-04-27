@@ -6,25 +6,39 @@ import { GetStaticPropsContext } from 'next'
 
 
 export interface NavigationLink {
-  titre: string
-  link: string
+  label: string
+  path: string
   external?: boolean
-  emphasize: boolean
-  subLinks: Entry<NavigationLink>[]
+  // emphasize: boolean
+  // subLinks: Entry<NavigationLink>[]
   // photo?: Asset
 }
 
 export interface Navigation {
-  titre: string
+  title: string
   id: string
   links: Entry<NavigationLink>[]
+}
+
+export interface Index {
+  title: string
+  items: Entry<Page>[]
+}
+
+export interface Text {
+  title: string
+  body: Document
+  media: Asset
+  buttons: Entry<NavigationLink>[]
 }
 
 export interface Page {
   title: string
   id: string
   description: string
-  contenu: Entry<any>[]
+  color: string
+  banner: Asset
+  content: Entry<Index & Text>[]
 }
 
 // export interface ArticleCategory {
@@ -44,34 +58,22 @@ export interface Article {
   photo: Asset
 }
 
-export interface Navigations {
-  header: Entry<Navigation>
-  footer: Entry<Navigation>
-  social: Entry<Navigation>
-  legal: Entry<Navigation>
-}
-
 const limit = 42
 
 export const ContentService = {
-  navigation: async (locale: string): Promise<Navigations> => {
+  navigation: async (id: string, locale: string=undefined) => {
     const [navs] = await Promise.all([
-      contentful.getEntries<Navigation>({ content_type: 'navigation', locale, include: 2 }),
+      contentful.getEntries<Navigation>({ content_type: 'navigation', locale, include: 2, 'fields.id': id }),
       // contentful.getEntries<NavigationLink>({ content_type: 'navigationLink', locale, include: 2 })
     ])
-    return {
-      header: navs.items.find(nav => nav.fields.id === 'header'),
-      footer: navs.items.find(nav => nav.fields.id === 'footer'),
-      social: navs.items.find(nav => nav.fields.id === 'social'),
-      legal: navs.items.find(nav => nav.fields.id === 'legal'),
-    }
+    return navs.items[0]
   },
   page: async (id: string, locale: string=undefined) => {
     const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 4,
-      'fields.identifier': id })
+      'fields.id': id })
     return pages.items[0]
   },
-  article: async (id: string, locale: string) => {
+  article: async (id: string, locale: string=undefined) => {
     const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 2,
       'fields.id': id })
     return articles.items[0]

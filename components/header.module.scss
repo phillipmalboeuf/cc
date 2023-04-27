@@ -1,0 +1,18 @@
+.header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: var(--gap);
+  background-color: white;
+
+  display: flex;
+  justify-content: space-between;
+
+  nav {
+    display: flex;
+    gap: calc(var(--gap) / 2);
+    align-items: center;
+  }
+}
