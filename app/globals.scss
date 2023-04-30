@@ -82,6 +82,20 @@ a {
   text-decoration: none;
 }
 
+button,
+.button {
+  cursor: pointer;
+  font-size: inherit;
+  line-height: 1;
+  padding: calc(var(--base) * 0.5);
+  border: 1px solid;
+  border-radius: 0.5em;
+}
+
+figure {
+  margin: 0 0 var(--gap);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     // color-scheme: dark;

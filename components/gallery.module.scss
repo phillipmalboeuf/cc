@@ -1,0 +1,30 @@
+.gallery {
+  margin: calc(var(--gap) * 5) 0;
+
+  ol {
+    list-style: none;
+    padding: var(--base);
+    border-top: 1px solid;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base) / 2);
+
+    --width: calc(((100 / 7) * 1vw) - (var(--base) / 1.25));
+
+    li {
+      width: var(--width);
+
+      figure {
+        position: relative;
+        width: 100%;
+        height: var(--width);
+        margin-bottom: 0;
+
+        img {
+          border-radius: 0.5em;
+        }
+      }
+    }
+  }
+}

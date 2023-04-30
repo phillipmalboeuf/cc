@@ -27,9 +27,22 @@ export interface Index {
 
 export interface Text {
   title: string
+  layout: string
+  color: string
   body: Document
   media: Asset
   buttons: Entry<NavigationLink>[]
+}
+
+export interface Cards {
+  title: string
+  layout: string
+  cards: Entry<Text>[]
+}
+
+export interface Gallery {
+  title: string
+  medias: Asset[]
 }
 
 export interface Page {
@@ -38,7 +51,7 @@ export interface Page {
   description: string
   color: string
   banner: Asset
-  content: Entry<Index & Text>[]
+  content: Entry<Index & Text & Cards & Gallery>[]
 }
 
 // export interface ArticleCategory {

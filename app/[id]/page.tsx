@@ -6,7 +6,7 @@ export default async function Page({ params }) {
 
   return (
     <main>
-      <Content content={page.fields.content} />
+      {page && <Content content={page.fields.content} />}
     </main>
   )
 }

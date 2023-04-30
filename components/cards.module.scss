@@ -1,0 +1,44 @@
+.cards {
+  margin: calc(var(--gap) * 5) 0;
+
+  ol {
+    list-style: none;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+
+    li {
+      padding: var(--base);
+      width: 25%;
+      min-height: 55vh;
+      border-left: 1px solid;
+
+      display: flex;
+      flex-direction: column;
+
+      figure {
+        position: relative;
+        width: 100%;
+        height: 25vw;
+
+        img {
+          border-radius: 0.5em;
+        }
+      }
+
+      h3 {
+        margin-bottom: 0;
+      }
+      
+      nav {
+        display: flex;
+        align-items: flex-end;
+        flex: 1;
+        gap: calc(var(--base) / 2);
+      }
+    }
+  }
+}

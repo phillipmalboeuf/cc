@@ -1,3 +1,42 @@
 .text {
   padding: var(--gap);
+
+  figure {
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 1em;
+    }
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    nav {
+      display: flex;
+      gap: var(--base);
+    }
+  }
+
+  h2,
+  main {
+    max-width: 788px;
+  }
+
+  &.Columns {
+    display: flex;
+    align-items: center;
+
+    figure {
+      width: 50%;
+    }
+
+    div {
+      padding: var(--gap);
+      max-width: 578px;
+    }
+  }
 }
