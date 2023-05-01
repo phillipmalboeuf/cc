@@ -3,7 +3,7 @@ import { Fragment, FunctionComponent } from 'react'
 import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import styles from './text.module.scss'
+import styles from 'styles/text.module.scss'
 
 export const Text: FunctionComponent<{
   text: ContentText

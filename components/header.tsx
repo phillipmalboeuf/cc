@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-import styles from './header.module.scss'
+import styles from '@/styles/header.module.scss'
 import { Logo } from './logo'
 import { ContentService } from '@/services/content'
 

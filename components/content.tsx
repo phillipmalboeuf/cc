@@ -4,6 +4,7 @@ import { Pages } from './pages'
 import { Text } from './text'
 import { Cards } from './cards'
 import { Gallery } from './gallery'
+import { Team } from './team'
 
 export const Content: FunctionComponent<{
   content: Page['content']
@@ -15,6 +16,7 @@ export const Content: FunctionComponent<{
         'text': <Text text={item.fields} />,
         'cards': <Cards cards={item.fields} />,
         'gallery': <Gallery gallery={item.fields} />,
+        'team': <Team team={item.fields} />,
       }[item.sys.contentType.sys.id]}
     </Fragment>)}
   </>

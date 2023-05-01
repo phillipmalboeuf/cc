@@ -51,7 +51,7 @@ export interface Page {
   description: string
   color: string
   banner: Asset
-  content: Entry<Index & Text & Cards & Gallery>[]
+  content: Entry<Index & Text & Cards & Gallery & Team>[]
 }
 
 // export interface ArticleCategory {
@@ -60,6 +60,26 @@ export interface Page {
 //   description: string
 //   photo: Asset
 // }
+
+export interface Tag {
+  label: string
+  id: string
+  color: string
+}
+
+export interface Member {
+  name: string
+  jobTitle: string
+  id: string
+  tag: Entry<Tag>
+  introduction: Document
+  media: Asset
+}
+
+export interface Team {
+  title: string
+  members: Entry<Member>[]
+}
 
 export interface Article {
   titre: string
@@ -83,6 +103,11 @@ export const ContentService = {
   },
   page: async (id: string, locale: string=undefined) => {
     const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 4,
+      'fields.id': id })
+    return pages.items[0]
+  },
+  member: async (id: string, locale: string=undefined) => {
+    const pages = await contentful.getEntries<Member>({ content_type: 'teamMember', locale, include: 2,
       'fields.id': id })
     return pages.items[0]
   },

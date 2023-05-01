@@ -2,7 +2,7 @@ import { Index } from '@/services/content'
 import { Fragment, FunctionComponent } from 'react'
 import Image from 'next/image'
 
-import styles from './pages.module.scss'
+import styles from '@/styles/pages.module.scss'
 
 export const Pages: FunctionComponent<{
   index: Index

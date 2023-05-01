@@ -9,7 +9,7 @@ import {
   Extrude,
 } from '@react-three/drei'
 
-import styles from './3d.module.scss'
+import styles from '@//styles/3d.module.scss'
 import { BoxGeometry, DoubleSide, ExtrudeGeometry, Mesh, Shape, Vector3 } from 'three'
 
 

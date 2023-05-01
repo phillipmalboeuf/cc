@@ -2,7 +2,7 @@
   --base: 16px;
   --gap: 20px;
   --max-width: 1920px;
-  --grey: #D1D1D1;
+  --grey: #D2D2D2;
   --green: #15B64C;
   --pink: #F895D4;
   --blue: #3FAEDF;
@@ -85,6 +85,7 @@ a {
 button,
 .button {
   cursor: pointer;
+  display: inline-block;
   font-size: inherit;
   line-height: 1;
   padding: calc(var(--base) * 0.5);

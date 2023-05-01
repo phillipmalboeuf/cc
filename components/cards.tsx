@@ -3,7 +3,7 @@ import { Fragment, FunctionComponent } from 'react'
 import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import styles from './cards.module.scss'
+import styles from '@/styles/cards.module.scss'
 
 export const Cards: FunctionComponent<{
   cards: ContentCards

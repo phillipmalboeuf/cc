@@ -3,7 +3,7 @@ import { Fragment, FunctionComponent } from 'react'
 import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import styles from './gallery.module.scss'
+import styles from '@/styles/gallery.module.scss'
 
 export const Gallery: FunctionComponent<{
   gallery: ContentGallery
