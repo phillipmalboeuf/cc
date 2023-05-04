@@ -21,7 +21,7 @@ export const Team: FunctionComponent<{
     <ul>
       {team.members.map((member, i) => <Fragment key={i}>
         <li>
-          <a href={`/team/${member.fields.id}`}>
+          <a href={`/team/members/${member.fields.id}`}>
             <figure>
                 {member.fields.media && <Image src={`https:${member.fields.media.fields.file.url}`} width={member.fields.media.fields.file.details.image.width} height={member.fields.media.fields.file.details.image.width} alt={member.fields.media.fields.title} sizes='10vw' style={{ objectFit: 'cover' }} />}
                 <figcaption>{member.fields.name}<br />{member.fields.jobTitle}</figcaption>

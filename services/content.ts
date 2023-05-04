@@ -51,7 +51,7 @@ export interface Page {
   description: string
   color: string
   banner: Asset
-  content: Entry<Index & Text & Cards & Gallery & Team>[]
+  content: Entry<Index & Text & Cards & Gallery & Team & Articles>[]
 }
 
 // export interface ArticleCategory {
@@ -82,13 +82,19 @@ export interface Team {
 }
 
 export interface Article {
-  titre: string
+  title: string
   id: string
-  tags: string[]
+  tags: Entry<Tag>[]
   excerpt: string
   publishedAt: Date
   text: Document
-  photo: Asset
+  media: Asset
+}
+
+export interface Articles {
+  title: string
+  layout: string
+  articlesTag: Entry<Tag>
 }
 
 const limit = 42
@@ -116,7 +122,7 @@ export const ContentService = {
       'fields.id': id })
     return articles.items[0]
   },
-  articles: async (tag: string, page: number, sort: string, locale: string, limitOverride?: number) => {
+  articles: async (tag: string, page: number, sort?: string, locale?: string, limitOverride?: number) => {
     const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 3,
       'fields.tags': tag,
       'fields.publishedAt[lte]': new Date().toISOString(),
