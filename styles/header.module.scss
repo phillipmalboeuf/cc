@@ -14,5 +14,10 @@
     display: flex;
     gap: calc(var(--gap) / 2);
     align-items: center;
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
   }
 }

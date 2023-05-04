@@ -49,9 +49,40 @@
     padding: var(--gap);
   }
 
-  nav {
+  > nav {
     position: absolute;
     top: calc(var(--gap) * 2);
     left: calc(var(--gap) * 2);
+  }
+
+  form {
+    border-left: 1px solid;
+    flex: 1;
+    padding: var(--gap);
+    display: flex;
+    flex-direction: column;
+
+    fieldset {
+      border: none;
+      background-color: var(--grey);
+      padding: var(--gap);
+      
+      &:first-child {
+        flex: 1;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+      }
+    }
+
+    button {
+      width: 100%;
+      background-color: white;
+      border: none;
+    }
   }
 }

@@ -8,7 +8,10 @@ import { ContentService } from '@/services/content'
 export const Header: FunctionComponent<{
   // svg: string
 }> = async ({  }) => {
-  const nav = await ContentService.navigation('header')
+  const [nav, offices] = await Promise.all([
+    ContentService.navigation('header'),
+    ContentService.offices(0)
+  ])
 
   return <>
     <header className={styles.header}>
@@ -21,6 +24,11 @@ export const Header: FunctionComponent<{
         </a>)}
       </nav>
       <nav>
+        <ul>
+          {offices.items.map(office => <li key={office.sys.id}>
+            <a href={office.fields.link}>{office.fields.initials}</a>
+          </li>)}
+        </ul>
         <a href='/'>
           EN
         </a>

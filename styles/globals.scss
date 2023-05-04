@@ -104,6 +104,30 @@ figure {
   margin: 0 0 var(--gap);
 }
 
+ul, ol {
+  li {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  margin: 0 0 var(--gap);
+
+  th {
+    text-align: left;
+    font-weight: normal;
+    padding: calc(var(--base) / 2) var(--gap);
+  }
+
+  td {
+    border-top: 1px solid;
+    padding: calc(var(--base) / 2) var(--gap);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     // color-scheme: dark;

@@ -51,7 +51,7 @@ export interface Page {
   description: string
   color: string
   banner: Asset
-  content: Entry<Index & Text & Cards & Gallery & Team & Articles>[]
+  content: Entry<Index & Text & Cards & Gallery & Team & Articles & Jobs>[]
 }
 
 // export interface ArticleCategory {
@@ -97,6 +97,28 @@ export interface Articles {
   articlesTag: Entry<Tag>
 }
 
+export interface Office {
+  city: string
+  initials: string
+  country: string
+  link: string
+}
+
+export interface Job {
+  title: string
+  id: string
+  department: Entry<Tag>
+  office: Entry<Office>
+  excerpt: string
+  publishedAt: Date
+  text: Document
+}
+
+export interface Jobs {
+  title: string
+  jobs: Entry<Job>
+}
+
 const limit = 42
 
 export const ContentService = {
@@ -133,6 +155,30 @@ export const ContentService = {
         'oldest': 'fields.publishedAt'
       }[sort as string || 'newest'] })
     return articles
+  },
+  offices: async (page: number, sort?: string, locale?: string, limitOverride?: number) => {
+    const offices = await contentful.getEntries<Office>({ content_type: 'office', locale, include: 3,
+      limit: (limitOverride || limit),
+      skip: page ? page * (limitOverride || limit) : 0,
+      order: '-fields.city' })
+    return offices
+  },
+  jobs: async (page: number, sort?: string, locale?: string, limitOverride?: number) => {
+    const jobs = await contentful.getEntries<Job>({ content_type: 'job', locale, include: 3,
+      // 'fields.tags': tag,
+      'fields.publishedAt[lte]': new Date().toISOString(),
+      limit: (limitOverride || limit),
+      skip: page ? page * (limitOverride || limit) : 0,
+      order: {
+        'newest': '-fields.publishedAt',
+        'oldest': 'fields.publishedAt'
+      }[sort as string || 'newest'] })
+    return jobs
+  },
+  job: async (id: string, locale: string=undefined) => {
+    const jobs = await contentful.getEntries<Job>({ content_type: 'job', locale, include: 2,
+      'fields.id': id })
+    return jobs.items[0]
   },
   // categories: async (locale: string) => {
   //   const categories = await contentful.getEntries<ArticleCategory>({ content_type: 'articleCategory', locale })

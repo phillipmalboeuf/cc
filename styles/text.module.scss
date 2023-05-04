@@ -26,6 +26,10 @@
     max-width: 788px;
   }
 
+  &.Hero {
+    min-height: 50vh;
+  }
+  
   &.Columns {
     display: flex;
     align-items: center;
