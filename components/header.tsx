@@ -3,6 +3,8 @@ import { FunctionComponent } from 'react'
 import styles from '@/styles/header.module.scss'
 import { Logo } from './logo'
 import { ContentService } from '@/services/content'
+import Link from 'next/link'
+import { ActiveNavigation } from './navigation'
 
 {/* @ts-expect-error Async Server Component */}
 export const Header: FunctionComponent<{
@@ -13,15 +15,16 @@ export const Header: FunctionComponent<{
     ContentService.offices(0)
   ])
 
+  // const path = usePathname()
+  // console.log(path)
+
   return <>
     <header className={styles.header}>
       <nav>
-        <a href='/'>
+        <Link className={styles.logo} href='/'>
           <Logo />
-        </a>
-        {nav.fields.links.map(link => <a key={link.sys.id} href={link.fields.path}>
-          {link.fields.label}
-        </a>)}
+        </Link>
+        <ActiveNavigation links={nav.fields.links} />
       </nav>
       <nav>
         <ul>
