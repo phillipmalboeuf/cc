@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 import styles from '@/styles/team.module.scss'
 import type { Entry } from 'contentful'
+import { Media } from './media'
 
 export const Team: FunctionComponent<{
   team: ContentTeam
@@ -23,8 +24,8 @@ export const Team: FunctionComponent<{
         <li>
           <a href={`/team/members/${member.fields.id}`}>
             <figure>
-                {member.fields.media && <Image src={`https:${member.fields.media.fields.file.url}`} width={member.fields.media.fields.file.details.image.width} height={member.fields.media.fields.file.details.image.width} alt={member.fields.media.fields.title} sizes='10vw' style={{ objectFit: 'cover' }} />}
-                <figcaption>{member.fields.name}<br />{member.fields.jobTitle}</figcaption>
+              <Media media={member.fields.media} sizes='10vw' fill={false} />
+              <figcaption>{member.fields.name}<br />{member.fields.jobTitle}</figcaption>
             </figure>
           </a>
         </li>

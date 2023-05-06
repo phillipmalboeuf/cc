@@ -1,4 +1,5 @@
 import { Content } from '@/components/content'
+import { Media } from '@/components/media'
 import { ContentService } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
@@ -11,7 +12,7 @@ export default async function Article({ params }) {
   return (
     <article className={styles.article}>
       <figure>
-        {article.fields.media && <Image src={`https:${article.fields.media.fields.file.url}`} fill alt={article.fields.media.fields.title} sizes='50vw' style={{ objectFit: 'cover' }} />}
+        <Media media={article.fields.media} sizes='50vw' fill />
       </figure>
       <main>
         <header>

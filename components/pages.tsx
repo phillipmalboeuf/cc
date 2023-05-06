@@ -1,6 +1,6 @@
 import { Index } from '@/services/content'
 import { Fragment, FunctionComponent } from 'react'
-import Image from 'next/image'
+import { Media } from './media'
 
 import styles from '@/styles/pages.module.scss'
 
@@ -18,7 +18,7 @@ export const Pages: FunctionComponent<{
       </a>
       <aside>
         <figure style={{ background: page.fields.color }}>
-          {page.fields.banner && <Image src={`https:${page.fields.banner.fields.file.url}`} alt={page.fields.banner.fields.title} fill sizes='(max-width: 888px) 100vw, 50vw' style={{ objectFit: 'cover' }} />}
+          <Media media={page.fields.banner} sizes='(max-width: 888px) 100vw, 50vw' fill />
         </figure>
       </aside>
     </Fragment>)}

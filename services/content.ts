@@ -34,6 +34,13 @@ export interface Text {
   buttons: Entry<NavigationLink>[]
 }
 
+export interface Form {
+  title: string
+  top: Document
+  bottom: Document
+  media: Asset
+}
+
 export interface Cards {
   title: string
   layout: string
@@ -51,7 +58,7 @@ export interface Page {
   description: string
   color: string
   banner: Asset
-  content: Entry<Index & Text & Cards & Gallery & Team & Articles & Jobs>[]
+  content: Entry<Index & Text & Cards & Gallery & Team & Articles & Jobs & Form>[]
 }
 
 // export interface ArticleCategory {

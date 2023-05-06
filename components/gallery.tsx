@@ -1,9 +1,9 @@
 import { Gallery as ContentGallery } from '@/services/content'
 import { Fragment, FunctionComponent } from 'react'
-import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from '@/styles/gallery.module.scss'
+import { Media } from './media'
 
 export const Gallery: FunctionComponent<{
   gallery: ContentGallery
@@ -19,7 +19,7 @@ export const Gallery: FunctionComponent<{
         </li>}
         <li>
           <figure>
-              <Image src={`https:${media.fields.file.url}`} fill alt={media.fields.title} sizes='14.3vw' style={{ objectFit: 'cover' }} />
+            <Media media={media} sizes='14.3vw' fill />
           </figure>
         </li>
       </Fragment>)}

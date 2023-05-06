@@ -15,7 +15,9 @@ import { BoxGeometry, DoubleSide, ExtrudeGeometry, Mesh, Shape, Vector3 } from '
 
 export const SVG: FunctionComponent<{
   svg: string
-}> = ({ svg }) => {
+  full?: boolean
+  load?: boolean
+}> = ({ svg, load, full }) => {
   const [shapes, setShapes] = useState<Shape[][]>([])
   const ref = useRef<HTMLDivElement>(null!)
   // const [gl] = useState(() => new SVGRenderer() as unknown as THREE.WebGLRenderer)
@@ -23,24 +25,32 @@ export const SVG: FunctionComponent<{
   useEffect(() => {
     if (ref.current) {
       const loader = new SVGLoader();
-      const svgData = loader.parse(svg);
-      setShapes(svgData.paths.map(p => p.toShapes(p.color.r === 1 || false)))
+
+      if (load) {
+        loader.loadAsync(svg).then(svgData => {
+          setShapes(svgData.paths.map(p => p.toShapes(p.color.r === 1 || true)))
+        });
+      } else {
+        const svgData = loader.parse(svg);
+        setShapes(svgData.paths.map(p => p.toShapes(p.color.r === 1 || false)))
+      }
     }
   }, [])
 
-  return <figure className={styles.full} ref={ref}>
+  return <figure className={full ? styles.full : undefined} ref={ref}>
     <Canvas>
       <ambientLight intensity={0.1} color="#F5F500" />
       <directionalLight position={[0, 0, 5]} color="#F5F500" />
       {/* <Box /> */}
-      <ExtrudeSVG shapes={shapes} />
+      <ExtrudeSVG shapes={shapes} scale={full ? 0.01 : 0.03} />
     </Canvas>
   </figure>
 }
 
 export const ExtrudeSVG: FunctionComponent<{
   shapes: Shape[][]
-}> = ({ shapes }) => {
+  scale: number
+}> = ({ shapes, scale }) => {
   const mesh = useRef<Mesh>();
 
   useFrame(({ clock, pointer }) => {
@@ -51,7 +61,7 @@ export const ExtrudeSVG: FunctionComponent<{
 
   return <>
     <mesh ref={mesh}>
-      <Center scale={0.01} rotation={[Math.PI,0,0]} >
+      <Center scale={scale} rotation={[Math.PI,0,0]} >
       {shapes?.map((shape, i) => <Extrude key={i} args={[shape, {
         depth: 20
       }]}>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from '@/styles/cards.module.scss'
+import { Media } from './media'
 
 export const Cards: FunctionComponent<{
   cards: ContentCards
@@ -12,7 +13,7 @@ export const Cards: FunctionComponent<{
     <ol>
       {cards.cards.map((card, i) => <li key={i}>
         {card.fields.media && <figure>
-            <Image src={`https:${card.fields.media.fields.file.url}`} fill alt={card.fields.media.fields.title} sizes='25vw' style={{ objectFit: 'cover' }} />
+          <Media media={card.fields.media} sizes='25vw' fill />
         </figure>}
 
         {card.fields.title && <h3>{card.fields.title}</h3>}

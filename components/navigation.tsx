@@ -15,7 +15,7 @@ export const ActiveNavigation: FunctionComponent<{
   const path = usePathname()
 
   return <>
-    {links.map(link => <Link key={link.sys.id} href={link.fields.path} className={path.startsWith(link.fields.path) && styles['active']}>
+    {links.map(link => <Link key={link.sys.id} href={link.fields.path} className={path.startsWith(link.fields.path) ? styles['active'] : undefined}>
       {link.fields.label}
     </Link>)}
   </>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from '@/styles/articles.module.scss'
+import { Media } from './media'
 
 {/* @ts-expect-error Async Server Component */}
 export const Articles: FunctionComponent<{
@@ -18,7 +19,7 @@ export const Articles: FunctionComponent<{
             {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}
             <h4>{article.fields.title}</h4>
             <figure>
-              {article.fields.media && <Image src={`https:${article.fields.media.fields.file.url}`} fill alt={article.fields.media.fields.title} sizes='33vw' style={{ objectFit: 'cover' }} />}
+              <Media media={article.fields.media} sizes='33vw' fill />
             </figure>
           </a>
         </li>

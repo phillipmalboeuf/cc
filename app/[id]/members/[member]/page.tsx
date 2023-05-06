@@ -1,9 +1,9 @@
 import { Content } from '@/components/content'
+import { Media } from '@/components/media'
 import { ContentService } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import Image from 'next/image'
 
 export default async function TeamMember({ params }) {
   const member = await ContentService.member(params.member)
@@ -11,7 +11,7 @@ export default async function TeamMember({ params }) {
   return (
     <article className={styles.article}>
       <figure style={{ backgroundColor: member.fields.tag?.fields.color }}>
-        {member.fields.media && <Image src={`https:${member.fields.media.fields.file.url}`} fill alt={member.fields.media.fields.title} sizes='50vw' style={{ objectFit: 'cover' }} />}
+        <Media media={member.fields.media} sizes='50vw' fill />
       </figure>
       <main>
         <header>

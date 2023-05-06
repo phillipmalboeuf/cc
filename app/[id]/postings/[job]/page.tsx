@@ -3,16 +3,12 @@ import { ContentService } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import Image from 'next/image'
 
 export default async function Job({ params }) {
   const job = await ContentService.job(params.job)
 
   return (
     <article className={styles.article}>
-      {/* <figure>
-        {article.fields.media && <Image src={`https:${article.fields.media.fields.file.url}`} fill alt={article.fields.media.fields.title} sizes='50vw' style={{ objectFit: 'cover' }} />}
-      </figure> */}
       <main>
         <header>
            {job.fields.department && <a className='button' href={`/jobs?department=${job.fields.department.fields.id}`}>{job.fields.department.fields.label}</a>}
