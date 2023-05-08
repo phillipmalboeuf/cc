@@ -1,5 +1,34 @@
 .jobs {
-  table {
-    
+  position: relative;
+  min-height: 100vh;
+
+  > table {
+    > tbody > tr {
+      cursor: pointer;
+    }
+  }
+
+  aside {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 333px;
+    background-color: var(--grey);
+    padding: var(--base);
+    border-radius: 1em;
+
+    time {
+      background-color: white;
+      margin-bottom: var(--gap);
+    }
+
+    table {
+      margin-bottom: 0;
+
+      td {
+        padding-left: 0;
+      }
+    }
   }
 }
