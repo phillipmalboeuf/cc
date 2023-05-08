@@ -1,12 +1,19 @@
-import { Index } from '@/services/content'
-import { Fragment, FunctionComponent } from 'react'
+// 'use client'
+
+import { Index, Page } from '@/services/content'
+import { Fragment, FunctionComponent, Suspense, useState } from 'react'
 import { Media } from './media'
 
 import styles from '@/styles/pages.module.scss'
+import { Entry } from 'contentful'
+import { Jobs } from './jobs'
+import { Articles } from './articles'
 
 export const Pages: FunctionComponent<{
   index: Index
 }> = ({ index }) => {
+  // const [current, setCurrent] = useState<Entry<Page>>()
+
   return <nav className={styles.pages}>
     {index.items.map(page => <Fragment key={page.fields.id}>
       <a href={`/${page.fields.id}`}>
@@ -17,10 +24,26 @@ export const Pages: FunctionComponent<{
         </svg>
       </a>
       <aside>
-        <figure style={{ background: page.fields.color }}>
-          <Media media={page.fields.banner} sizes='(max-width: 888px) 100vw, 50vw' fill />
-        </figure>
+        <PagesAside page={page} />
       </aside>
     </Fragment>)}
   </nav>
+}
+
+export const PagesAside: FunctionComponent<{
+  page: Entry<Page>
+}> = ({ page }) => {
+
+  const articles = page.fields.content?.find(c => c.sys.contentType.sys.id === 'articlesList')
+  const jobs = page.fields.content?.find(c => c.sys.contentType.sys.id === 'jobsList')
+
+  return articles
+    ? <figure><Articles articlesList={articles.fields} gallery /></figure>
+    : jobs
+      ? <figure><Jobs jobsList={jobs.fields} /></figure>
+      : <a href={`/${page.fields.id}`}>
+        <figure style={{ background: page.fields.color }}>
+          <Media media={page.fields.banner} sizes='(max-width: 888px) 100vw, 50vw' fill />
+        </figure>
+      </a>
 }

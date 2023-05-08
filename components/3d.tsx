@@ -3,7 +3,7 @@
 import { FC, FunctionComponent, RefAttributes, useContext, useEffect, useRef, useState } from 'react'
 import { SVGRenderer } from 'three-stdlib'
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader"
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Canvas, Color, useFrame, useLoader } from '@react-three/fiber'
 import {
   Center,
   Extrude,
@@ -23,6 +23,7 @@ export const SVG: FunctionComponent<{
   }
 }> = ({ svg, load, full, size }) => {
   const [shapes, setShapes] = useState<Shape[][]>([])
+  const [color, setColor] = useState<Color>()
   const ref = useRef<HTMLDivElement>(null!)
   // const [gl] = useState(() => new SVGRenderer() as unknown as THREE.WebGLRenderer)
 
@@ -32,29 +33,33 @@ export const SVG: FunctionComponent<{
 
       if (load) {
         loader.loadAsync(svg).then(svgData => {
+          setColor(svgData.paths[0].color)
           setShapes(svgData.paths.map(p => p.toShapes(p.color.r === 1 || true)))
         });
       } else {
         const svgData = loader.parse(svg);
+        console.log(svgData.paths[0].color)
+        setColor(svgData.paths[0].color)
         setShapes(svgData.paths.map(p => p.toShapes(p.color.r === 1 || false)))
       }
     }
   }, [])
 
   return <figure className={full ? styles.full : undefined} ref={ref}>
-    <Canvas style={size}>
-      <ambientLight intensity={0.1} color="#F5F500" />
-      <directionalLight position={[0, 0, 5]} color="#F5F500" />
+    {shapes && color && <Canvas style={size}>
+      <ambientLight intensity={0.1} color={color} />
+      <directionalLight position={[0, 0, 5]} color={color} />
       {/* <Box /> */}
-      <ExtrudeSVG shapes={shapes} scale={full ? 0.01 : 0.03} />
-    </Canvas>
+      <ExtrudeSVG shapes={shapes} scale={full ? 0.01 : 0.03} color={color} />
+    </Canvas>}
   </figure>
 }
 
 export const ExtrudeSVG: FunctionComponent<{
   shapes: Shape[][]
   scale: number
-}> = ({ shapes, scale }) => {
+  color: Color
+}> = ({ shapes, scale, color }) => {
   const mesh = useRef<Mesh>();
 
   useFrame(({ clock, pointer }) => {
@@ -69,7 +74,7 @@ export const ExtrudeSVG: FunctionComponent<{
       {shapes?.map((shape, i) => <Extrude key={i} args={[shape, {
         depth: 20
       }]}>
-        <meshStandardMaterial color="#F5F500" />
+        <meshStandardMaterial color={color} />
       </Extrude>)}
       </Center>
     </mesh>

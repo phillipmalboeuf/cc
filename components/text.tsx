@@ -11,7 +11,7 @@ export const Text: FunctionComponent<{
 }> = ({ text }) => {
   return <section className={`${styles.text} ${styles[text.layout]}`}>
     {text.media && <figure>
-      <Media media={text.media} sizes='100vw' fill />
+      <Media media={text.media} sizes='100vw' fill={false} />
     </figure>}
 
     <div>
