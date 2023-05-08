@@ -91,7 +91,7 @@ export interface Team {
 export interface Article {
   title: string
   id: string
-  tags: Entry<Tag>[]
+  tags: string[]
   excerpt: string
   publishedAt: Date
   text: Document

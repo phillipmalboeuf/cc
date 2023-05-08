@@ -30,4 +30,58 @@
       }
     }
   }
+
+  &.Grid {
+    display: flex;
+
+    nav {
+      width: 333px;
+      border-right: 1px solid;
+      border-top: 1px solid;
+
+      a {
+        display: block;
+        padding: var(--gap);
+        border-bottom: 1px solid;
+
+        h4 {
+          margin-top: var(--base);
+        }
+      }
+    }
+
+    ol {
+      flex: 1;
+      margin-top: 0;
+
+      --width: calc(((100 / 2) * 1%) - (var(--base) / 1.25));
+
+      figure {
+        figcaption {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--grey);
+          padding: var(--base);
+          border-radius: 0.5em;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          display: none;
+        }
+      }
+
+      a:hover,
+      a:focus,
+      a.current {
+        figcaption {
+          display: flex;
+        }
+      }
+    }
+  }
 }

@@ -5,14 +5,18 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from '@/styles/articles.module.scss'
 import { Media } from './media'
+import { ArticlesGrid } from './grid'
 
 {/* @ts-expect-error Async Server Component */}
 export const Articles: FunctionComponent<{
   articlesList: ContentArticles
 }> = async ({ articlesList }) => {
   const articles = await ContentService.articles(articlesList.articlesTag.fields.id, 0)
-  return <section className={`${styles.articles}`}>
-    <ol>
+  return <section className={`${styles.articles} ${styles[articlesList.layout]}`}>
+    {articlesList.layout === 'Grid' ? <>
+      <ArticlesGrid articles={articles} tag={articlesList.articlesTag.fields.id} />
+    </>
+    : <ol>
       {articles.items.map((article, i) => <Fragment key={article.sys.id}>
         <li>
           <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
@@ -24,6 +28,6 @@ export const Articles: FunctionComponent<{
           </a>
         </li>
       </Fragment>)}
-    </ol>
+    </ol>}
   </section>
 }
