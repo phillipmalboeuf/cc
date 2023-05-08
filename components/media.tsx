@@ -8,10 +8,11 @@ export const Media: FunctionComponent<{
   sizes: string
   fill: boolean
   contain?: boolean
-}> = ({ media, sizes, fill, contain }) => {
+  no3D?: boolean
+}> = ({ media, sizes, fill, contain, no3D }) => {
   return media?.fields.file ? <>
-    {media.fields.file.contentType === 'image/svg+xml'
-      ? <SVG svg={`https:${media.fields.file.url}`} load />
+    {(media.fields.file.contentType === 'image/svg+xml' && !no3D)
+      ? <SVG svg={`https:${media.fields.file.url}`} load size={!fill ? { width: media.fields.file.details.image.width, height: media.fields.file.details.image.height } : undefined} />
       : <Image src={`https:${media.fields.file.url}`} 
       fill={fill}
       {...!fill && { width: media.fields.file.details.image.width, height: media.fields.file.details.image.height }}

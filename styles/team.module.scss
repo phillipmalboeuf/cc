@@ -2,6 +2,7 @@
   position: relative;
 
   ul {
+    position: relative;
     list-style: none;
     padding: 0;
     display: flex;
@@ -15,13 +16,23 @@
     border-radius: 1em;
 
     a {
-      position: relative;
+      // position: relative;
+
+      figure {
+        min-height: 50vh;
+
+        // canvas {
+        //   height: 100%;
+        // }
+      }
 
       figcaption {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
+        bottom: var(--base);
+        left: var(--base);
+        // width: 100%;
+        // text-align: center;
       }
 
       &:hover,

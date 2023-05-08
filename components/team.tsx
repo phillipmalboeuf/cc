@@ -17,14 +17,14 @@ export const Team: FunctionComponent<{
   }, {} as {[id: string]: Entry<Tag>})
   return <section className={`${styles.team}`}>
 
-    <nav>{Object.values(tags).map(tag => <a className='button' href={`/team?tag=${tag.fields.id}`}>{tag.fields.label}</a>)}</nav>
+    <nav>{Object.values(tags).map(tag => <a key={tag.fields.id} className='button' href={`/team?tag=${tag.fields.id}`}>{tag.fields.label}</a>)}</nav>
 
     <ul>
       {team.members.map((member, i) => <Fragment key={i}>
         <li>
           <a href={`/team/members/${member.fields.id}`}>
             <figure>
-              <Media media={member.fields.media} sizes='10vw' fill={false} />
+              <Media media={member.fields.media} sizes='10vw' fill={false} no3D />
               <figcaption>{member.fields.name}<br />{member.fields.jobTitle}</figcaption>
             </figure>
           </a>

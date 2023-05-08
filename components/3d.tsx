@@ -17,7 +17,11 @@ export const SVG: FunctionComponent<{
   svg: string
   full?: boolean
   load?: boolean
-}> = ({ svg, load, full }) => {
+  size?: {
+    width: number
+    height: number
+  }
+}> = ({ svg, load, full, size }) => {
   const [shapes, setShapes] = useState<Shape[][]>([])
   const ref = useRef<HTMLDivElement>(null!)
   // const [gl] = useState(() => new SVGRenderer() as unknown as THREE.WebGLRenderer)
@@ -38,7 +42,7 @@ export const SVG: FunctionComponent<{
   }, [])
 
   return <figure className={full ? styles.full : undefined} ref={ref}>
-    <Canvas>
+    <Canvas style={size}>
       <ambientLight intensity={0.1} color="#F5F500" />
       <directionalLight position={[0, 0, 5]} color="#F5F500" />
       {/* <Box /> */}
