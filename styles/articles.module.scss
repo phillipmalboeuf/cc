@@ -1,5 +1,9 @@
 .articles {
 
+  time {
+    margin-bottom: 0.5em;
+  }
+
   ol {
     list-style: none;
     padding: var(--base);
@@ -54,7 +58,7 @@
         border-bottom: 1px solid;
 
         h4 {
-          margin-top: var(--base);
+          // margin-top: var(--base);
         }
       }
     }

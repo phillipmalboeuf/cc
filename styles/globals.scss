@@ -95,6 +95,7 @@ button,
 
 time {
   display: inline-block;
+  line-height: 1;
   padding: calc(var(--base) * 0.5);
   background-color: var(--grey);
   border-radius: 0.5em;

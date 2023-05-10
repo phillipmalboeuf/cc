@@ -83,6 +83,12 @@ export interface Member {
   media: Asset
 }
 
+export interface Person {
+  name: string
+  jobTitle: string
+  link: string
+}
+
 export interface Team {
   title: string
   members: Entry<Member>[]
@@ -96,6 +102,7 @@ export interface Article {
   publishedAt: Date
   text: Document
   media: Asset
+  collaborators: Entry<Person>[]
 }
 
 export interface Articles {

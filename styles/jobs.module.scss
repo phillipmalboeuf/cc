@@ -12,11 +12,12 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(0%, -50%);
     width: 333px;
     background-color: var(--grey);
     padding: var(--base);
     border-radius: 1em;
+    pointer-events: none;
 
     time {
       background-color: white;

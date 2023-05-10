@@ -35,8 +35,8 @@ export const Articles: FunctionComponent<{
       : <ol>
         {articles.items.map((article, i) => <Fragment key={article.sys.id}>
           <li>
+            <nav>{article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}</nav>
             <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
-              {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}
               <h4>{article.fields.title}</h4>
               <figure>
                 <Media media={article.fields.media} sizes='33vw' fill />

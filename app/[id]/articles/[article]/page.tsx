@@ -21,7 +21,8 @@ export default async function Article({ params }) {
 
         <footer>
           <aside>
-          {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}
+            {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}
+            {article.fields.collaborators.map(person => <span key={person.sys.id}>{person.fields.jobTitle}: {person.fields.name}</span>)}
           </aside>
           {article.fields.text && documentToReactComponents(article.fields.text)}
         </footer>
