@@ -1,6 +1,13 @@
 import { Header } from '@/components/header'
+import localFont from 'next/font/local'
+
 import '@/styles/globals.scss'
 import { Footer } from '@/components/footer'
+
+const antique = localFont({
+  src: '../public/AntiqueLegacy-Regular.otf',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Cloud Chamber',
@@ -13,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={antique.className}>
       <body>
         <Header />
         {children}
