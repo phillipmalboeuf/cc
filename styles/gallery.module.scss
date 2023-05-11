@@ -20,10 +20,8 @@
         width: 100%;
         height: var(--width);
         margin-bottom: 0;
-
-        img {
-          border-radius: 0.5em;
-        }
+        border-radius: 0.5em;
+        overflow: hidden;
       }
     }
   }

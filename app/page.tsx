@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 
 import { ContentService } from '@/services/content'
 import Image from 'next/image'
-import { SVG } from '@/components/3d'
+import { OBJ, SVG } from '@/components/3d'
 import { Content } from '@/components/content'
 
 

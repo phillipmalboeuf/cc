@@ -3,14 +3,16 @@
 import { FC, FunctionComponent, RefAttributes, useContext, useEffect, useRef, useState } from 'react'
 import { SVGRenderer } from 'three-stdlib'
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader"
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { Canvas, Color, useFrame, useLoader } from '@react-three/fiber'
 import {
   Center,
   Extrude,
+  PresentationControls,
 } from '@react-three/drei'
 
 import styles from '@//styles/3d.module.scss'
-import { BoxGeometry, DoubleSide, ExtrudeGeometry, Mesh, Shape, Vector3 } from 'three'
+import { BoxGeometry, DoubleSide, ExtrudeGeometry, Group, Mesh, Shape, Vector3 } from 'three'
 
 
 export const SVG: FunctionComponent<{
@@ -38,7 +40,6 @@ export const SVG: FunctionComponent<{
         });
       } else {
         const svgData = loader.parse(svg);
-        console.log(svgData.paths[0].color)
         setColor(svgData.paths[0].color)
         setShapes(svgData.paths.map(p => p.toShapes(p.color.r === 1 || false)))
       }
@@ -49,7 +50,7 @@ export const SVG: FunctionComponent<{
     {shapes && color && <Canvas style={size}>
       <ambientLight intensity={0.1} color={color} />
       <directionalLight position={[0, 0, 5]} color={color} />
-      {/* <Box /> */}
+
       <ExtrudeSVG shapes={shapes} scale={full ? 0.01 : 0.03} color={color} />
     </Canvas>}
   </figure>
@@ -81,18 +82,58 @@ export const ExtrudeSVG: FunctionComponent<{
   </>
 }
 
-export const Box: FunctionComponent<{}> = (props) => {
-  const mesh = useRef<Mesh>();
+export const OBJ: FunctionComponent<{
+  href: string
+  full?: boolean
+  size?: {
+    width: number
+    height: number
+  }
+}> = ({ href, full, size }) => {
+  const ref = useRef<HTMLDivElement>()
+  const [obj, setOBJ] = useState<Group>()
 
-  useFrame(({ clock }) => {
-    const a = clock.getElapsedTime();
-    mesh.current.rotation.x = a;
-  })
+  useEffect(() => {
+    if (ref.current) {
+      const loader = new OBJLoader();
 
-  return <mesh ref={mesh}>
-    <boxGeometry />
-    <meshBasicMaterial color="royalblue" />
-    
-    {/* <meshStandardMaterial /> */}
-  </mesh>
+      console.log(href)
+      loader.loadAsync(href).then(objData => {
+        console.log(objData)
+        // setColor(svgData.paths[0].color)
+        setOBJ(objData)
+      });
+    }
+  }, [])
+  
+
+  // const obj = useLoader(OBJLoader, href)
+
+  return <figure className={full ? styles.full : undefined} style={{ backgroundColor: '#D2D2D2' }} ref={ref}>
+    {obj && <Canvas style={size}>
+      <ambientLight intensity={0.1} color={'#D2D2D2'} />
+      <directionalLight position={[0, 0, 5]} color={'#D2D2D2'} />
+      
+      <Presentation obj={obj} scale={0.02} color={'#D2D2D2'} />
+    </Canvas>}
+  </figure>
+}
+
+export const Presentation: FunctionComponent<{
+  obj: Group
+  scale: number
+  color: Color
+}> = ({ obj, scale, color }) => {
+  const ref = useRef<Mesh>()
+  useFrame((state, delta) => (ref.current.rotation.y += delta / 2))
+
+  return <PresentationControls>
+    <mesh scale={scale} ref={ref}>
+      <Center>
+        <primitive object={obj}>
+          <meshStandardMaterial color={color} />
+        </primitive>
+      </Center>
+    </mesh>
+  </PresentationControls>
 }
