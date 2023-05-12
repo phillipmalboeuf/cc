@@ -47,7 +47,7 @@ export const SVG: FunctionComponent<{
     }
   }, [])
 
-  return <figure className={full ? styles.full : undefined} ref={ref}>
+  return <figure onClick={() => DeviceOrientationEvent.requestPermission()} className={full ? styles.full : undefined} ref={ref}>
     {shapes && color && <Canvas style={size}>
       <ambientLight intensity={0.1} color={color} />
       <directionalLight position={[0, 0, 5]} color={color} />
@@ -63,12 +63,37 @@ export const ExtrudeSVG: FunctionComponent<{
   color: Color
 }> = ({ shapes, scale, color }) => {
   const mesh = useRef<Mesh>();
+  const [orientation, setOrientation] = useState<[ rotateDegrees: number, leftToRight: number, frontToBack: number  ]>()
 
   useFrame(({ clock, pointer }) => {
     mesh.current.rotation.y = pointer.x
     mesh.current.rotation.x = -pointer.y
     mesh.current.scale.z = pointer.y*8 || 0.01
+
+    if (orientation) {
+      mesh.current.rotation.y = orientation[1]
+      mesh.current.rotation.x = -orientation[2]/4
+      // mesh.current.scale.z = orientation[0]*8 || 0.01
+    }
   })
+
+  function orient(event: DeviceOrientationEvent) {
+    const rotateDegrees = event.alpha; // alpha: rotation around z-axis
+    const leftToRight = event.gamma / 100; // gamma: left to right
+    const frontToBack = event.beta / 100; // beta: front back motion
+
+    setOrientation([rotateDegrees, leftToRight, frontToBack])
+  }
+
+  useEffect(() => {
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", orient, true);
+
+      return () => {
+        window.removeEventListener("deviceorientation", orient, true);
+      }
+    }
+  }, [])
 
   return <>
     <mesh ref={mesh}>
