@@ -142,7 +142,7 @@ export const Presentation: FunctionComponent<{
 
 
 export const Logo: FunctionComponent = () => {
-  const width = useRef(window.innerWidth)
+  const width = typeof window !== 'undefined' && useRef(window.innerWidth)
 
   return width.current ?
     width.current > 888
