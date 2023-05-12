@@ -36,7 +36,8 @@ export const Menu: FunctionComponent<{
       <button onClick={() => setVisible(!visible)}>{!visible ? 'Menu' : 'Close'}</button>
     </nav>
     <nav className={`${styles.menu} ${visible ? styles['visible'] : ''}`}>
-      {links.map(link => <Link key={link.sys.id} href={link.fields.path} className={path.startsWith(link.fields.path) ? styles['active'] : undefined}>
+      {links.map(link => <Link key={link.sys.id} href={link.fields.path} className={path.startsWith(link.fields.path) ? styles['active'] : undefined}
+        onClick={() => setVisible(false)}>
         <h3>{link.fields.label}</h3>
       </Link>)}
     </nav>
