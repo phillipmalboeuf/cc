@@ -4,7 +4,7 @@ import styles from '@/styles/header.module.scss'
 import { Logo } from './logo'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
-import { ActiveNavigation } from './navigation'
+import { ActiveNavigation, Menu } from './navigation'
 
 {/* @ts-expect-error Async Server Component */}
 export const Header: FunctionComponent<{
@@ -36,6 +36,8 @@ export const Header: FunctionComponent<{
           EN
         </a>
       </nav>
+
+      <Menu links={nav.fields.links} />
     </header>
   </>
 }
