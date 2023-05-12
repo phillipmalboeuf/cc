@@ -1,10 +1,10 @@
 import { FunctionComponent } from 'react'
 
 import styles from '@/styles/header.module.scss'
-import { Logo } from './logo'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
 import { ActiveNavigation, Menu } from './navigation'
+import { PetitLogo } from './3d'
 
 {/* @ts-expect-error Async Server Component */}
 export const Header: FunctionComponent<{
@@ -22,7 +22,7 @@ export const Header: FunctionComponent<{
     <header className={styles.header}>
       <nav>
         <Link className={styles.logo} href='/'>
-          <Logo />
+          <PetitLogo />
         </Link>
         <ActiveNavigation links={nav.fields.links} />
       </nav>

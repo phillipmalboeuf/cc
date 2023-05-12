@@ -3,7 +3,6 @@
 import { FunctionComponent, useState } from 'react'
 
 import styles from '@/styles/header.module.scss'
-import { Logo } from './logo'
 import { ContentService, Navigation } from '@/services/content'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
