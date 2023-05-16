@@ -1,4 +1,5 @@
 import { Content } from '@/components/content'
+import { Time } from '@/components/time'
 import { ContentService } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
@@ -17,7 +18,7 @@ export default async function Job({ params }) {
 
         <footer>
           <aside>
-          {job.fields.publishedAt && <time dateTime={new Date(job.fields.publishedAt).toISOString()}>{new Date(job.fields.publishedAt).toLocaleDateString()}</time>}
+            <Time d={job.fields.publishedAt} />
           </aside>
           <p>{job.fields.excerpt}</p>
           {job.fields.text && documentToReactComponents(job.fields.text)}

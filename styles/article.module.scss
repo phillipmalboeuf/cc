@@ -31,6 +31,12 @@
 
   header {
     flex: 1;
+
+    nav {
+      display: flex;
+      gap: calc(var(--base) / 2);
+      margin-bottom: var(--base);
+    }
   }
 
   header,

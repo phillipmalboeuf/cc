@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation'
 import { Media } from './media'
 
 import styles from '@/styles/articles.module.scss'
+import { Time } from './time'
+import { Tags } from './tags'
 
 export const ArticlesGrid: FunctionComponent<{
   tag: string
@@ -27,7 +29,11 @@ export const ArticlesGrid: FunctionComponent<{
           onPointerLeave={() => setCurrent(undefined)}
           className={current?.fields.id === article.fields.id ? styles['current'] : undefined}
         >
-          {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toDateString()}</time>}
+          <nav>
+            <Time d={article.fields.publishedAt} />
+            <Tags tags={article.fields.tags} path={`/${tag}/articles`} noLinks />
+          </nav>
+
           <h4>{article.fields.title}</h4>
         </a>
       </Fragment>)}
@@ -35,6 +41,7 @@ export const ArticlesGrid: FunctionComponent<{
     <ol>
       {articles.items.map((article, i) => <Fragment key={article.sys.id}>
         <li>
+          
           <a href={`/${tag}/articles/${article.fields.id}`}
             onPointerEnter={() => setCurrent(article)}
             onPointerLeave={() => setCurrent(undefined)}
@@ -42,8 +49,12 @@ export const ArticlesGrid: FunctionComponent<{
           >
             <figure>
               <Media media={article.fields.media} sizes='50vw' fill />
-              <figcaption>
-                {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toDateString()}</time>}
+              <figcaption style={{ backgroundColor: article.fields.tags.find(t => !['culture', 'news'].includes(t.fields.id)).fields.color }}>
+                <nav>
+                  <Time d={article.fields.publishedAt} />
+                  <Tags tags={article.fields.tags} path={`/${tag}/articles`} noLinks />
+                </nav>
+                
                 <h3>{article.fields.title}</h3>
               </figcaption>
             </figure>

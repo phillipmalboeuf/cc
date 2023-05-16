@@ -7,6 +7,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import styles from '@/styles/jobs.module.scss'
 import { Entry, EntryCollection } from 'contentful'
 import { useRouter } from 'next/navigation'
+import { Time } from './time'
 
 export const JobsPostings: FunctionComponent<{
   jobs: EntryCollection<Job>
@@ -32,7 +33,6 @@ export const JobsPostings: FunctionComponent<{
           onPointerMove={(e) => setCursor({ left: e.clientX, top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight - 5 })}>
           <td>
             <a href={`/jobs/postings/${job.fields.id}`}>
-              {/* {job.fields.publishedAt && <time dateTime={new Date(job.fields.publishedAt).toISOString()}>{new Date(job.fields.publishedAt).toLocaleDateString()}</time>} */}
               {job.fields.title}
             </a>
           </td>
@@ -53,7 +53,7 @@ export const JobsPostings: FunctionComponent<{
       onPointerLeave={() => setCurrent(undefined)}
     >
       <a href={`/jobs/postings/${current.fields.id}`}>
-        {current.fields.publishedAt && <time dateTime={new Date(current.fields.publishedAt).toISOString()}>{new Date(current.fields.publishedAt).toLocaleDateString()}</time>}
+        <Time d={current.fields.publishedAt} />
         <h3>{current.fields.title}</h3>
 
         <p>{current.fields.excerpt}</p>

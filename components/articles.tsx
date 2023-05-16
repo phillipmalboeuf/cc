@@ -6,6 +6,8 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import styles from '@/styles/articles.module.scss'
 import { Media } from './media'
 import { ArticlesGrid } from './grid'
+import { Time } from './time'
+import { Tags } from './tags'
 
 {/* @ts-expect-error Async Server Component */}
 export const Articles: FunctionComponent<{
@@ -19,8 +21,6 @@ export const Articles: FunctionComponent<{
         {articles.items.map((article, i) => <Fragment key={article.sys.id}>
           <li>
             <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
-              {/* {article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}
-              <h4>{article.fields.title}</h4> */}
               <figure>
                 <Media media={article.fields.media} sizes='33vw' fill />
               </figure>
@@ -35,7 +35,10 @@ export const Articles: FunctionComponent<{
       : <ol>
         {articles.items.map((article, i) => <Fragment key={article.sys.id}>
           <li>
-            <nav>{article.fields.publishedAt && <time dateTime={new Date(article.fields.publishedAt).toISOString()}>{new Date(article.fields.publishedAt).toLocaleDateString()}</time>}</nav>
+            <nav>
+              <Time d={article.fields.publishedAt} />
+              <Tags tags={article.fields.tags} path={`/${articlesList.articlesTag.fields.id}/articles`} />
+            </nav>
             <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
               <h4>{article.fields.title}</h4>
               <figure>

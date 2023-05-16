@@ -1,9 +1,4 @@
 .articles {
-
-  time {
-    margin-bottom: 0.5em;
-  }
-
   ol {
     list-style: none;
     padding: var(--base);
@@ -31,6 +26,13 @@
         border-radius: 0.5em;
         overflow: hidden;
       }
+
+      nav {
+        display: flex;
+        gap: calc(var(--base) / 2);
+        align-items: center;
+        margin-bottom: 0.5em;
+      }
     }
   }
 
@@ -45,12 +47,12 @@
   &.Grid {
     display: flex;
 
-    nav {
+    > nav {
       width: 333px;
       border-right: 1px solid;
       border-top: 1px solid;
 
-      a {
+      > a {
         display: block;
         padding: var(--gap);
         border-bottom: 1px solid;
@@ -58,7 +60,15 @@
         h4 {
           // margin-top: var(--base);
         }
+
+        > nav {
+          display: flex;
+          gap: calc(var(--base) / 2);
+          margin-bottom: 0.5em;
+        }
       }
+
+      
     }
 
     ol {

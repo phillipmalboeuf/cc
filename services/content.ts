@@ -97,9 +97,9 @@ export interface Team {
 export interface Article {
   title: string
   id: string
-  tags: string[]
+  tags: Entry<Tag>[]
   excerpt: string
-  publishedAt: Date
+  publishedAt: string
   text: Document
   media: Asset
   collaborators: Entry<Person>[]
@@ -124,7 +124,7 @@ export interface Job {
   department: Entry<Tag>
   office: Entry<Office>
   excerpt: string
-  publishedAt: Date
+  publishedAt: string
   text: Document
 }
 
@@ -154,11 +154,19 @@ export const ContentService = {
     return pages.items[0]
   },
   article: async (id: string, locale: string=undefined) => {
-    const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 2,
-      'fields.id': id })
-    return articles.items[0]
+    const tags = await contentful.getEntries<Tag>({ content_type: 'tag', locale, include: 2 })
+    const articles = (await contentful.getEntries<Article>({ content_type: 'article', locale, include: 2,
+      'fields.id': id }))
+    return {
+      ...articles.items[0],
+      fields: {
+        ...articles.items[0].fields,
+        tags: articles.items[0].fields.tags.map(tag => tags.items.find(t => t.fields.id === tag as any as string)).filter(t => t)
+      }
+    }
   },
   articles: async (tag: string, page: number, sort?: string, locale?: string, limitOverride?: number) => {
+    const tags = await contentful.getEntries<Tag>({ content_type: 'tag', locale, include: 2 })
     const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 3,
       'fields.tags': tag,
       'fields.publishedAt[lte]': new Date().toISOString(),
@@ -168,7 +176,16 @@ export const ContentService = {
         'newest': '-fields.publishedAt',
         'oldest': 'fields.publishedAt'
       }[sort as string || 'newest'] })
-    return articles
+    return {
+      ...articles,
+      items: articles.items.map(article => ({
+        ...article,
+        fields: {
+          ...article.fields,
+          tags: article.fields.tags.map(tag => tags.items.find(t => t.fields.id === tag as any as string)).filter(t => t)
+        }
+      }))
+    }
   },
   offices: async (page: number, sort?: string, locale?: string, limitOverride?: number) => {
     const offices = await contentful.getEntries<Office>({ content_type: 'office', locale, include: 3,
@@ -193,6 +210,10 @@ export const ContentService = {
     const jobs = await contentful.getEntries<Job>({ content_type: 'job', locale, include: 2,
       'fields.id': id })
     return jobs.items[0]
+  },
+  tags: async (locale: string=undefined) => {
+    const tags = await contentful.getEntries<Tag>({ content_type: 'tag', locale, include: 2 })
+    return tags
   },
   // categories: async (locale: string) => {
   //   const categories = await contentful.getEntries<ArticleCategory>({ content_type: 'articleCategory', locale })
