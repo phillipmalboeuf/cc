@@ -1,5 +1,7 @@
+'use client'
+
 import { Team as ContentTeam, Tag } from '@/services/content'
-import { Fragment, FunctionComponent } from 'react'
+import { Fragment, FunctionComponent, useRef, useState } from 'react'
 import Image from 'next/image'
 
 import styles from '@/styles/team.module.scss'
@@ -9,20 +11,27 @@ import { Media } from './media'
 export const Team: FunctionComponent<{
   team: ContentTeam
 }> = ({ team }) => {
+  const list = useRef<HTMLUListElement>()
   const tags = team.members.reduce((tags, member)=> {
     return {
       ...tags,
       ...member.fields.tag && { [member.fields.tag.fields.id]: member.fields.tag }
     }
   }, {} as {[id: string]: Entry<Tag>})
-  return <section className={`${styles.team}`}>
+  const [active, setActive] = useState<string>()
 
-    <nav>{Object.values(tags).map(tag => <a key={tag.fields.id} className='button' href={`/team?tag=${tag.fields.id}`}>{tag.fields.label}</a>)}</nav>
+  return <section className={`${styles.team}`} onPointerMove={(e) => {
+    if (list.current) {
+      list.current.scrollBy({ left: e.movementX / 2 })
+    }
+  }}>
 
-    <ul>
-      {team.members.map((member, i) => <Fragment key={i}>
+    <nav>{Object.values(tags).map(tag => <a key={tag.fields.id} onPointerEnter={() => setActive(tag.fields.id)} onPointerLeave={() => setActive(undefined)} className='button' href={`/team?tag=${tag.fields.id}`}>{tag.fields.label}</a>)}</nav>
+
+    <ul ref={list}>
+      {[...team.members, ...team.members, ...team.members, ...team.members, ...team.members, ...team.members, ...team.members, ...team.members, ...team.members, ...team.members].map((member, i) => <Fragment key={i}>
         <li>
-          <a href={`/team/members/${member.fields.id}`}>
+          <a href={`/team/members/${member.fields.id}`} className={active === member.fields.tag.fields.id ? styles['active'] : undefined}>
             <figure>
               <Media media={member.fields.media} sizes='10vw' fill={false} no3D />
               <figcaption>{member.fields.name}<br />{member.fields.jobTitle}</figcaption>

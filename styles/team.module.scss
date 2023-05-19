@@ -2,7 +2,7 @@
   position: relative;
 
   ul {
-    position: relative;
+    // position: relative;
     list-style: none;
     padding: 0;
     display: flex;
@@ -11,15 +11,15 @@
 
     background-color: var(--grey);
     min-height: 80vh;
+    overflow: auto;
 
     margin: var(--gap);
     border-radius: 1em;
-
+    
     a {
-      // position: relative;
-
       figure {
         min-height: 50vh;
+        filter: grayscale(1);
 
         // canvas {
         //   height: 100%;
@@ -30,9 +30,17 @@
         display: none;
         position: absolute;
         bottom: var(--base);
-        left: var(--base);
+        left: calc(var(--base) + var(--gap));
         // width: 100%;
         // text-align: center;
+      }
+
+      &:hover,
+      &:focus,
+      &.active {
+        figure {
+          filter: grayscale(0);
+        }
       }
 
       &:hover,
