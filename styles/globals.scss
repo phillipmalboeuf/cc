@@ -29,13 +29,14 @@ body {
 body {
   color: black;
   background: white;
-  font-family: "Antique Legacy", sans-serif;
+  font-family: var(--antique), sans-serif;
   font-size: var(--base);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 h1, h2, h3, h4, h5, h6, p {
+  font-family: var(--antique), sans-serif;
   margin: 0 0 var(--base);
   white-space: pre-line;
   text-align: left;

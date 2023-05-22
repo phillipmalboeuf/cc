@@ -5,7 +5,8 @@ import '@/styles/globals.scss'
 import { Footer } from '@/components/footer'
 
 const antique = localFont({
-  src: '../public/AntiqueLegacy-Regular.otf',
+  src: [{ path: './fonts/Antique-Legacy-Regular.woff2' }, { path: './fonts/Antique-Legacy-Regular.woff' }],
+  variable: '--antique',
   display: 'swap',
 })
 
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={antique.className}>
+    <html lang="en" className={antique.variable}>
       <body>
         <Header />
         {children}
