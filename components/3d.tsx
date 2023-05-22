@@ -163,10 +163,97 @@ export const Logo: FunctionComponent = () => {
 ' />
 }
 
+const svgs = [
+  `<svg width="102" height="138" viewBox="0 0 102 138" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M102 138H40L5.66244e-07 98V41L41 -1.14441e-05H99V27H95C87.2667 22.3333 78.6 20 69 20C60.2 20 52 22.2 44.4 26.6C36.9333 31 31 37 26.6 44.6C22.2 52.0667 20 60.2 20 69C20 77.8 22.2 86 26.6 93.6C31 101.067 36.9333 107 44.4 111.4C52 115.8 60.2 118 69 118C74.4667 118 79.8 117.333 85 116C90.2 114.533 94.5333 112.867 98 111H102V138Z" fill="black"/>
+</svg>`,
+  `<svg width="102" height="138" viewBox="0 0 102 138" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M102 138H40L5.66244e-07 98V41L41 -1.14441e-05H99V27H95C87.2667 22.3333 78.6 20 69 20C60.2 20 52 22.2 44.4 26.6C36.9333 31 31 37 26.6 44.6C22.2 52.0667 20 60.2 20 69C20 77.8 22.2 86 26.6 93.6C31 101.067 36.9333 107 44.4 111.4C52 115.8 60.2 118 69 118C74.4667 118 79.8 117.333 85 116C90.2 114.533 94.5333 112.867 98 111H102V138Z" fill="black"/>
+    </svg>`,
+  `<svg width="67" height="146" viewBox="0 0 67 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M66.4 42.4H46V36.8C46 23.8 38.2 20.8 33.4 20.8C22.4 20.8 20.8 29.2 20.8 36.8V110.8C20.8 117.4 23.6 124.8 33.2 124.8C37.2 124.8 46 123.2 46 109.8V103.4H66.4V111.6C66.4 130.4 51.8 145.2 34 145.2C13 145.2 0.400001 132.4 0.400001 112.4V32.8C0.400001 15 13.6 0.399989 33.6 0.399989C43.8 0.399989 51.8 4.59999 57.2 10.2C62.8 16.2 66.4 23.2 66.4 36.2V42.4Z" fill="black"/>
+</svg>`,
+  `<svg width="124" height="155" viewBox="0 0 124 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M71.8 16.6C46.4 16.6 30.6 39.8 30.6 75.4C30.6 114.6 42.8 138.4 73.2 138.4C86.6 138.4 96.8 130.6 105.2 120.6C112.4 111.8 119 99.8 124 89V154.4L105.6 140.6C96.4 147.8 83.6 152.6 68.4 152.6C22 152.6 0.2 121.6 0.2 79.6C0.2 29.6 29.2 2.19999 70.4 2.19999C82 2.19999 96.4 6.99999 106.2 14.8L124 0.399994V66.2C119.2 56.2 111.2 41.8 103.6 32.6C94.6 21.6 84.4 16.6 71.8 16.6Z" fill="black"/>
+</svg>`,
+  `<svg width="110" height="146" viewBox="0 0 110 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M47.8 145.6L26.2 136.2L12.6 122.4L4 104.6L0.2 87.6V58.2L4 40.8L12.4 23.4L26.8 9.39999L47.8 0.199992H70L91.2 8.59999L100.2 15.6L109.8 26.8L94.2 41.6L85.8 32L80.4 27.8L66.8 21.8H52L39.4 27.6L30.4 36.4L24.8 47.6L21.8 60.6V85L24.8 98L30.6 109.6L39.2 118L52 124H66.8L80.8 118L86 113.8L94.2 104.2L109.8 119L100.2 130.2L91.2 137.2L70 145.6H47.8Z" fill="black"/>
+</svg>`,
+  `<svg width="110" height="139" viewBox="0 0 110 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M68.6 139C25.8 139 0.6 118 0.6 69.8C0.6 23.4 24.2 0.599992 68.6 0.599992C81.4 0.599992 95.8 3.19999 108.8 7.19999V37.2C95.8 30.8 81 27.6 68.6 27.6C43.4 27.6 32 39.6 32 69.8C32 100 43.6 112 68.6 112C81.6 112 96.6 108.6 109.6 102.6V132.4C95 137 81.4 139 68.6 139Z" fill="black"/>
+</svg>`,
+  `<svg width="118" height="142" viewBox="0 0 118 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M63 141.4C26.2 141.4 0.200001 115 0.200001 71C0.200001 27 26.2 0.599994 63 0.599994C79.6 0.599994 99.4 6.99999 117.4 18.4V43.8L98.8 32.6C87.6 25.8 73.8 21.2 63 21.2C39.6 21.2 23 39.2 23 71C23 102.2 38.8 120.8 62 120.8C73 120.8 87.6 116.2 98.8 109.4L117.4 98.2V123.6C99.4 135 79.6 141.4 63 141.4Z" fill="black"/>
+</svg>`,
+  `<svg width="113" height="143" viewBox="0 0 113 143" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M60.6 0.199998C75.4 0.199998 87.4667 5.86666 96.8 17.2L96.6 15C96.6 14.3333 96.6 13.6 96.6 12.8C96.4667 12 96.4 11.5333 96.4 11.4C96.1333 8.46666 96 7.13333 96 7.39999C96 2.86666 98.1333 0.599993 102.4 0.599993C106.933 0.599993 109.2 3.39999 109.2 8.99999C109.2 10.0667 108.933 13.2667 108.4 18.6C107.733 25.2667 107.4 29.8667 107.4 32.4C107.4 36 107.6 39.6667 108 43.4L108.8 51V53C108.8 59 106.4 62 101.6 62C96.4 62 93.8667 59.1333 94 53.4L94.2 46.2C94.4667 36.6 91.4667 28.8 85.2 22.8C78.9333 16.8 70.7333 13.8 60.6 13.8C47.4 13.8 37.0667 18.8667 29.6 29C22.1333 39.1333 18.4 53.1333 18.4 71C18.4 89.2667 22.2 103.533 29.8 113.8C37.5333 123.933 48.2667 129 62 129C69.4667 129 76.1333 127.2 82 123.6C88 120 92.2 115.267 94.6 109.4C96.2 105.533 97 100.333 97 93.8C97 87.6667 99.5333 84.6 104.6 84.6C110.067 84.6 112.8 87.6667 112.8 93.8C112.8 108.067 107.867 119.733 98 128.8C88.1333 137.867 75.4 142.4 59.8 142.4C41.8 142.4 27.4 136.067 16.6 123.4C5.93333 110.733 0.600001 93.8667 0.600001 72.8C0.600001 51.0667 6.06667 33.5333 17 20.2C28.0667 6.86666 42.6 0.199998 60.6 0.199998Z" fill="black"/>
+</svg>`
+]
 
 export const PetitLogo: FunctionComponent = () => {
-  return <svg width="2em" height="1em" viewBox="0 0 205 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  const [firstShapes, setFirstShapes] = useState<Shape[][]>([])
+  const [secondShapes, setSecondShapes] = useState<Shape[][]>([])
+
+  useEffect(() => {
+    const loader = new SVGLoader();
+
+    setFirstShapes(loader.parse(svgs[Math.floor(Math.random() * svgs.length)]).paths.map(p => p.toShapes(p.color.r === 1 || false)))
+    setSecondShapes(loader.parse(svgs[Math.floor(Math.random() * svgs.length)]).paths.map(p => p.toShapes(p.color.r === 1 || false)))
+
+    const interval = setInterval(() => {
+      setFirstShapes(loader.parse(svgs[Math.floor(Math.random() * svgs.length)]).paths.map(p => p.toShapes(p.color.r === 1 || false)))
+      setSecondShapes(loader.parse(svgs[Math.floor(Math.random() * svgs.length)]).paths.map(p => p.toShapes(p.color.r === 1 || false)))
+    }, 1666)
+    
+    return () => clearInterval(interval)
+  }, [])
+  
+  return <>
+  <Canvas style={{ width: '16px', height: '32px', display: 'inline-block' }}>
+    <RandomSVG shapes={firstShapes} scale={0.03} color={'black'} />
+    {/* <RandomSVG shapes={secondShapes} right scale={0.03} color={'black'} /> */}
+  </Canvas>
+  <Canvas style={{ width: '16px', height: '32px', display: 'inline-block' }}>
+    <RandomSVG shapes={secondShapes} scale={0.03} color={'black'} />
+  </Canvas>
+
+  {/* <svg width="2em" height="1em" viewBox="0 0 205 115" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M86.2509 84.8343L85.8827 85.2027C78.2938 92.7948 68.1802 96.9743 57.4054 96.9743C35.7206 96.9743 18.7319 79.6326 18.7319 57.495C18.7319 35.3575 35.7206 18.0233 57.4054 18.0233C68.1276 18.0233 78.5643 22.3155 86.0405 29.7874L86.4162 30.1633L97.747 17.6625L97.4239 17.3167C87.1 6.49979 72.8914 0.538818 57.4054 0.538818C24.6753 0.546335 0 25.0292 0 57.495C0 89.9609 24.6753 114.451 57.3979 114.451C72.8763 114.451 87.145 108.438 97.5742 97.5155L97.9048 97.1622L86.2434 84.8268L86.2509 84.8343Z" fill="black"/>
 <path d="M204.658 91.1862H204.65V112.347H155.022C154.503 112.347 153.992 112.136 153.624 111.768L124.508 81.3916C124.14 81.0232 123.929 80.5196 123.929 79.9934V36.9511C123.929 36.4249 124.14 35.9138 124.508 35.5454L154.405 4.74833C154.774 4.38 155.277 4.16953 155.803 4.16953H202.291V25.3374H199.158C193.094 21.6766 187.368 19.85 179.847 19.85C171.852 19.85 164.519 22.1727 157.862 26.8107C153.925 29.5544 150.528 33.0498 147.876 37.0488C143.593 43.5059 141.452 50.5794 141.452 58.2693C141.452 66.7184 144.044 74.4383 149.228 81.3991C151.355 84.2405 153.887 86.7812 156.735 88.901C163.692 94.0802 171.402 96.6736 179.855 96.6736C184.138 96.6736 188.323 96.1249 192.395 95.0274C196.407 93.9483 198.726 92.6948 201.381 91.2597L201.517 91.1862H204.65V91.1787L204.658 91.1862Z" fill="black"/>
-</svg>
+</svg> */}
+  </>
+}
+
+export const RandomSVG: FunctionComponent<{
+  shapes: Shape[][]
+  scale: number
+  color: Color
+  left?: boolean
+  right?: boolean
+}> = ({ shapes, scale, color, left, right }) => {
+  const mesh = useRef<Mesh>();
+
+  const start = {
+    x: Math.random() * -5,
+    y: Math.random() * 5
+  }
+
+  useFrame(({ clock }) => {
+    mesh.current.rotation.y = start.x + (clock.elapsedTime / 2)
+    mesh.current.rotation.x = start.y + (-clock.elapsedTime / 2)
+    // mesh.current.scale.z = pointer.y*8 || 0.01
+  })
+
+  return <>
+    <mesh ref={mesh}>
+      <Center scale={scale} left={left} right={right} rotation={[Math.PI,0,0]} >
+      {shapes?.map((shape, i) => <Extrude key={i} args={[shape, {
+        depth: 2
+      }]}>
+        <meshStandardMaterial color={color} />
+      </Extrude>)}
+      </Center>
+    </mesh>
+  </>
 }
