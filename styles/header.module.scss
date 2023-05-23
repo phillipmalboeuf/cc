@@ -45,7 +45,8 @@
   }
 
   nav.menu,
-  nav.mobile {
+  nav.mobile,
+  nav.menuFooter {
     display: none;
 
     @media (max-width: 888px) {
@@ -98,6 +99,22 @@
         border-radius: 0;
         border: none;
         border-bottom: 1px solid;
+      }
+    }
+  }
+
+  nav.menuFooter {
+    flex: 1;
+    width: 100%;
+    align-items: end;
+    justify-content: end;
+
+    a {
+      border: none;
+      width: auto;
+
+      &:first-child {
+        flex: 1;
       }
     }
   }

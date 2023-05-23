@@ -12,6 +12,10 @@
 
     --width: calc(((100 / 7) * 1vw) - (var(--base) / 1.25));
 
+    @media (max-width: 888px) {
+      --width: calc(50vw - (var(--base) * 1.5));
+    }
+
     li {
       width: var(--width);
 

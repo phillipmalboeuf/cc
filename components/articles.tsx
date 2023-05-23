@@ -22,7 +22,7 @@ export const Articles: FunctionComponent<{
           <li>
             <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
               <figure>
-                <Media media={article.fields.media} sizes='33vw' fill />
+                <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
               </figure>
             </a>
           </li>
@@ -42,7 +42,7 @@ export const Articles: FunctionComponent<{
             <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
               <h4>{article.fields.title}</h4>
               <figure>
-                <Media media={article.fields.media} sizes='33vw' fill />
+                <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
               </figure>
             </a>
           </li>

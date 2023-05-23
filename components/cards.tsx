@@ -13,7 +13,7 @@ export const Cards: FunctionComponent<{
     <ol>
       {cards.cards.map((card, i) => <li key={i}>
         {card.fields.media && <figure>
-          <Media media={card.fields.media} sizes='25vw' fill />
+          <Media media={card.fields.media} sizes='(max-width: 888px) 100vw, 25vw' fill />
         </figure>}
 
         {card.fields.title && <h3>{card.fields.title}</h3>}

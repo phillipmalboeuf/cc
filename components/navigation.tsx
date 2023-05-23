@@ -21,8 +21,9 @@ export const ActiveNavigation: FunctionComponent<{
 }
 
 export const Menu: FunctionComponent<{
-  links: Navigation['links']
-}> = ({ links }) => {
+  links: Navigation['links'],
+  footer: Navigation['links']
+}> = ({ links, footer }) => {
 
   const path = usePathname()
   const [visible, setVisible] = useState(false)
@@ -40,6 +41,13 @@ export const Menu: FunctionComponent<{
         onClick={() => setVisible(false)}>
         <h3>{link.fields.label}</h3>
       </Link>)}
+
+      <nav className={`${styles.menuFooter}`}>
+        {footer.map(link => <Link key={link.sys.id} href={link.fields.path} className={path.startsWith(link.fields.path) ? styles['active'] : undefined}
+          onClick={() => setVisible(false)}>
+          <small>{link.fields.label}</small>
+        </Link>)}
+      </nav>
     </nav>
   </>
 }

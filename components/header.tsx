@@ -10,9 +10,10 @@ import { PetitLogo } from './3d'
 export const Header: FunctionComponent<{
   // svg: string
 }> = async ({  }) => {
-  const [nav, offices] = await Promise.all([
+  const [nav, footer, offices] = await Promise.all([
     ContentService.navigation('header'),
-    ContentService.offices(0)
+    ContentService.navigation('footer'),
+    ContentService.offices(0),
   ])
 
   // const path = usePathname()
@@ -37,7 +38,7 @@ export const Header: FunctionComponent<{
         </a>
       </nav>
 
-      <Menu links={nav.fields.links} />
+      <Menu links={nav.fields.links} footer={footer.fields.links} />
     </header>
   </>
 }

@@ -19,6 +19,8 @@
       display: flex;
       gap: var(--base);
     }
+
+    margin-bottom: var(--base);
   }
 
   h2,
@@ -32,15 +34,24 @@
   
   &.Columns {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 
     figure {
       width: 50%;
+
+      @media (max-width: 888px) {
+        width: 100%;
+      }
     }
 
     div {
       padding: var(--gap);
       max-width: 578px;
+
+      @media (max-width: 888px) {
+        padding: 0;
+      }
     }
   }
 }

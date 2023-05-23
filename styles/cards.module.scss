@@ -16,6 +16,10 @@
       min-height: 55vh;
       border-left: 1px solid;
 
+      @media (max-width: 888px) {
+        width: 100%;
+      }
+
       display: flex;
       flex-direction: column;
 
@@ -25,6 +29,10 @@
         height: 25vw;
         border-radius: 0.5em;
         overflow: hidden;
+
+        @media (max-width: 888px) {
+          height: 45vh;
+        }
       }
 
       h3 {
@@ -36,6 +44,7 @@
         align-items: flex-end;
         flex: 1;
         gap: calc(var(--base) / 2);
+        margin-top: var(--base);
       }
     }
   }

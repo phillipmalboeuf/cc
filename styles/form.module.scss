@@ -1,6 +1,7 @@
 .form {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   // border-top: 1px solid;
 
   figure {
@@ -21,12 +22,16 @@
   main {
     width: 50%;
     height: 90vh;
-    border-left: 1px solid;
+    // border-left: 1px solid;
     overflow: auto;
 
     display: flex;
     flex-direction: column;
     // justify-content: flex-end;
+
+    @media (max-width: 888px) {
+      width: 100%;
+    }
   }
 
   header {

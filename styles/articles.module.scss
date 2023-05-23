@@ -8,8 +8,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: calc(var(--base) / 2);
+    row-gap: calc(var(--gap) * 2);
 
     --width: calc(((100 / 3) * 1vw) - (var(--base) / 1.25));
+
+    @media (max-width: 888px) {
+      --width: calc(((100 / 1) * 1vw) - (var(--base) / 1.25));
+    }
 
     li {
       width: var(--width);

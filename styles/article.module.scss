@@ -3,6 +3,10 @@
   display: flex;
   border-top: 1px solid;
 
+  @media (max-width: 888px) {
+    flex-wrap: wrap;
+  }
+
   > figure {
     position: relative;
     height: calc(90vh - (var(--gap) * 2));
@@ -10,6 +14,11 @@
     margin: var(--gap);
     border-radius: 0.5em;
     overflow: hidden;
+
+    @media (max-width: 888px) {
+      width: 100%;
+      height: 40vh;
+    }
 
     img,
     canvas,
@@ -28,6 +37,10 @@
     display: flex;
     flex-direction: column;
     // justify-content: flex-end;
+
+    @media (max-width: 888px) {
+      width: 100%;
+    }
   }
 
   header {

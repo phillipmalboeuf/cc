@@ -48,7 +48,7 @@ export const ArticlesGrid: FunctionComponent<{
             className={current?.fields.id === article.fields.id ? styles['current'] : undefined}
           >
             <figure>
-              <Media media={article.fields.media} sizes='50vw' fill />
+              <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 50vw' fill />
               <figcaption style={{ backgroundColor: article.fields.tags.find(t => !['culture', 'news'].includes(t.fields.id)).fields.color }}>
                 <nav>
                   <Time d={article.fields.publishedAt} />

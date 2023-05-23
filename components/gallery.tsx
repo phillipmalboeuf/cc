@@ -15,11 +15,11 @@ export const Gallery: FunctionComponent<{
       </li>}
       {gallery.medias.map((media, i) => <Fragment key={i}>
         {!!Math.round(Math.random()) && <li>
-          <figure></figure>
+          {/* <figure></figure> */}
         </li>}
         <li>
           <figure>
-            <Media media={media} sizes='14.3vw' fill />
+            <Media media={media} sizes='(max-width: 888px) 50vw, 14.3vw' fill />
           </figure>
         </li>
       </Fragment>)}

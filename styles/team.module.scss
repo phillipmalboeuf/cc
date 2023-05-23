@@ -15,15 +15,26 @@
 
     margin: var(--gap);
     border-radius: 1em;
+
+    @media (max-width: 888px) {
+      min-height: 85vh;
+      padding-bottom: calc(var(--gap) * 2);
+      margin: calc(var(--gap) / 1.5);
+    }
     
     a {
       figure {
         min-height: 50vh;
         filter: grayscale(1);
 
-        // canvas {
-        //   height: 100%;
-        // }
+        @media (max-width: 888px) {
+          height: 50vh;
+        }
+
+        img {
+          height: 100%;
+          object-fit: contain !important;
+        }
       }
 
       figcaption {
@@ -33,6 +44,11 @@
         left: calc(var(--base) + var(--gap));
         // width: 100%;
         // text-align: center;
+
+        @media (max-width: 888px) {
+          left: calc(var(--gap));
+          bottom: calc(var(--gap) * 3);
+        }
       }
 
       &:hover,
@@ -60,6 +76,11 @@
 
     display: flex;
     gap: calc(var(--base) / 2);
+
+    @media (max-width: 888px) {
+      left: calc(var(--gap));
+      bottom: calc(var(--gap) / 2);
+    }
 
     a {
       background-color: white;
