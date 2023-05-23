@@ -21,6 +21,7 @@
       position: sticky;
       top: calc((var(--gap) * 3) + (2.5 * var(--gap) * var(--index)));
       z-index: 2;
+      padding: calc(var(--gap) / 2) calc(var(--gap) / 1.5);
     }
 
     h3 {
@@ -64,6 +65,7 @@
 
       width: 100%;
       height: calc(80vh - (2.5 * var(--gap) * var(--index)));
+      padding: var(--gap) calc(var(--gap) / 1.5);
       pointer-events: all;
       border: none;
       padding-top: 0;
