@@ -64,23 +64,25 @@ export const ExtrudeSVG: FunctionComponent<{
 }> = ({ shapes, scale, color }) => {
   const mesh = useRef<Mesh>();
 
-  useFrame(({ clock, pointer }) => {
+  // useFrame(({ clock, pointer }) => {
+  //   mesh.current.rotation.y = pointer.x
+  //   mesh.current.rotation.x = -pointer.y
+  //   mesh.current.scale.z = pointer.y*8 || 0.01
+  // })
+
+  window?.innerWidth < 888
+    ? useFrame(({ clock, pointer, viewport, gl }) => {
+      // console.log(gl.domElement.getBoundingClientRect())
+      const position = (gl.domElement.getBoundingClientRect().top + 150) / viewport.height / 100
+      mesh.current.rotation.y = position
+      mesh.current.rotation.x = -position
+      mesh.current.scale.z = position*8 || 0.01
+    })
+    : useFrame(({ clock, pointer }) => {
       mesh.current.rotation.y = pointer.x
       mesh.current.rotation.x = -pointer.y
       mesh.current.scale.z = pointer.y*8 || 0.01
     })
-
-  // window?.innerWidth < 888
-  //   ? useFrame(({ clock, pointer, viewport }) => {
-  //     // console.log(viewport)
-  //     mesh.current.rotation.x = -(viewport.top / 500)
-  //     mesh.current.scale.z = (viewport.top / 500)*8 || 0.01
-  //   })
-  //   : useFrame(({ clock, pointer }) => {
-  //     mesh.current.rotation.y = pointer.x
-  //     mesh.current.rotation.x = -pointer.y
-  //     mesh.current.scale.z = pointer.y*8 || 0.01
-  //   })
 
   return <>
     <mesh ref={mesh}>
