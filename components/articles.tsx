@@ -33,8 +33,28 @@ export const Articles: FunctionComponent<{
         <ArticlesGrid articles={articles} tag={articlesList.articlesTag.fields.id} />
       </>
       : <ol>
+        <li className={styles['featured']}>
+          <article>
+            <nav>
+              <Time d={articles.items[0].fields.publishedAt} />
+              <Tags tags={articles.items[0].fields.tags} path={`/${articlesList.articlesTag.fields.id}/articles`} />
+            </nav>
+            <a href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
+              <h2>{articles.items[0].fields.title}</h2>
+            </a>
+            <a className='button' href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
+              Read
+            </a>
+          </article>
+          
+          <figure>
+            <a href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
+              <Media media={articles.items[0].fields.media} sizes='100vw' fill />
+            </a>
+          </figure>
+        </li>
         {articles.items.map((article, i) => <Fragment key={article.sys.id}>
-          <li>
+          {i > 0 && <li>
             <nav>
               <Time d={article.fields.publishedAt} />
               <Tags tags={article.fields.tags} path={`/${articlesList.articlesTag.fields.id}/articles`} />
@@ -45,7 +65,7 @@ export const Articles: FunctionComponent<{
                 <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
               </figure>
             </a>
-          </li>
+          </li>}
         </Fragment>)}
       </ol>}
     </>}
