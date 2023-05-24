@@ -65,10 +65,22 @@ export const ExtrudeSVG: FunctionComponent<{
   const mesh = useRef<Mesh>();
 
   useFrame(({ clock, pointer }) => {
-    mesh.current.rotation.y = pointer.x
-    mesh.current.rotation.x = -pointer.y
-    mesh.current.scale.z = pointer.y*8 || 0.01
-  })
+      mesh.current.rotation.y = pointer.x
+      mesh.current.rotation.x = -pointer.y
+      mesh.current.scale.z = pointer.y*8 || 0.01
+    })
+
+  // window?.innerWidth < 888
+  //   ? useFrame(({ clock, pointer, viewport }) => {
+  //     // console.log(viewport)
+  //     mesh.current.rotation.x = -(viewport.top / 500)
+  //     mesh.current.scale.z = (viewport.top / 500)*8 || 0.01
+  //   })
+  //   : useFrame(({ clock, pointer }) => {
+  //     mesh.current.rotation.y = pointer.x
+  //     mesh.current.rotation.x = -pointer.y
+  //     mesh.current.scale.z = pointer.y*8 || 0.01
+  //   })
 
   return <>
     <mesh ref={mesh}>
