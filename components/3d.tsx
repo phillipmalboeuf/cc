@@ -225,11 +225,15 @@ export const PetitLogo: FunctionComponent = () => {
   
   return <>
   <Canvas style={{ width: '16px', height: '32px', display: 'inline-block' }}>
-    <RandomSVG shapes={firstShapes} scale={0.03} color={'black'} />
+    <ambientLight intensity={0.1} color={'white'} />
+    <directionalLight position={[0, 0, 5]} color={'white'} />
+    <RandomSVG shapes={firstShapes} scale={0.03} color={'white'} />
     {/* <RandomSVG shapes={secondShapes} right scale={0.03} color={'black'} /> */}
   </Canvas>
   <Canvas style={{ width: '16px', height: '32px', display: 'inline-block' }}>
-    <RandomSVG shapes={secondShapes} scale={0.03} color={'black'} />
+    <ambientLight intensity={0.1} color={'white'} />
+    <directionalLight position={[0, 0, 5]} color={'white'} />
+    <RandomSVG shapes={secondShapes} scale={0.03} color={'white'} />
   </Canvas>
 
   {/* <svg width="2em" height="1em" viewBox="0 0 205 115" fill="none" xmlns="http://www.w3.org/2000/svg">
