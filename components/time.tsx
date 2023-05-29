@@ -1,5 +1,5 @@
 import { Fragment, FunctionComponent } from 'react'
-import { date } from '@/services/formatters'
+import { date } from '@/helpers/formatters'
 
 export const Time: FunctionComponent<{
   d: string

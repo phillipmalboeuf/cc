@@ -11,6 +11,7 @@ import { Media } from './media'
 import styles from '@/styles/articles.module.scss'
 import { Time } from './time'
 import { Tags } from './tags'
+import { usePhone } from '@/helpers/devices'
 
 export const ArticlesGrid: FunctionComponent<{
   tag: string
@@ -20,8 +21,26 @@ export const ArticlesGrid: FunctionComponent<{
   const [current, setCurrent] = useState<Entry<Article>>()
   // const [cursor, setCursor] = useState<{ left: number, top: number }>()
   const router = useRouter()
+  const phone = usePhone()
 
-  return <>
+  return phone
+  ? <ol>
+    {articles.items.map((article, i) => <Fragment key={article.sys.id}>
+      <li>
+        <nav>
+          <Time d={article.fields.publishedAt} />
+          <Tags tags={article.fields.tags} path={`/${tag}/articles`} />
+        </nav>
+        <a href={`/${tag}/articles/${article.fields.id}`}>
+          <h4>{article.fields.title}</h4>
+          <figure>
+            <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
+          </figure>
+        </a>
+      </li>
+    </Fragment>)}
+  </ol>
+  : <>
     <nav>
       {articles.items.map((article, i) => <Fragment key={article.sys.id}>
         <a href={`/${tag}/articles/${article.fields.id}`}

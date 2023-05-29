@@ -102,6 +102,7 @@
       
     }
 
+    @media (min-width: 888px) {
     ol {
       flex: 1;
       margin-top: 0;
@@ -135,5 +136,6 @@
         }
       }
     }
+  }
   }
 }

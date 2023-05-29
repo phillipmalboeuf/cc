@@ -1,5 +1,5 @@
 import { Fragment, FunctionComponent } from 'react'
-import { date } from '@/services/formatters'
+import { date } from '@/helpers/formatters'
 import { ContentService, Tag } from '@/services/content'
 import { Entry } from 'contentful'
 
