@@ -7,14 +7,14 @@
 
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
+    // border-top: 1px solid;
+    // border-bottom: 1px solid;
 
     li {
       padding: var(--base);
       width: 25%;
       min-height: 55vh;
-      border-left: 1px solid;
+      border-right: 1px solid;
 
       @media (max-width: 888px) {
         width: 100%;

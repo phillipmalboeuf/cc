@@ -1,0 +1,16 @@
+.slider {
+  overflow: hidden;
+
+  --w: 100%;
+
+  > ol {
+    display: flex;
+    flex-wrap: nowrap !important;
+    transition: height 333ms;
+
+    > li {
+      flex: 0 0 var(--w);
+      min-width: 0;
+    }
+  }
+}
