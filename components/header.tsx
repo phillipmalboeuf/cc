@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react'
 import styles from '@/styles/header.module.scss'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
-import { ActiveNavigation, Menu } from './navigation'
+import { ActiveNavigation, Menu, Time } from './navigation'
 import { PetitLogo } from './3d'
 
 {/* @ts-expect-error Async Server Component */}
@@ -30,7 +30,7 @@ export const Header: FunctionComponent<{
       <nav>
         <ul>
           {offices.items.map(office => <li key={office.sys.id}>
-            <a href={office.fields.link}>{office.fields.initials}</a>
+            <a href={office.fields.link}>{office.fields.initials}&nbsp;<Time office={office.fields} /></a>
           </li>)}
         </ul>
         <a href='/'>

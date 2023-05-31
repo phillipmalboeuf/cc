@@ -116,6 +116,7 @@ export interface Office {
   initials: string
   country: string
   link: string
+  timezone: number
 }
 
 export interface Job {

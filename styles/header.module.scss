@@ -32,6 +32,12 @@
     ul {
       list-style: none;
       padding: 0;
+
+      a {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 calc(var(--gap) / 4);
+      }
     }
 
     a {
@@ -128,5 +134,10 @@
         flex: 1;
       }
     }
+  }
+
+  .timezone {
+    padding: 0;
+    background-color: transparent;
   }
 }

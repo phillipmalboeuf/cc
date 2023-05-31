@@ -3,9 +3,11 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 
 import styles from '@/styles/header.module.scss'
-import { ContentService, Navigation } from '@/services/content'
+import { ContentService, Navigation, Office } from '@/services/content'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { DateTime } from 'luxon'
+import { time } from '@/helpers/formatters'
 
 export const ActiveNavigation: FunctionComponent<{
   links: Navigation['links']
@@ -57,4 +59,25 @@ export const Menu: FunctionComponent<{
       </nav>
     </nav>
   </>
+}
+
+export const Time: FunctionComponent<{
+  office: Office
+}> = ({ office }) => {
+  const [now, setNow] = useState<string>()
+
+  useEffect(() => {
+    setNow(new Date().toISOString())
+    
+    const interval = setInterval(() => {
+      setNow(new Date().toISOString())
+    }, 1000)
+
+    return () => clearInterval(interval)
+
+  }, [])
+
+  return <time className={`${styles.timezone}`}>
+    {now && time(now, office.timezone)}
+  </time>
 }
