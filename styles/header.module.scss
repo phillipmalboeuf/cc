@@ -5,9 +5,17 @@
   left: 0;
   width: 100vw;
   padding: calc(var(--gap) / 2) var(--gap);
-  background-color: white;
-  // color: white;
-  // mix-blend-mode: exclusion;
+  // background-color: white;
+
+  @supports (mix-blend-mode: exclusion) {
+    color: white;
+    mix-blend-mode: exclusion;
+
+    :global(html.menu) & {
+      color: black;
+      mix-blend-mode: unset;
+    }
+  }
 
   display: flex;
   justify-content: space-between;

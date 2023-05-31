@@ -1,6 +1,6 @@
 'use client'
 
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 
 import styles from '@/styles/header.module.scss'
 import { ContentService, Navigation } from '@/services/content'
@@ -27,6 +27,13 @@ export const Menu: FunctionComponent<{
 
   const path = usePathname()
   const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      document.documentElement.classList.toggle('menu', visible)
+    }, visible ? 0 : 666)
+    
+  }, [visible])
 
   return <>
     <nav className={styles.mobile}>
