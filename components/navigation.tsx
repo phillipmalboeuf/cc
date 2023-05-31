@@ -88,7 +88,7 @@ export const LocaleSwitch: FunctionComponent<{
 
   const path = usePathname()
 
-  return <Link hrefLang={currentLocale === 'fr-CA' ? 'en' : 'fr'} href={(currentLocale === 'fr-CA' ? 'https://qc-cc.votre.best' : 'https://cc.votre.best')+path}>
+  return <Link hrefLang={currentLocale === 'fr-CA' ? 'en' : 'fr'} href={(currentLocale === 'fr-CA' ? 'https://cc.votre.best' : 'https://qc-cc.votre.best')+path}>
     {currentLocale === 'fr-CA' ? 'EN' : 'FR'}
   </Link>
 }
