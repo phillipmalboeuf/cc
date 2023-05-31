@@ -4,6 +4,7 @@ import { ContentService } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import Link from 'next/link'
 
 export default async function Job({ params }) {
   const job = await ContentService.job(params.job)
@@ -12,7 +13,7 @@ export default async function Job({ params }) {
     <article className={styles.article}>
       <main>
         <header>
-           {job.fields.department && <a className='button' href={`/jobs?department=${job.fields.department.fields.id}`}>{job.fields.department.fields.label}</a>}
+           {job.fields.department && <Link className='button' href={`/jobs?department=${job.fields.department.fields.id}`}>{job.fields.department.fields.label}</Link>}
           <h2>{job.fields.title}</h2>
         </header>
 
@@ -24,7 +25,7 @@ export default async function Job({ params }) {
           {job.fields.text && documentToReactComponents(job.fields.text)}
         </footer>
 
-        <a href={`/${params.id}`}>Back</a>
+        <Link href={`/${params.id}`}>Back</Link>
       </main>
       <form action=''>
         <fieldset>

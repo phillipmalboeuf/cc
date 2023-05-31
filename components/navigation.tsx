@@ -81,3 +81,14 @@ export const Time: FunctionComponent<{
     {now && time(now, office.timezone)}
   </time>
 }
+
+export const LocaleSwitch: FunctionComponent<{
+  currentLocale: string
+}> = ({ currentLocale }) => {
+
+  const path = usePathname()
+
+  return <Link hrefLang={currentLocale === 'fr-CA' ? 'en' : 'fr'} href={(currentLocale === 'fr-CA' ? 'https://qc-cc.votre.best' : 'https://cc.votre.best')+path}>
+    {currentLocale === 'fr-CA' ? 'EN' : 'FR'}
+  </Link>
+}

@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 
 import '@/styles/globals.scss'
 import { Footer } from '@/components/footer'
+import { useLocale } from '@/helpers/locales'
 
 const antique = localFont({
   src: [{ path: './fonts/Antique-Legacy-Regular.woff2' }, { path: './fonts/Antique-Legacy-Regular.woff' }],
@@ -20,8 +21,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const locale = useLocale()
+  
   return (
-    <html lang="en" className={antique.variable}>
+    <html lang={locale === 'fr-CA' ? 'fr' : 'en'} className={antique.variable}>
       <body>
         <Header />
         {children}

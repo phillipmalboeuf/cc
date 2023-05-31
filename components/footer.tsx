@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react'
 import styles from '@/styles/footer.module.scss'
 // import { Logo } from './logo'
 import { ContentService } from '@/services/content'
+import Link from 'next/link'
 
 {/* @ts-expect-error Async Server Component */}
 export const Footer: FunctionComponent<{
@@ -13,12 +14,9 @@ export const Footer: FunctionComponent<{
   return <>
     <footer className={styles.footer}>
       <nav>
-        {/* <a href='/'>
-          <Logo />
-        </a> */}
-        {nav.fields.links.map(link => <a key={link.sys.id} href={link.fields.path}>
+        {nav.fields.links.map(link => <Link key={link.sys.id} href={link.fields.path}>
           {link.fields.label}
-        </a>)}
+        </Link>)}
       </nav>
     </footer>
   </>

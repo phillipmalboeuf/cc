@@ -7,6 +7,7 @@ import { ContentService } from '@/services/content'
 import styles from '@/styles/article.module.scss'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Article({ params }) {
   const article = await ContentService.article(params.article)
@@ -32,11 +33,8 @@ export default async function Article({ params }) {
           {article.fields.text && documentToReactComponents(article.fields.text)}
         </footer>
 
-        <a href={`/${params.id}`}>Back</a>
+        <Link href={`/${params.id}`}>Back</Link>
       </main>
-      {/* <nav>
-        {member.fields.tag && <a className='button' href={`/team?tag=${member.fields.tag.fields.id}`}>{member.fields.tag.fields.label}</a>}
-      </nav> */}
     </article>
   )
 }

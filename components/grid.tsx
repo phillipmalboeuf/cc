@@ -12,6 +12,7 @@ import styles from '@/styles/articles.module.scss'
 import { Time } from './time'
 import { Tags } from './tags'
 import { usePhone } from '@/helpers/devices'
+import Link from 'next/link'
 
 export const ArticlesGrid: FunctionComponent<{
   tag: string
@@ -31,19 +32,19 @@ export const ArticlesGrid: FunctionComponent<{
           <Time d={article.fields.publishedAt} />
           <Tags tags={article.fields.tags} path={`/${tag}/articles`} />
         </nav>
-        <a href={`/${tag}/articles/${article.fields.id}`}>
+        <Link href={`/${tag}/articles/${article.fields.id}`}>
           <h4>{article.fields.title}</h4>
           <figure>
             <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
           </figure>
-        </a>
+        </Link>
       </li>
     </Fragment>)}
   </ol>
   : <>
     <nav>
       {articles.items.map((article, i) => <Fragment key={article.sys.id}>
-        <a href={`/${tag}/articles/${article.fields.id}`}
+        <Link href={`/${tag}/articles/${article.fields.id}`}
           onPointerEnter={() => setCurrent(article)}
           onPointerLeave={() => setCurrent(undefined)}
           className={current?.fields.id === article.fields.id ? styles['current'] : undefined}
@@ -54,14 +55,14 @@ export const ArticlesGrid: FunctionComponent<{
           </nav>
 
           <h4>{article.fields.title}</h4>
-        </a>
+        </Link>
       </Fragment>)}
     </nav>
     <ol>
       {articles.items.map((article, i) => <Fragment key={article.sys.id}>
         <li>
           
-          <a href={`/${tag}/articles/${article.fields.id}`}
+          <Link href={`/${tag}/articles/${article.fields.id}`}
             onPointerEnter={() => setCurrent(article)}
             onPointerLeave={() => setCurrent(undefined)}
             className={current?.fields.id === article.fields.id ? styles['current'] : undefined}
@@ -77,7 +78,7 @@ export const ArticlesGrid: FunctionComponent<{
                 <h3>{article.fields.title}</h3>
               </figcaption>
             </figure>
-          </a>
+          </Link>
         </li>
       </Fragment>)}
     </ol>

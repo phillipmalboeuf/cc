@@ -11,6 +11,7 @@ import { usePhone } from '@/helpers/devices'
 import styles from '@/styles/cards.module.scss'
 import { Entry } from 'contentful'
 import { Slider } from './slider'
+import Link from 'next/link'
 
 export const Cards: FunctionComponent<{
   cards: ContentCards
@@ -43,9 +44,9 @@ export const Card: FunctionComponent<{
     </main>
 
     {card.fields.buttons && <nav>
-      {card.fields.buttons.map(button => <a className='button' key={button.fields.path} href={button.fields.path}>
+      {card.fields.buttons.map(button => <Link className='button' key={button.fields.path} href={button.fields.path}>
         {button.fields.label}
-      </a>)}  
+      </Link>)}  
     </nav>}
   </li>
 }

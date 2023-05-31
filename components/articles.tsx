@@ -8,6 +8,7 @@ import { Media } from './media'
 import { ArticlesGrid } from './grid'
 import { Time } from './time'
 import { Tags } from './tags'
+import Link from 'next/link'
 
 {/* @ts-expect-error Async Server Component */}
 export const Articles: FunctionComponent<{
@@ -20,11 +21,11 @@ export const Articles: FunctionComponent<{
     ? <ol>
         {articles.items.map((article, i) => <Fragment key={article.sys.id}>
           <li>
-            <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
+            <Link href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
               <figure>
                 <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
               </figure>
-            </a>
+            </Link>
           </li>
         </Fragment>)}
       </ol>
@@ -39,18 +40,18 @@ export const Articles: FunctionComponent<{
               <Time d={articles.items[0].fields.publishedAt} />
               <Tags tags={articles.items[0].fields.tags} path={`/${articlesList.articlesTag.fields.id}/articles`} />
             </nav>
-            <a href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
+            <Link href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
               <h2>{articles.items[0].fields.title}</h2>
-            </a>
-            <a className='button' href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
+            </Link>
+            <Link className='button' href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
               Read
-            </a>
+            </Link>
           </article>
           
           <figure>
-            <a href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
+            <Link href={`/${articlesList.articlesTag.fields.id}/articles/${articles.items[0].fields.id}`}>
               <Media media={articles.items[0].fields.media} sizes='100vw' fill />
-            </a>
+            </Link>
           </figure>
         </li>
         {articles.items.map((article, i) => <Fragment key={article.sys.id}>
@@ -59,12 +60,12 @@ export const Articles: FunctionComponent<{
               <Time d={article.fields.publishedAt} />
               <Tags tags={article.fields.tags} path={`/${articlesList.articlesTag.fields.id}/articles`} />
             </nav>
-            <a href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
+            <Link href={`/${articlesList.articlesTag.fields.id}/articles/${article.fields.id}`}>
               <h4>{article.fields.title}</h4>
               <figure>
                 <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 33vw' fill />
               </figure>
-            </a>
+            </Link>
           </li>}
         </Fragment>)}
       </ol>}

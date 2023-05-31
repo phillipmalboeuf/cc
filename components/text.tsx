@@ -5,6 +5,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from 'styles/text.module.scss'
 import { Media } from './media'
+import Link from 'next/link'
 
 export const Text: FunctionComponent<{
   text: ContentText
@@ -18,9 +19,9 @@ export const Text: FunctionComponent<{
       <header>
         {text.title && <h2>{text.title}</h2>}
         {text.buttons && <nav>
-          {text.buttons.map(button => <a className='button' href={button.fields.path}>
+          {text.buttons.map(button => <Link className='button' href={button.fields.path}>
             {button.fields.label}
-          </a>)}  
+          </Link>)}  
         </nav>}
       </header>
 

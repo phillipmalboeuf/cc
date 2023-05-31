@@ -2,6 +2,7 @@ import { Fragment, FunctionComponent } from 'react'
 import { date } from '@/helpers/formatters'
 import { ContentService, Tag } from '@/services/content'
 import { Entry } from 'contentful'
+import Link from 'next/link'
 
 export const Tags: FunctionComponent<{
   path: string
@@ -15,10 +16,10 @@ export const Tags: FunctionComponent<{
     }}>
       {tag.fields.label}
     </span>
-    : <a className='button' key={tag.fields.id} style={{
+    : <Link className='button' key={tag.fields.id} style={{
       backgroundColor: tag.fields.color
     }} href={`${path}?tag=${tag.fields.id}`}>
       {tag.fields.label}
-    </a>)}
+    </Link>)}
   </>
 }

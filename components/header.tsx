@@ -3,8 +3,9 @@ import { FunctionComponent } from 'react'
 import styles from '@/styles/header.module.scss'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
-import { ActiveNavigation, Menu, Time } from './navigation'
+import { ActiveNavigation, LocaleSwitch, Menu, Time } from './navigation'
 import { PetitLogo } from './3d'
+import { useLocale } from '@/helpers/locales'
 
 {/* @ts-expect-error Async Server Component */}
 export const Header: FunctionComponent<{
@@ -16,8 +17,7 @@ export const Header: FunctionComponent<{
     ContentService.offices(0),
   ])
 
-  // const path = usePathname()
-  // console.log(path)
+  const locale = useLocale()
 
   return <>
     <header className={styles.header}>
@@ -30,12 +30,11 @@ export const Header: FunctionComponent<{
       <nav>
         <ul>
           {offices.items.map(office => <li key={office.sys.id}>
-            <a href={office.fields.link}>{office.fields.initials}&nbsp;<Time office={office.fields} /></a>
+            <Link href={office.fields.link || '/'}>{office.fields.initials}&nbsp;<Time office={office.fields} /></Link>
           </li>)}
         </ul>
-        <a href='/'>
-          EN
-        </a>
+
+        <LocaleSwitch currentLocale={locale} />
       </nav>
 
       <Menu links={nav.fields.links} footer={footer.fields.links} />

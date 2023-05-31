@@ -8,6 +8,7 @@ import styles from '@/styles/jobs.module.scss'
 import { Entry, EntryCollection } from 'contentful'
 import { useRouter } from 'next/navigation'
 import { Time } from './time'
+import Link from 'next/link'
 
 export const JobsPostings: FunctionComponent<{
   jobs: EntryCollection<Job>
@@ -32,9 +33,9 @@ export const JobsPostings: FunctionComponent<{
           onPointerEnter={() => setCurrent(job)}
           onPointerMove={(e) => setCursor({ left: e.clientX, top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight - 5 })}>
           <td>
-            <a href={`/jobs/postings/${job.fields.id}`}>
+            <Link href={`/jobs/postings/${job.fields.id}`}>
               {job.fields.title}
-            </a>
+            </Link>
           </td>
           <td>
             {job.fields.department.fields.label}
@@ -52,7 +53,7 @@ export const JobsPostings: FunctionComponent<{
       style={{ backgroundColor: current.fields.department?.fields.color, top: cursor?.top, left: cursor?.left }}
       onPointerLeave={() => setCurrent(undefined)}
     >
-      <a href={`/jobs/postings/${current.fields.id}`}>
+      <Link href={`/jobs/postings/${current.fields.id}`}>
         <Time d={current.fields.publishedAt} />
         <h3>{current.fields.title}</h3>
 
@@ -70,7 +71,7 @@ export const JobsPostings: FunctionComponent<{
             </tr>
           </tbody>
         </table>
-      </a>
+      </Link>
     </aside>}
   </section>
 }

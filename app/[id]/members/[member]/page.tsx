@@ -4,6 +4,7 @@ import { ContentService } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import Link from 'next/link'
 
 export default async function TeamMember({ params }) {
   const member = await ContentService.member(params.member)
@@ -23,10 +24,10 @@ export default async function TeamMember({ params }) {
           {member.fields.introduction && documentToReactComponents(member.fields.introduction)}
         </footer>
 
-        <a href='/team'>Back</a>
+        <Link href='/team'>Back</Link>
       </main>
       <nav>
-        {member.fields.tag && <a className='button' href={`/team?tag=${member.fields.tag.fields.id}`}>{member.fields.tag.fields.label}</a>}
+        {member.fields.tag && <Link className='button' href={`/team?tag=${member.fields.tag.fields.id}`}>{member.fields.tag.fields.label}</Link>}
       </nav>
     </article>
   )

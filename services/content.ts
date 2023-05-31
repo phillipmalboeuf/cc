@@ -134,27 +134,28 @@ export interface Jobs {
   jobs: Entry<Job>
 }
 
+const envLocale = process.env.LOCALE
 const limit = 42
 
 export const ContentService = {
-  navigation: async (id: string, locale: string=undefined) => {
+  navigation: async (id: string, locale: string=envLocale) => {
     const [navs] = await Promise.all([
       contentful.getEntries<Navigation>({ content_type: 'navigation', locale, include: 2, 'fields.id': id }),
       // contentful.getEntries<NavigationLink>({ content_type: 'navigationLink', locale, include: 2 })
     ])
     return navs.items[0]
   },
-  page: async (id: string, locale: string=undefined) => {
+  page: async (id: string, locale: string=envLocale) => {
     const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 4,
       'fields.id': id })
     return pages.items[0]
   },
-  member: async (id: string, locale: string=undefined) => {
+  member: async (id: string, locale: string=envLocale) => {
     const pages = await contentful.getEntries<Member>({ content_type: 'teamMember', locale, include: 2,
       'fields.id': id })
     return pages.items[0]
   },
-  article: async (id: string, locale: string=undefined) => {
+  article: async (id: string, locale: string=envLocale) => {
     const tags = await contentful.getEntries<Tag>({ content_type: 'tag', locale, include: 2 })
     const articles = (await contentful.getEntries<Article>({ content_type: 'article', locale, include: 2,
       'fields.id': id }))
@@ -166,7 +167,7 @@ export const ContentService = {
       }
     }
   },
-  articles: async (tag: string, page: number, sort?: string, locale?: string, limitOverride?: number) => {
+  articles: async (tag: string, page: number, sort?: string, locale: string=envLocale, limitOverride?: number) => {
     const tags = await contentful.getEntries<Tag>({ content_type: 'tag', locale, include: 2 })
     const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 3,
       'fields.tags': tag,
@@ -188,14 +189,14 @@ export const ContentService = {
       }))
     }
   },
-  offices: async (page: number, sort?: string, locale?: string, limitOverride?: number) => {
+  offices: async (page: number, sort?: string, locale: string=envLocale, limitOverride?: number) => {
     const offices = await contentful.getEntries<Office>({ content_type: 'office', locale, include: 3,
       limit: (limitOverride || limit),
       skip: page ? page * (limitOverride || limit) : 0,
       order: '-fields.city' })
     return offices
   },
-  jobs: async (page: number, sort?: string, locale?: string, limitOverride?: number) => {
+  jobs: async (page: number, sort?: string, locale: string=envLocale, limitOverride?: number) => {
     const jobs = await contentful.getEntries<Job>({ content_type: 'job', locale, include: 3,
       // 'fields.tags': tag,
       'fields.publishedAt[lte]': new Date().toISOString(),
@@ -207,12 +208,12 @@ export const ContentService = {
       }[sort as string || 'newest'] })
     return jobs
   },
-  job: async (id: string, locale: string=undefined) => {
+  job: async (id: string, locale: string=envLocale) => {
     const jobs = await contentful.getEntries<Job>({ content_type: 'job', locale, include: 2,
       'fields.id': id })
     return jobs.items[0]
   },
-  tags: async (locale: string=undefined) => {
+  tags: async (locale: string=envLocale) => {
     const tags = await contentful.getEntries<Tag>({ content_type: 'tag', locale, include: 2 })
     return tags
   },
