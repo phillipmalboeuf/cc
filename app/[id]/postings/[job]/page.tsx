@@ -1,13 +1,19 @@
+import { contentful } from '@/clients/contentful'
 import { Content } from '@/components/content'
+import { Form } from '@/components/form'
 import { Time } from '@/components/time'
-import { ContentService } from '@/services/content'
+import { ContentService, Form as ContentForm } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
+import formStyles from '@/styles/form.module.scss'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Link from 'next/link'
 
 export default async function Job({ params }) {
-  const job = await ContentService.job(params.job)
+  const [job, form] = await Promise.all([
+    ContentService.job(params.job),
+    contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.LOCALE })
+  ])
 
   return (
     <article className={styles.article}>
@@ -27,15 +33,9 @@ export default async function Job({ params }) {
 
         <Link href={`/${params.id}`}>Back</Link>
       </main>
-      <form action=''>
-        <fieldset>
-          <h4>Apply for this job</h4>
-        </fieldset>
-
-        <fieldset>
-          <button type='submit'>Send</button>
-        </fieldset>
-      </form>
+      <div className={formStyles.form}>
+        <Form title={form.fields.title} form={form.fields} />
+      </div>
     </article>
   )
 }

@@ -34,11 +34,20 @@ export interface Text {
   buttons: Entry<NavigationLink>[]
 }
 
+export interface Field {
+  label: string
+  name: string
+  type: "Text" | "Email" | "Phone" | "Textarea" | "File"
+  optional: boolean
+}
+
 export interface Form {
   title: string
   top: Document
   bottom: Document
   media: Asset
+  action: string
+  fields: Entry<Field>[]
 }
 
 export interface Cards {
