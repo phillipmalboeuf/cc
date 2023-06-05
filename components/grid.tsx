@@ -21,7 +21,6 @@ export const ArticlesGrid: FunctionComponent<{
 
   const [current, setCurrent] = useState<Entry<Article>>()
   // const [cursor, setCursor] = useState<{ left: number, top: number }>()
-  const router = useRouter()
   const phone = usePhone()
 
   return phone
@@ -69,7 +68,7 @@ export const ArticlesGrid: FunctionComponent<{
           >
             <figure>
               <Media media={article.fields.media} sizes='(max-width: 888px) 100vw, 50vw' fill />
-              <figcaption style={{ backgroundColor: article.fields.tags.find(t => !['culture', 'news'].includes(t.fields.id)).fields.color }}>
+              <figcaption style={{ backgroundColor: article.fields.tags.find(t => !['culture', 'news'].includes(t.fields.id))?.fields.color }}>
                 <nav>
                   <Time d={article.fields.publishedAt} />
                   <Tags tags={article.fields.tags} path={`/${tag}/articles`} noLinks />

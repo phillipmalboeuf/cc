@@ -71,7 +71,8 @@
     ol {
       border-top: none;
       padding: 0;
-      --width: calc(((100 / 2) * 1%) - (var(--base) / 1.25));
+      row-gap: calc(var(--base) / 2);
+      --width: calc(((100 / 2) * 1%) - (var(--base) / 2));
     }
   }
 
@@ -106,8 +107,8 @@
     ol {
       flex: 1;
       margin-top: 0;
-
-      --width: calc(((100 / 2) * 1%) - (var(--base) / 1.25));
+      row-gap: calc(var(--base) / 2);
+      --width: calc(((100 / 2) * 1%) - (var(--base) / 2));
 
       figure {
         figcaption {
