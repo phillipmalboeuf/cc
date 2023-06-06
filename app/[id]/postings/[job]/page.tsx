@@ -15,6 +15,15 @@ export default async function Job({ params }) {
     contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.LOCALE })
   ])
 
+  form.fields.action = `${form.fields.action}${job.fields.greenhouseId}`
+  form.fields.fields = form.fields.fields.map(field => ({
+    ...field,
+    fields: {
+      ...field.fields,
+      name: `job_application[${field.fields.name}]`
+    }
+  }))
+
   return (
     <article className={styles.article}>
       <main>

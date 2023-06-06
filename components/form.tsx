@@ -32,7 +32,7 @@ export const Form: FunctionComponent<{
   title?: string
   form: ContentForm
 }> = ({ title, form }) => {
-  return <form action={form.action}>
+  return <form method='post' action={form.action}>
     <fieldset>
       {title && <h4>{title}</h4>}
     </fieldset>
@@ -40,10 +40,10 @@ export const Form: FunctionComponent<{
     <fieldset>
       {form.fields?.map(field => <label key={field.fields.name} className={styles[field.fields.type]}>
         {{
-          'Text': <input name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
-          'Email': <input type='email' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
-          'Phone': <input type='tel' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
-          'Textarea': <textarea name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
+          'Text': <input name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} defaultValue='Test' />,
+          'Email': <input type='email' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} defaultValue='phil@phils.computer' />,
+          'Phone': <input type='tel' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} defaultValue='438-395-4421' />,
+          'Textarea': <textarea name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} defaultValue={'Test test'} />,
           'File': <input type='file' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
         }[field.fields.type || "Text"]}
         {field.fields.label && <span>{field.fields.label}</span>}

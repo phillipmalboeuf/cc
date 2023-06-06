@@ -131,6 +131,7 @@ export interface Office {
 export interface Job {
   title: string
   id: string
+  greenhouseId: string
   department: Entry<Tag>
   office: Entry<Office>
   excerpt: string
