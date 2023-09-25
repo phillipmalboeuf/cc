@@ -6,7 +6,8 @@ import { JobsPostings } from './postings'
 {/* @ts-expect-error Async Server Component */}
 export const Jobs: FunctionComponent<{
   jobsList: ContentJobs
-}> = async ({ jobsList }) => {
+  full?: boolean
+}> = async ({ jobsList, full }) => {
   const jobs = await ContentService.jobs(0)
-  return <JobsPostings jobs={jobs} />
+  return <JobsPostings jobs={jobsList?.jobs || jobs.items} full={full} />
 }

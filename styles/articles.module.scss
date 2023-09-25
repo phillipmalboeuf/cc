@@ -6,7 +6,7 @@
 
     display: flex;
     flex-wrap: wrap;
-    --col-gap: calc(var(--base) / 3);
+    --col-gap: calc(var(--base) / 2);
     gap: var(--col-gap);
     row-gap: calc(var(--gap) * 2);
 
@@ -45,7 +45,8 @@
         flex-wrap: wrap;
         row-gap: calc(var(--gap) * 3);
         justify-content: space-between;
-        margin-bottom: calc(var(--gap) * 3);
+        padding-bottom: calc(var(--gap) * 3);
+        border-bottom: 1px solid;
 
         article {
           width: 30%;
@@ -112,6 +113,8 @@
       flex: 1;
       margin-top: 0;
       row-gap: calc(var(--base) / 3);
+
+      --col-gap: calc(var(--base) / 3);
       $width: (100% / 2);
       $adjust: calc(var(--col-gap) / 2);
       --width: calc(#{$width} - var(--col-gap) + #{$adjust});

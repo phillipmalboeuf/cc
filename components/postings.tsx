@@ -11,24 +11,25 @@ import { Time } from './time'
 import Link from 'next/link'
 
 export const JobsPostings: FunctionComponent<{
-  jobs: EntryCollection<Job>
-}> = ({ jobs }) => {
+  jobs: EntryCollection<Job>['items'],
+  full: boolean
+}> = ({ jobs, full }) => {
 
   const [current, setCurrent] = useState<Entry<Job>>()
   const [cursor, setCursor] = useState<{ left: number, top: number }>()
   const router = useRouter()
 
-  return <section className={`${styles.jobs}`}>
+  return <section className={`${styles.jobs} ${full ? styles.full : undefined}`}>
     <table>
-      <thead>
+      {!full && <thead>
         <tr>
           <th>Job</th>
           <th>Department</th>
           <th>Office</th>
         </tr>
-      </thead>
+      </thead>}
       <tbody>
-      {jobs.items.map((job, i) => <Fragment key={job.sys.id}>
+      {jobs.map((job, i) => <Fragment key={job.sys.id}>
         <tr onClick={() => router.push(`/jobs/postings/${job.fields.id}`)}
           onPointerEnter={() => setCurrent(job)}
           onPointerMove={(e) => setCursor({ left: e.clientX, top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight - 5 })}>
@@ -50,11 +51,13 @@ export const JobsPostings: FunctionComponent<{
     </table>
 
     {current && <aside
-      style={{ backgroundColor: current.fields.department?.fields.color, top: cursor?.top, left: cursor?.left }}
+      style={{ backgroundColor: current.fields.department?.fields.color,
+        ...!full && { top: cursor?.top, left: cursor?.left }
+      }}
       onPointerLeave={() => setCurrent(undefined)}
     >
       <Link href={`/jobs/postings/${current.fields.id}`}>
-        <Time d={current.fields.publishedAt} />
+        <nav><Time d={current.fields.publishedAt} /></nav>
         <h3>{current.fields.title}</h3>
 
         <p>{current.fields.excerpt}</p>

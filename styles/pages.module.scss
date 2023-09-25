@@ -48,7 +48,7 @@
     }
   }
 
-  aside {
+  > aside {
     position: absolute;
     top: 0;
     right: 0;
@@ -80,6 +80,13 @@
       border-radius: 0.5em;
       overflow: hidden;
       display: none;
+
+      &.full {
+        margin: calc(var(--gap) / -2) calc(var(--gap) / -2);
+        width: calc(100% + (var(--gap)));
+        height: calc(100% + (var(--gap) / 2));
+        overflow: visible;
+      }
 
       @media (max-width: 888px) {
         display: block;

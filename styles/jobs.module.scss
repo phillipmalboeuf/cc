@@ -3,6 +3,8 @@
   min-height: 100vh;
 
   > table {
+    margin: 0;
+
     > tbody > tr {
       cursor: pointer;
     }
@@ -33,6 +35,42 @@
 
       td {
         padding-left: 0;
+      }
+    }
+  }
+
+  &.full {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    height: 100%;
+    // margin: calc(var(--gap) * -1)
+
+    td {
+      border: none;
+    }
+
+    tr {
+      border-top: 0;
+      border-bottom: 1px solid;
+    }
+
+    aside {
+      pointer-events: auto;
+      position: static;
+      display: flex;
+      width: auto;
+      margin: calc(var(--gap) / 2) calc(var(--gap) / 2) 0;
+      transform: none;
+      height: 100%;
+
+      a {
+        display: flex;
+        flex-direction: column;
+
+        nav {
+          flex: 1;
+        }
       }
     }
   }

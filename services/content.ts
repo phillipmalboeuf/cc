@@ -141,7 +141,7 @@ export interface Job {
 
 export interface Jobs {
   title: string
-  jobs: Entry<Job>
+  jobs: Entry<Job>[]
 }
 
 const envLocale = process.env.LOCALE
