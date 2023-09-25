@@ -1,13 +1,13 @@
 .articles {
   ol {
     list-style: none;
-    padding: var(--base);
+    padding: calc(var(--gap) / 2);
     margin: 0;
-    border-top: 1px solid;
 
     display: flex;
     flex-wrap: wrap;
-    gap: calc(var(--base) / 2);
+    --col-gap: calc(var(--base) / 3);
+    gap: var(--col-gap);
     row-gap: calc(var(--gap) * 2);
 
     --width: calc(((100 / 3) * 1%) - (var(--base) / 3));
@@ -71,8 +71,11 @@
     ol {
       border-top: none;
       padding: 0;
-      row-gap: calc(var(--base) / 2);
-      --width: calc(((100 / 2) * 1%) - (var(--base) / 2));
+      row-gap: calc(var(--base) / 3);
+      
+      $width: (100% / 2);
+      $adjust: calc(var(--col-gap) / 2);
+      --width: calc(#{$width} - var(--col-gap) + #{$adjust});
     }
   }
 
@@ -96,7 +99,7 @@
         > nav {
           display: flex;
           gap: calc(var(--base) / 2);
-          margin-bottom: 0.5em;
+          margin-bottom: var(--gap);
         }
       }
 
@@ -105,10 +108,13 @@
 
     @media (min-width: 888px) {
     ol {
+      border-top: 1px solid;
       flex: 1;
       margin-top: 0;
-      row-gap: calc(var(--base) / 2);
-      --width: calc(((100 / 2) * 1%) - (var(--base) / 2));
+      row-gap: calc(var(--base) / 3);
+      $width: (100% / 2);
+      $adjust: calc(var(--col-gap) / 2);
+      --width: calc(#{$width} - var(--col-gap) + #{$adjust});
 
       figure {
         figcaption {

@@ -16,14 +16,14 @@ export const Text: FunctionComponent<{
     </figure>}
 
     <div>
-      <header>
+      {(text.title || text.buttons) && <header>
         {text.title && <h2>{text.title}</h2>}
         {text.buttons && <nav>
           {text.buttons.map(button => <Link className='button' href={button.fields.path}>
             {button.fields.label}
           </Link>)}  
         </nav>}
-      </header>
+      </header>}
 
       <main>
         {text.body && documentToReactComponents(text.body)}

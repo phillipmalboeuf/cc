@@ -47,13 +47,18 @@ export const SVG: FunctionComponent<{
     }
   }, [])
 
-  return <figure className={full ? styles.full : undefined} ref={ref}>
+  return <figure className={styles.figure + ' ' + (full ? styles.full : undefined)} ref={ref}>
     {shapes && color && <Canvas style={size}>
       <ambientLight intensity={0.1} color={color} />
       <directionalLight position={[0, 0, 5]} color={color} />
 
-      <ExtrudeSVG shapes={shapes} scale={full ? 0.01 : 0.03} color={color} />
+      <ExtrudeSVG shapes={shapes} scale={full ? 0.0088 : 0.03} color={color} />
     </Canvas>}
+
+    <svg viewBox="0 0 475 475" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M242.341 1.74537H230.359V230.356H1.72974V232.076V242.357V244.095H3.46671H230.359V470.968V472.705H232.095H242.341H244.096V470.968V244.095H470.953H472.689V242.357V232.076V230.356H470.953H244.096V3.48271V1.74537H242.341Z" fill="#040606"/>
+    <path d="M470.961 230.353H244.088V1.74137H230.349V3.4787V230.353H3.4755H1.73853V232.089V242.353V244.091H3.4755H230.349V470.966V472.701H232.087H242.351H244.088V470.966V244.091H470.961H472.699V242.353V232.089V230.353H470.961Z" stroke="white" strokeWidth="3.47353"/>
+    </svg>
   </figure>
 }
 

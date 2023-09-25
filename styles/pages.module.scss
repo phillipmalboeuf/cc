@@ -7,7 +7,7 @@
   > a {
     display: block;
     width: 50%;
-    padding: calc(var(--gap) / 2) var(--gap);
+    padding: calc(var(--gap) / 3) calc(var(--gap) / 2);
     border-top: 1px solid;
 
     display: flex;
@@ -19,12 +19,12 @@
       background-color: white;
 
       position: sticky;
-      top: calc((var(--gap) * 3) + (2.5 * var(--gap) * var(--index)));
+      top: calc((var(--gap) * 3) + (3 * var(--gap) * var(--index)));
       z-index: 2;
       padding: calc(var(--gap) / 2) calc(var(--gap) / 1.5);
     }
 
-    h3 {
+    h2 {
       margin-bottom: 0;
     }
 
@@ -54,7 +54,7 @@
     right: 0;
     width: 50%;
     height: 100%;
-    padding: var(--gap);
+    padding: calc(var(--gap) / 2);
     border-top: 1px solid;
     border-left: 1px solid;
     pointer-events: none;

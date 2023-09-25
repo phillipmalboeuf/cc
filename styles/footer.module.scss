@@ -1,11 +1,16 @@
 .footer {
-  // position: sticky;
-  // top: 0;
-  // left: 0;
-  // width: 100vw;
-  padding: var(--gap);
+  padding: calc(var(--gap) / 2);
   background-color: white;
   border-top: 1px solid;
+
+  &.half {
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
+    margin-top: calc(var(--gap) * -2);
+    width: 50vw;
+    border-top: none;
+  }
 
   nav {
     display: flex;

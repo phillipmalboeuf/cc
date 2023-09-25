@@ -21,7 +21,7 @@
 
   main {
     width: 50%;
-    height: 90vh;
+    height: calc(100vh - (var(--gap) * 3));
     // border-left: 1px solid;
     overflow: auto;
 
