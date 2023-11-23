@@ -54,7 +54,7 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: calc(var(--base) * 4.25);
+  font-size: calc(var(--base) * 4.5);
   letter-spacing: -0.01em;
 
   @media (max-width: 888px) {
