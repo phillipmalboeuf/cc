@@ -11,6 +11,10 @@ import {
   Extrude,
   PresentationControls,
 } from '@react-three/drei'
+import {
+  EffectComposer,
+  Noise
+} from '@react-three/postprocessing'
 
 import styles from '@//styles/3d.module.scss'
 import { BoxGeometry, DoubleSide, ExtrudeGeometry, Group, Mesh, Shape, Vector3 } from 'three'
@@ -53,6 +57,9 @@ export const SVG: FunctionComponent<{
       <directionalLight position={[0, 0, 5]} color={color} />
 
       <ExtrudeSVG shapes={shapes} scale={full ? 0.0088 : 0.03} color={color} />
+      <EffectComposer>
+        <Noise opacity={0.33} />
+      </EffectComposer>
     </Canvas>}
 
     <svg viewBox="0 0 475 475" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,6 +142,9 @@ export const OBJ: FunctionComponent<{
       <directionalLight position={[0, 0, 5]} color={'#D2D2D2'} />
       
       <Presentation obj={obj} scale={0.02} color={'#D2D2D2'} />
+      <EffectComposer>
+        <Noise />
+      </EffectComposer>
     </Canvas>}
   </figure>
 }
