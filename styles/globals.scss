@@ -105,6 +105,10 @@ button,
   padding: calc(var(--gap) / 5) calc(var(--gap) / 3);
   border: 1px solid;
   border-radius: 0.5em;
+
+  &.button--flat {
+    border-color: transparent;
+  }
 }
 
 time {
