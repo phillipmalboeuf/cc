@@ -54,7 +54,7 @@ export const SVG: FunctionComponent<{
   return <figure className={styles.figure + ' ' + (full ? styles.full : undefined)} ref={ref}>
     {shapes && color && <Canvas style={size}>
       <ambientLight intensity={0.1} color={color} />
-      <directionalLight position={[0, 0, 5]} color={color} />
+      <directionalLight position={[0, 5, 5]} color={color} />
 
       <ExtrudeSVG shapes={shapes} scale={full ? 0.0088 : 0.03} color={color} />
       <EffectComposer>
@@ -139,7 +139,7 @@ export const OBJ: FunctionComponent<{
   return <figure className={full ? styles.full : undefined} style={{ backgroundColor: '#D2D2D2' }} ref={ref}>
     {obj && <Canvas style={size}>
       <ambientLight intensity={0.1} color={'#D2D2D2'} />
-      <directionalLight position={[0, 0, 5]} color={'#D2D2D2'} />
+      <directionalLight position={[0, 5, 5]} color={'#D2D2D2'} />
       
       <Presentation obj={obj} scale={0.02} color={'#D2D2D2'} />
       <EffectComposer>
