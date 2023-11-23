@@ -17,7 +17,7 @@ export const WholeForm: FunctionComponent<{
         </header>
 
         <figure>
-          <Media media={form.media} fill sizes='50vw' />
+          <Media media={form.media} fill sizes='50vw' no3D />
         </figure>
 
         <footer>

@@ -6,9 +6,11 @@
 
   figure {
     position: relative;
-    height: calc(60vh - (var(--gap) * 2));
+    height: calc(var(--gap) * 6);
+    width: calc(var(--gap) * 6);
+    // height: calc(60vh - (var(--gap) * 2));
     // width: 100%;
-    margin: var(--gap);
+    margin: 0 var(--gap) auto;
     border-radius: 0.5em;
     overflow: hidden;
 
@@ -45,6 +47,14 @@
 
     aside {
       margin-bottom: var(--gap);
+    }
+  }
+
+  footer {
+    margin-bottom: calc(var(--gap) * 6);
+
+    @media (max-width: 888px) {
+      margin-bottom: calc(var(--gap) * 2);
     }
   }
 

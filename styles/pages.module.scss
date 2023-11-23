@@ -33,8 +33,7 @@
     }
 
     &:hover,
-    &:focus,
-    &.current {
+    &:focus {
       svg {
         visibility: visible;
       }
@@ -94,11 +93,25 @@
     }
 
     &:hover,
-    &:focus,
-    &.current {
+    &:focus {
       pointer-events:all;
       figure {
         display: block;
+      }
+    }
+  }
+
+  &:not(:hover) {
+    a.first {
+      svg {
+        visibility: visible;
+      }
+
+      & + aside {
+        pointer-events:all;
+        figure {
+          display: block;
+        }
       }
     }
   }

@@ -17,14 +17,14 @@ export const Pages: FunctionComponent<{
 
   return <nav className={styles.pages}>
     {index.items.map((page, index) => <Fragment key={page.fields.id}>
-      <Link href={`/${page.fields.id}`} style={{ ['--index' as any]: index }}>
+      <Link className={index === 0 ? styles.first : undefined} href={`/${page.fields.id}`} style={{ ['--index' as any]: index }}>
         <h2>{page.fields.title}</h2>
         <svg width="44" height="31" viewBox="0 0 44 31" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="-4.37114e-08" y1="15.4995" x2="43" y2="15.4995" stroke="black"/>
           <path d="M28.1793 1.00012L42.8584 15.6792L28.1793 30.3583" stroke="black"/>
         </svg>
       </Link>
-      <aside style={{ ['--index' as any]: index }}>
+      <aside className={index === 0 ? styles.first : undefined} style={{ ['--index' as any]: index }}>
         <PagesAside page={page} />
       </aside>
     </Fragment>)}
