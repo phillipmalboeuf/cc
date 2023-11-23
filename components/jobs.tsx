@@ -7,7 +7,8 @@ import { JobsPostings } from './postings'
 export const Jobs: FunctionComponent<{
   jobsList: ContentJobs
   full?: boolean
-}> = async ({ jobsList, full }) => {
-  const jobs = await ContentService.jobs(0)
+  limit?: number
+}> = async ({ jobsList, full, limit }) => {
+  const jobs = await ContentService.jobs(0, null, null, limit)
   return <JobsPostings jobs={jobsList?.jobs || jobs.items} full={full} />
 }
