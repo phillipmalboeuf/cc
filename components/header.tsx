@@ -23,7 +23,8 @@ export const Header: FunctionComponent<{
     <header className={styles.header}>
       <nav>
         <Link className={styles.logo} href='/'>
-          <PetitLogo />
+          {/* <PetitLogo /> */}
+          Cloud Chamber
         </Link>
         <ActiveNavigation links={nav.fields.links} />
       </nav>

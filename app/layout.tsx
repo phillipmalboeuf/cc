@@ -23,14 +23,13 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const locale = useLocale()
-  const footer = await ContentService.navigation('footer')
   
   return (
     <html lang={locale === 'fr-CA' ? 'fr' : 'en'} className={antique.variable}>
       <body>
         <Header />
         {children}
-        <Footer nav={footer} />
+        <Footer />
       </body>
     </html>
   )

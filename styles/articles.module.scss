@@ -1,12 +1,12 @@
 .articles {
   ol {
     list-style: none;
-    padding: calc(var(--gap) / 2);
+    padding: calc(var(--gap) * 0.5);
     margin: 0;
 
     display: flex;
     flex-wrap: wrap;
-    --col-gap: calc(var(--base) / 2);
+    --col-gap: calc(var(--base) * 0.5);
     gap: var(--col-gap);
     row-gap: calc(var(--gap) * 2);
 
@@ -34,7 +34,7 @@
 
       nav {
         display: flex;
-        gap: calc(var(--base) / 2);
+        gap: calc(var(--base) * 0.5);
         align-items: center;
         margin-bottom: 0.5em;
       }
@@ -74,8 +74,8 @@
       padding: 0;
       row-gap: calc(var(--base) / 3);
       
-      $width: (100% / 2);
-      $adjust: calc(var(--col-gap) / 2);
+      $width: (100% * 0.5);
+      $adjust: calc(var(--col-gap) * 0.5);
       --width: calc(#{$width} - var(--col-gap) + #{$adjust});
     }
   }
@@ -99,7 +99,7 @@
 
         > nav {
           display: flex;
-          gap: calc(var(--base) / 2);
+          gap: calc(var(--base) * 0.5);
           margin-bottom: var(--gap);
         }
       }
@@ -115,8 +115,8 @@
       row-gap: calc(var(--base) / 3);
 
       --col-gap: calc(var(--base) / 3);
-      $width: (100% / 2);
-      $adjust: calc(var(--col-gap) / 2);
+      $width: (100% * 0.5);
+      $adjust: calc(var(--col-gap) * 0.5);
       --width: calc(#{$width} - var(--col-gap) + #{$adjust});
 
       figure {

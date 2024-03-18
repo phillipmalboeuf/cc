@@ -50,7 +50,7 @@
 
     nav {
       display: flex;
-      gap: calc(var(--base) / 2);
+      gap: calc(var(--base) * 0.5);
       margin-bottom: var(--base);
     }
   }

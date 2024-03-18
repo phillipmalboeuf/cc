@@ -60,7 +60,7 @@
       position: static;
       display: flex;
       width: auto;
-      margin: calc(var(--gap) / 2) calc(var(--gap) / 2) 0;
+      margin: calc(var(--gap) * 0.5) calc(var(--gap) * 0.5) 0;
       transform: none;
       height: 100%;
 

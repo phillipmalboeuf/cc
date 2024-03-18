@@ -17,6 +17,7 @@ export interface NavigationLink {
 export interface Navigation {
   title: string
   id: string
+  description: string
   links: Entry<NavigationLink>[]
 }
 

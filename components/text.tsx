@@ -3,7 +3,7 @@ import { Fragment, FunctionComponent } from 'react'
 import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import styles from 'styles/text.module.scss'
+import styles from '@/styles/text.module.scss'
 import { Media } from './media'
 import Link from 'next/link'
 

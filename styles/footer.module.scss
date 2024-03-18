@@ -1,30 +1,80 @@
 .footer {
-  padding: calc(var(--gap) / 2);
+  padding: calc(var(--gap));
   background-color: white;
   border-top: 1px solid;
 
-  &.half {
-    // position: absolute;
-    // bottom: 0;
-    // left: 0;
-    margin-top: calc(var(--gap) * -2);
-    width: 50vw;
-    border-top: none;
+  display: flex;
+  gap: calc(var(--gap) * 2);
 
-    @media (max-width: 888px) {
-      margin-top: calc(var(--gap) * 0);
-      width: 100%;
-    }
+  // &.half {
+  //   // position: absolute;
+  //   // bottom: 0;
+  //   // left: 0;
+  //   margin-top: calc(var(--gap) * -2);
+  //   width: 50vw;
+  //   border-top: none;
+
+  //   @media (max-width: 888px) {
+  //     margin-top: calc(var(--gap) * 0);
+  //     width: 100%;
+  //   }
+  // }
+  
+  > figure {
+    width: 7%;
   }
 
-  nav {
+  main {
     display: flex;
-    gap: calc(var(--gap) / 2);
-    justify-content: flex-end;
+    flex-wrap: wrap;
 
-    a {
-      &:first-child {
+    > small {
+      width: 50%;
+      // margin-right: auto;
+
+      p {
+        max-width: 470px;
+      }
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-self: start;
+      justify-content: flex-end;
+      width: 33%;
+      // flex-direction: column;
+      // gap: calc(var(--gap) * 0.1);
+      // justify-content: flex-end;
+
+      a {
+        width: 50%;
+        // &:first-child {
+        //   flex: 1;
+        // }
+      }
+
+      &.caserne {
+        width: 17%;
+        justify-content: flex-end;
+
+        a {
+          width: auto;
+        }
+      }
+
+      &:last-child {
+        width: 100%;
+        flex-direction: row;
+      }
+
+      > small {
+        display: flex;
         flex: 1;
+        
+        a {
+          width: 33%;
+        }
       }
     }
   }

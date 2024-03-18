@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Logo />
+      {/* <Logo /> */}
       <Content content={page.fields.content} />
     </main>
   )

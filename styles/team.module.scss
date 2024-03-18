@@ -75,11 +75,11 @@
     right: calc(var(--gap) * 2);
 
     display: flex;
-    gap: calc(var(--base) / 2);
+    gap: calc(var(--base) * 0.5);
 
     @media (max-width: 888px) {
       left: calc(var(--gap));
-      bottom: calc(var(--gap) / 2);
+      bottom: calc(var(--gap) * 0.5);
     }
 
     a {
