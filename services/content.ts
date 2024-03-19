@@ -68,6 +68,7 @@ export interface Page {
   description: string
   color: string
   banner: Asset
+  video: Asset
   content: Entry<Index & Text & Cards & Gallery & Team & Articles & Jobs & Form>[]
 }
 

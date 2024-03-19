@@ -23,11 +23,6 @@
     margin-bottom: var(--base);
   }
 
-  h2,
-  main {
-    max-width: 888px;
-  }
-
   &.Hero {
     min-height: 50vh;
   }
@@ -35,9 +30,15 @@
   &.Columns {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
 
-    figure {
+    border-top: 1px solid;
+    padding-top: var(--base);
+
+    figure,
+    header,
+    main {
       width: 50%;
 
       @media (max-width: 888px) {
@@ -45,13 +46,8 @@
       }
     }
 
-    div {
-      padding: var(--gap);
-      max-width: 578px;
-
-      @media (max-width: 888px) {
-        padding: 0;
-      }
+    header {
+      max-width: 666px;
     }
   }
 }

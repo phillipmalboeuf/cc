@@ -12,38 +12,45 @@ import Link from 'next/link'
 
 export const JobsPostings: FunctionComponent<{
   jobs: EntryCollection<Job>['items'],
-  full: boolean
-}> = ({ jobs, full }) => {
+  tight: boolean
+}> = ({ jobs, tight }) => {
 
   const [current, setCurrent] = useState<Entry<Job>>()
   const [cursor, setCursor] = useState<{ left: number, top: number }>()
   const router = useRouter()
 
-  return <section className={`${styles.jobs} ${full ? styles.full : undefined}`}>
+  return <section className={`${styles.jobs} ${tight ? styles.tight : undefined}`}>
     <table>
-      {!full && <thead>
+      {/* {tight && <thead>
         <tr>
           <th>Job</th>
           <th>Department</th>
           <th>Office</th>
         </tr>
-      </thead>}
+      </thead>} */}
       <tbody>
       {jobs.map((job, i) => <Fragment key={job.sys.id}>
         <tr onClick={() => router.push(`/jobs/postings/${job.fields.id}`)}
-          onPointerEnter={() => setCurrent(job)}
+          // onPointerEnter={() => setCurrent(job)}
           onPointerMove={(e) => setCursor({ left: e.clientX, top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight - 5 })}>
-          <td>
+          <td className={!tight && 'h4'}>
             <Link href={`/jobs/postings/${job.fields.id}`}>
               {job.fields.title}
             </Link>
           </td>
-          <td>
-            {job.fields.department.fields.label}
-          </td>
-          <td>
+          <td className={!tight && 'h4'}>
             {job.fields.office.fields.city}, {job.fields.office.fields.country}
           </td>
+          {!tight && <td className={styles.buttons}>
+            <span className='button button--flat' key={job.fields.department.fields.id} style={{
+              backgroundColor: job.fields.department.fields.color
+            }}>
+              {job.fields.department.fields.label}
+            </span>
+            <Link className='button' href={`/jobs/postings/${job.fields.id}`}>
+              See more
+            </Link>
+          </td>}
         </tr>
       </Fragment>
       )}
@@ -52,7 +59,7 @@ export const JobsPostings: FunctionComponent<{
 
     {current && <aside
       style={{ backgroundColor: current.fields.department?.fields.color,
-        ...!full && { top: cursor?.top, left: cursor?.left }
+        ...tight && { top: cursor?.top, left: cursor?.left }
       }}
       onPointerLeave={() => setCurrent(undefined)}
     >

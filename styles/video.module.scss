@@ -1,0 +1,55 @@
+.video {
+  position: relative;
+  height: calc(100vh - (var(--gap) * 4));
+  color: white;
+  background-color: black;
+
+  video {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 666ms;
+
+    &.ready {
+      opacity: 1;
+    }
+  }
+
+  > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  nav {
+    position: absolute;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--base);
+    display: flex;
+    align-items: flex-end;
+
+    div {
+      display: flex;
+      flex: 1;
+      gap: calc(var(--base) * 0.5);
+    }
+    
+
+    button {
+      background-color: transparent;
+    }
+
+    a {
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+}

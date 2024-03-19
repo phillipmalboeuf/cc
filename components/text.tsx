@@ -12,22 +12,20 @@ export const Text: FunctionComponent<{
 }> = ({ text }) => {
   return <section className={`${styles.text} ${styles[text.layout]}`}>
     {text.media && <figure>
-      <Media media={text.media} sizes='100vw' fill={false} />
+      <Media media={text.media} sizes='100vw' fill={false} no3D />
     </figure>}
 
-    <div>
-      {(text.title || text.buttons) && <header>
-        {text.title && <h2>{text.title}</h2>}
-        {text.buttons && <nav>
-          {text.buttons.map(button => <Link className='button' href={button.fields.path}>
-            {button.fields.label}
-          </Link>)}  
-        </nav>}
-      </header>}
+    {(text.title || text.buttons) && <header>
+      {text.title && <h2>{text.title}</h2>}
+      {text.buttons && <nav>
+        {text.buttons.map(button => <Link className='button' href={button.fields.path}>
+          {button.fields.label}
+        </Link>)}  
+      </nav>}
+    </header>}
 
-      <main>
-        {text.body && documentToReactComponents(text.body)}
-      </main>
-    </div>
+    <main>
+      {text.body && documentToReactComponents(text.body)}
+    </main>
   </section>
 }

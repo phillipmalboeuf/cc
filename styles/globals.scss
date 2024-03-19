@@ -31,10 +31,9 @@ body {
 
 body {
   color: black;
-  background: white;
+  background: var(--beige);
   font-family: var(--antique), sans-serif;
   font-size: var(--base);
-  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
@@ -44,6 +43,7 @@ h1, h2, h3, h4, h5, h6, p {
   white-space: pre-line;
   text-align: left;
   font-weight: 400;
+  line-height: 1;
 }
 
 h1, .h1 {
@@ -88,6 +88,12 @@ h4, .h4 {
 p {
 }
 
+hr {
+  border: none;
+  height: 1px;
+  background-color: currentColor;
+}
+
 small {
   font-size: calc(var(--base) * 0.75);
 }
@@ -95,6 +101,10 @@ small {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+[id] {
+	scroll-margin-top:  calc(var(--base) * 4);
 }
 
 button,
@@ -147,7 +157,7 @@ table {
   border-collapse: collapse;
 
   tr {
-    border-bottom: 1px solid;
+    border-top: 1px solid;
   }
 
   th {
