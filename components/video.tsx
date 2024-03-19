@@ -13,16 +13,13 @@ export const Video: FunctionComponent<{
   const [ready, setReady] = useState(false)
   const element = useRef<HTMLVideoElement>()
 
-  useEffect(() => {
-    if (element?.current?.readyState >= 3) {
-      setReady(true)
-    }
-  }, [element?.current?.readyState])
-
   return <>
     <figure className={styles.video}>
       <SVG />
-      <video className={ready ? styles.ready : undefined} ref={element} src={media.fields.file.url} controls={false} autoPlay playsInline loop muted={muted} />
+      <video className={ready ? styles.ready : undefined} ref={element} src={media.fields.file.url} controls={false} autoPlay={false} playsInline loop muted={muted} onCanPlay={e => {
+        e.currentTarget.play()
+        setReady(true)
+      }} />
       <nav>
         <div>
           <button onClick={() => element?.current.requestFullscreen()}>Full Screen</button>

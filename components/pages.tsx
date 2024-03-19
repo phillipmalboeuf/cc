@@ -41,7 +41,7 @@ export const PagesAside: FunctionComponent<{
   return articles
     ? <figure><Articles articlesList={articles.fields} gallery /></figure>
     : jobs
-      ? <figure className={styles.full}><Jobs jobsList={jobs.fields} full limit={4} /></figure>
+      ? <figure className={styles.full}><Jobs jobsList={jobs.fields} tight limit={4} /></figure>
       : <Link href={`/${page.fields.id}`}>
         <figure style={{ background: page.fields.color }}>
           <Media media={page.fields.banner} sizes='(max-width: 888px) 100vh, 50vw' fill />
