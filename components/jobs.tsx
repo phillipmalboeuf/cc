@@ -20,6 +20,6 @@ export const Jobs: FunctionComponent<{
         <a href='/jobs' className='button'>See all job opportunities</a>
       </nav>
     </>}
-    <JobsPostings jobs={jobsList?.jobs || jobs.items} tight={tight} />
+    <JobsPostings jobs={jobsList?.jobs || jobs.items} tight={jobsList?.tight || tight} />
   </>
 }

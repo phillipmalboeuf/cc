@@ -31,8 +31,12 @@ export interface Text {
   layout: string
   color: string
   body: Document
+  secondBody: Document
+  thirdBody: Document
   media: Asset
   buttons: Entry<NavigationLink>[]
+  tag: Entry<Tag>
+  background: Asset
 }
 
 export interface Field {
@@ -143,6 +147,7 @@ export interface Job {
 
 export interface Jobs {
   title: string
+  tight: boolean
   jobs: Entry<Job>[]
 }
 

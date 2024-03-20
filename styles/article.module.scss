@@ -1,7 +1,7 @@
 .article {
   position: relative;
   display: flex;
-  border-top: 1px solid;
+  // border-top: 1px solid;
 
   @media (max-width: 888px) {
     flex-wrap: wrap;
@@ -31,7 +31,7 @@
   main {
     width: 50%;
     height: 90vh;
-    border-left: 1px solid;
+    // border-left: 1px solid;
     overflow: auto;
 
     display: flex;
