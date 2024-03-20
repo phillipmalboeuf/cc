@@ -30,7 +30,10 @@ export const JobsPostings: FunctionComponent<{
       </thead>} */}
       <tbody>
       {jobs.map((job, i) => <Fragment key={job.sys.id}>
-        <tr onClick={() => router.push(`/jobs/postings/${job.fields.id}`)}
+        <tr style={tight && {
+          [`--width` as string]: '50%',
+          [`--color` as string]: job.fields.department.fields.color
+        }} onClick={() => router.push(`/jobs/postings/${job.fields.id}`)}
           // onPointerEnter={() => setCurrent(job)}
           onPointerMove={(e) => setCursor({ left: e.clientX, top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight - 5 })}>
           <td className={!tight && 'h4'}>

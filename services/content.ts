@@ -149,6 +149,7 @@ export interface Job {
 export interface Jobs {
   title: string
   tight: boolean
+  grouped: boolean
   jobs: Entry<Job>[]
 }
 

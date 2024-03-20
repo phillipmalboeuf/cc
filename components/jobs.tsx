@@ -1,9 +1,10 @@
-import { Jobs as ContentJobs, ContentService } from '@/services/content'
+import { Jobs as ContentJobs, ContentService, Job } from '@/services/content'
 import { Fragment, FunctionComponent } from 'react'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { JobsPostings } from './postings'
 
 import styles from '@/styles/jobs.module.scss'
+import { Entry } from 'contentful'
 
 {/* @ts-expect-error Async Server Component */}
 export const Jobs: FunctionComponent<{
@@ -12,6 +13,24 @@ export const Jobs: FunctionComponent<{
   limit?: number
 }> = async ({ jobsList, tight, limit }) => {
   const jobs = await ContentService.jobs(0, null, null, limit)
+
+  const groups = jobs.items.reduce<{
+    [tag: string]: Entry<Job>[]
+  }>((groups, job) => {
+    const tag = job.fields.department.fields.label
+    if (!groups[tag]) {
+      return {
+        ...groups,
+        [tag]: [job]
+      }
+    }
+
+    return {
+      ...groups,
+      [tag]: [...groups[tag], job]
+    }
+  }, {})
+  
   return <>
     {jobsList?.title && <>
       <hr />
@@ -20,6 +39,13 @@ export const Jobs: FunctionComponent<{
         <a href='/jobs' className='button'>See all job opportunities</a>
       </nav>
     </>}
-    <JobsPostings jobs={jobsList?.jobs || jobs.items} tight={jobsList?.tight || tight} />
+
+    {jobsList?.grouped
+      ? Object.entries(groups).map(([tag, jobs]) => <div className={styles.group}>
+        <h3>{tag}</h3>
+        <JobsPostings jobs={jobs} tight={jobsList?.tight || tight} />
+      </div>)
+      : <JobsPostings jobs={jobsList?.jobs || jobs.items} tight={jobsList?.tight || tight} />}
+    
   </>
 }

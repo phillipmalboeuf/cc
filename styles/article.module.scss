@@ -46,12 +46,45 @@
   }
 
   header {
+    position: relative;
     flex: 1;
+    min-height: 33vh;
 
     nav {
       display: flex;
       gap: calc(var(--base) * 0.5);
       margin-bottom: var(--base);
+    }
+
+    .back {
+      position: absolute;
+      top: var(--base);
+      right: calc(var(--base) * 0.5);
+
+      svg {
+        line {
+          transition: transform 333ms;
+          transform-origin: center center;
+          transform: rotate(-45deg); 
+
+          &:last-of-type {
+            transform: rotate(45deg); 
+          }
+        }
+      }
+
+      &:hover,
+      &:focus {
+        svg {
+          rect {
+            fill: currentColor;
+          }
+
+          line {
+            stroke: white;
+          }
+        }
+      }
     }
   }
 

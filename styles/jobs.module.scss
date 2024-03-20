@@ -15,6 +15,22 @@
 
     > tbody > tr {
       cursor: pointer;
+
+      &:hover {
+        background-color: var(--color);
+      }
+    }
+  }
+
+  &.tight {
+    td {
+      padding-left: 2px;
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: 1px solid;
+      }
     }
   }
 
@@ -93,5 +109,20 @@
     display: flex;
     justify-content: flex-end;
     gap: calc(var(--base) * 0.5);
+  }
+}
+
+.group {
+  display: flex;
+  margin: calc(var(--gap) * 2) 0 calc(var(--gap) * 3);
+  
+  h3 {
+    width: 50%;
+    border-top: 1px solid;
+    padding: calc(var(--base) * 0.5) var(--base);
+  }
+
+  section {
+    width: 50%;
   }
 }

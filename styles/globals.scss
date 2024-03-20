@@ -224,6 +224,7 @@ table {
 
   td {
     padding: calc(var(--base) * 0.5) var(--gap);
+    width: var(--width);
   }
 }
 
