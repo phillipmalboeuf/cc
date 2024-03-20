@@ -32,7 +32,7 @@ export const Text: FunctionComponent<{
     </main>
   </details> : <section className={`${styles.text} ${styles[text.layout]}${text.background ? ` ${styles.background}` : ''}`}>
     {text.background && <figure className={styles.back}>
-      <Media media={text.background} sizes='100vw' fill={false} no3D />
+      <Media media={text.background} sizes='100vw' fill={false} no3D eager />
     </figure>}
 
     {text.tag && <nav>
@@ -41,7 +41,7 @@ export const Text: FunctionComponent<{
 
     <main>
       {text.media && <figure>
-        <Media media={text.media} sizes='100vw' fill={false} no3D />
+        <Media media={text.media} sizes='100vw' fill={false} no3D eager />
       </figure>}
 
       {text.title && <header>
