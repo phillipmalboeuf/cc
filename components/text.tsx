@@ -35,6 +35,10 @@ export const Text: FunctionComponent<{
       <Media media={text.background} sizes='100vw' fill={false} no3D />
     </figure>}
 
+    {text.tag && <nav>
+      <span className='button button--flat' style={{ backgroundColor: text.tag.fields.color }}>{text.tag.fields.label}</span>
+    </nav>}
+
     <main>
       {text.media && <figure>
         <Media media={text.media} sizes='100vw' fill={false} no3D />
