@@ -4,12 +4,13 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from '@/styles/gallery.module.scss'
 import { Media } from './media'
+import { Slider } from './slider'
 
 export const Gallery: FunctionComponent<{
   gallery: ContentGallery
 }> = ({ gallery }) => {
-  return <section className={`${styles.gallery}`}>
-    <ol>
+  return <section className={`${styles.gallery} ${styles[gallery.layout]}`}>
+    {gallery.layout !== 'Slider' ? <ol>
       {gallery.title && <li>
         <h4>{gallery.title}</h4>
       </li>}
@@ -19,10 +20,14 @@ export const Gallery: FunctionComponent<{
         </li>}
         <li>
           <figure>
-            <Media media={media} sizes='(max-width: 888px) 50vw, 14.3vw' fill />
+            <Media media={media} sizes={'(max-width: 888px) 50vw, 14.3vw'} fill />
           </figure>
         </li>
       </Fragment>)}
-    </ol>
+    </ol> : <Slider particlesToShow={1} align='center' buttons slides={gallery.medias.map((media, i) => <li className='slide' key={i}>
+      <figure>
+        <Media media={media} sizes={'100vw'} fill />
+      </figure>
+    </li>)} />}
   </section>
 }

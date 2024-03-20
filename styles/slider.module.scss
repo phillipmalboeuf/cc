@@ -1,4 +1,5 @@
 .slider {
+  position: relative;
   overflow: hidden;
 
   --w: 100%;
@@ -11,6 +12,25 @@
     > li {
       flex: 0 0 var(--w);
       min-width: 0;
+    }
+  }
+
+  nav {
+    position: absolute;
+    bottom: calc(var(--base) * 0.5);
+    left: calc(var(--base) * 0.5);
+
+    display: flex;
+    gap: calc(var(--base) * 0.5);
+
+    button {
+      color: white;
+      background-color: transparent;
+      width: calc(var(--base) * 6);
+
+      &:hover {
+        background-color: black;
+      }
     }
   }
 }

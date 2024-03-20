@@ -63,6 +63,7 @@ export interface Cards {
 
 export interface Gallery {
   title: string
+  layout: string
   medias: Asset[]
 }
 

@@ -11,8 +11,9 @@ export const Slider: FunctionComponent<{
   slides: JSX.Element[]
   align?: 'start' | 'end' | 'center'
   particlesToShow: number
-}> = ({ slides, align, particlesToShow }) => {
-  const [emblaRef] = useEmblaCarousel({ loop: true, align }, [])
+  buttons?: boolean
+}> = ({ slides, align, buttons, particlesToShow }) => {
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true, align }, [])
 
   return <div ref={emblaRef} className={`${styles.slider}`} style={{
     ['--w' as any]: `${100/particlesToShow}%`
@@ -20,5 +21,9 @@ export const Slider: FunctionComponent<{
     <ol>
       {slides}
     </ol>
+    {buttons && <nav>
+      <button onClick={() => embla.scrollPrev()}>Previous</button>
+      <button onClick={() => embla.scrollNext()}>Next</button>
+    </nav>}
   </div>
 }
