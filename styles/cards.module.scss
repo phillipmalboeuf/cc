@@ -26,7 +26,7 @@
       figure {
         position: relative;
         width: 100%;
-        height: 25vw;
+        height: calc(25vw - (var(--base) * 2));
         border-radius: 0.5em;
         overflow: hidden;
 

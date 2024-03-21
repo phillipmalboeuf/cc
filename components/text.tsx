@@ -25,7 +25,7 @@ export const Text: FunctionComponent<{
       {text.secondBody && <div>{documentToReactComponents(text.secondBody)}</div>}
 
       {text.buttons && <nav>
-        {text.buttons.map(button => <Link className='button' href={button.fields.path}>
+        {text.buttons.map(button => <Link className='button' key={button.fields.path} href={button.fields.path}>
           {button.fields.label}
         </Link>)}  
       </nav>}
@@ -54,7 +54,7 @@ export const Text: FunctionComponent<{
     </main>
 
     {text.buttons && <nav>
-      {text.buttons.map(button => <Link className='button' href={button.fields.path}>
+      {text.buttons.map(button => <Link className='button' key={button.fields.path} href={button.fields.path}>
         {button.fields.label}
       </Link>)}
     </nav>}
