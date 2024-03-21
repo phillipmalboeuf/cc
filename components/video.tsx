@@ -22,8 +22,8 @@ export const Video: FunctionComponent<{
       }} />
       <nav>
         <div>
-          <button onClick={() => element?.current.requestFullscreen()}>Full Screen</button>
-          <button onClick={() => setMuted(!muted)}>Sound {muted ? 'On' : 'Off'}</button>
+          {/* <button onClick={() => element?.current.requestFullscreen()}>Full Screen</button>
+          <button onClick={() => setMuted(!muted)}>Sound {muted ? 'On' : 'Off'}</button> */}
         </div>
 
         <a href='#skip'>
