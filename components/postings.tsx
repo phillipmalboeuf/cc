@@ -7,8 +7,10 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import styles from '@/styles/jobs.module.scss'
 import { Entry, EntryCollection } from 'contentful'
 import { useRouter } from 'next/navigation'
-import { Time } from './time'
 import Link from 'next/link'
+
+import { Time } from './time'
+import { usePhone } from '@/helpers/devices'
 
 export const JobsPostings: FunctionComponent<{
   jobs: EntryCollection<Job>['items'],
@@ -18,6 +20,8 @@ export const JobsPostings: FunctionComponent<{
   const [current, setCurrent] = useState<Entry<Job>>()
   const [cursor, setCursor] = useState<{ left: number, top: number }>()
   const router = useRouter()
+
+  const phone = usePhone()
 
   return <section className={`${styles.jobs} ${tight ? styles.tight : undefined}`}>
     <table>
@@ -36,12 +40,12 @@ export const JobsPostings: FunctionComponent<{
         }} onClick={() => router.push(`/jobs/postings/${job.fields.id}`)}
           // onPointerEnter={() => setCurrent(job)}
           onPointerMove={(e) => setCursor({ left: e.clientX, top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight - 5 })}>
-          <td className={!tight && 'h4'}>
+          <td className={(!tight && !phone) ? 'h4' : undefined}>
             <Link href={`/jobs/postings/${job.fields.id}`}>
               {job.fields.title}
             </Link>
           </td>
-          <td className={!tight && 'h4'}>
+          <td className={(!tight && !phone) ? 'h4' : undefined}>
             {job.fields.office.fields.city}, {job.fields.office.fields.country}
           </td>
           {!tight && <td className={styles.buttons}>

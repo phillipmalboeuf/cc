@@ -45,6 +45,10 @@
         flex: 1;
         gap: calc(var(--base) * 0.5);
         margin-top: var(--base);
+
+        @media (max-width: 888px) {
+          margin-top: 14vh;
+        }
       }
     }
   }

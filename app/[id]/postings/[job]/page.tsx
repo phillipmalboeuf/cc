@@ -38,6 +38,10 @@ export default async function Job({ params }) {
               <line x1="35" y1="20" x2="4" y2="20" stroke="currentColor"/>
             </svg>
           </Link>
+
+          <Link className={`button ${styles.apply}`} href="#apply">
+            Apply now
+          </Link>
         </header>
 
         <footer>
@@ -48,9 +52,9 @@ export default async function Job({ params }) {
           {job.fields.text && documentToReactComponents(job.fields.text)}
         </footer>
 
-        <Link href={`/${params.id}`}>Back</Link>
+        {/* <Link href={`/${params.id}`}>Back</Link> */}
       </main>
-      <div className={formStyles.form}>
+      <div className={formStyles.form} id="apply">
         <Form title={form.fields.title} form={form.fields} />
       </div>
     </article>

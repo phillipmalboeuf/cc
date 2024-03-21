@@ -28,6 +28,10 @@
     padding: calc(var(--gap) * 2);
     border-radius: 0.5em;
 
+    @media (max-width: 888px) {
+      padding: var(--base);
+    }
+
     .back {
       position: absolute;
       top: 0;
@@ -47,15 +51,33 @@
     position: relative;
     min-height: 50vh;
 
+    @media (max-width: 888px) {
+      min-height: 100vh;
+    }
+
     header {
-      position: absolute;
-      top: calc(var(--base) + var(--gap));
-      left: calc(var(--base) + var(--gap));
-      width: 66.6%;
+      @media (min-width: 888px) {
+        position: absolute;
+        top: calc(var(--base) + var(--gap));
+        left: calc(var(--base) + var(--gap));
+        width: 66.6%;
+      }
     }
 
     figure {
       margin-bottom: 0;
+
+      @media (max-width: 888px) {
+        height: 50vh;
+        margin-bottom: var(--base);
+
+        img,
+        video {
+          height: 100%;
+
+          object-position: right;
+        }
+      }
     }
   }
   
@@ -63,12 +85,17 @@
     main {
       display: flex;
       flex-wrap: wrap;
-      padding: 0 var(--gap);
+      // padding: 0 var(--gap);
 
       > * {
         width: 50%;
         border-top: 1px solid;
         padding: calc(var(--base) * 0.5) var(--base) var(--base) 0;
+
+        @media (max-width: 888px) {
+          width: 100%;
+          // border-top: none;
+        }
       }
 
       hr {
@@ -78,7 +105,9 @@
     }
 
     nav {
-      padding: 0 var(--gap);
+      @media (min-width: 888px) {
+        padding: 0 var(--gap);
+      }
     }
 
     &.background {
@@ -104,6 +133,10 @@
     
     padding: calc(var(--base) * 0.5) calc(var(--base));
 
+    @media (max-width: 888px) {
+      padding: calc(var(--base) * 0.5);
+    }
+
     h2 {
       margin-bottom: 0;
     }
@@ -117,6 +150,11 @@
           &:last-of-type {
             transform: rotate(90deg); 
           }
+        }
+
+        @media (max-width: 888px) {
+          width: calc(var(--gap) * 1.33);
+          height: calc(var(--gap) * 1.33);
         }
       }
 
@@ -156,13 +194,30 @@
       border-bottom: 1px solid;
       margin-bottom: var(--base);
 
+      @media (max-width: 888px) {
+        flex-wrap: wrap;
+        border-bottom: none;
+      }
+
       div {
         width: 50%;
         padding: calc(var(--base) * 0.5) calc(var(--base)) calc(var(--gap) * 4);
 
-        &:first-of-type {
+        @media (max-width: 888px) {
+          width: 100%;
           padding-left: 0;
-          border-right: 1px solid;
+          padding-bottom: calc(var(--gap) * 3);
+
+          &:not(:first-of-type) {
+            border-top: 1px solid;
+          }
+        }
+
+        @media (min-width: 888px) {
+          &:first-of-type {
+            padding-left: 0;
+            border-right: 1px solid;
+          }
         }
 
         hr {
@@ -171,9 +226,11 @@
       }
 
       nav {
-        position: absolute;
-        bottom: var(--base);
-        left: calc(50% + var(--base));
+        @media (min-width: 888px) {
+          position: absolute;
+          bottom: var(--base);
+          left: calc(50% + var(--base));
+        }
       }
     }
   }

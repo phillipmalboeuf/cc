@@ -4,6 +4,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+  @media (max-width: 888px) {
+    a {
+      display: none;
+    }
+  }
 }
 
 .jobs {
@@ -24,7 +30,15 @@
 
   &.tight {
     td {
-      padding-left: 2px;
+      @media (min-width: 888px) {
+        padding-left: 2px;
+      }
+      
+      @media (max-width: 888px) {
+        &:last-child {
+          width: 33%;
+        }
+      }
     }
 
     tr:last-child {
@@ -65,7 +79,9 @@
 
   &:not(.tight) {
     td {
-      padding-bottom: calc(var(--gap) * 3);
+      @media (min-width: 888px) {
+        padding-bottom: calc(var(--gap) * 3);
+      }
     }
   }
 
@@ -109,6 +125,10 @@
     display: flex;
     justify-content: flex-end;
     gap: calc(var(--base) * 0.5);
+
+    @media (max-width: 888px) {
+      display: none;
+    }
   }
 }
 
@@ -124,5 +144,20 @@
 
   section {
     width: 50%;
+  }
+
+  @media (max-width: 888px) {
+    flex-wrap: wrap;
+
+    h3,
+    section {
+      width: 100%;
+    }
+
+    h3 {
+      border-top: none;
+      padding: 0 var(--base);
+      margin-bottom: calc(var(--base) * 0.5);
+    }
   }
 }

@@ -48,12 +48,30 @@
   header {
     position: relative;
     flex: 1;
+    display: flex;
+    gap: calc(var(--base) * 0.5);
+    flex-direction: column;
+    align-items: flex-start;
     min-height: 33vh;
+
+    @media (max-width: 888px) {
+      min-height: 50vh;
+    }
 
     nav {
       display: flex;
       gap: calc(var(--base) * 0.5);
       margin-bottom: var(--base);
+    }
+
+    .apply {
+      @media (min-width: 888px) {
+        display: none;
+      }
+
+      margin-top: auto;
+      width: 100%;
+      text-align: center;
     }
 
     .back {
@@ -70,6 +88,11 @@
           &:last-of-type {
             transform: rotate(45deg); 
           }
+        }
+
+        @media (max-width: 888px) {
+          width: calc(var(--gap) * 1.33);
+          height: calc(var(--gap) * 1.33);
         }
       }
 
@@ -120,6 +143,8 @@
   }
 
   form {
-    border-left: 1px solid;
+    @media (min-width: 888px) {
+      border-left: 1px solid;
+    }
   }
 }

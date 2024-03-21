@@ -65,6 +65,10 @@
     display: flex;
     flex-direction: column;
 
+    @media (max-width: 888px) {
+      padding: var(--base);
+    }
+
     fieldset {
       border: none;
       background-color: var(--grey);
@@ -90,6 +94,10 @@
       display: block;
       width: calc(50% - (var(--gap) * 0.5));
       font-size: var(--base);
+
+      @media (max-width: 888px) {
+        width: 100%;
+      }
 
       span {
         font-size: var(--base);
@@ -148,6 +156,11 @@
       width: 100%;
       background-color: white;
       border: none;
+
+      &:hover,
+      &:focus {
+        background-color: black;
+      }
     }
   }
 }

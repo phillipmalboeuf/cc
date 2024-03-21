@@ -30,6 +30,9 @@ export const Footer: FunctionComponent<{
         <nav>
           <ActiveNavigation links={nav.fields.links} />
         </nav>
+        <figure>
+          <SVG />
+        </figure>
         <nav className={styles.caserne}>
           <a href='http://caserne.com' target='_blank' rel='noopener noreferrer'>Design par Caserne</a>
         </nav>

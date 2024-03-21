@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { DateTime } from 'luxon'
 import { time } from '@/helpers/formatters'
+import { SVG } from './svgs'
 
 export const ActiveNavigation: FunctionComponent<{
   links: Navigation['links']
@@ -54,8 +55,12 @@ export const Menu: FunctionComponent<{
       <nav className={`${styles.menuFooter}`}>
         {footer.map(link => <Link key={link.sys.id} href={link.fields.path} className={path.startsWith(link.fields.path) ? styles['active'] : undefined}
           onClick={() => setVisible(false)}>
-          <small>{link.fields.label}</small>
+          {link.fields.label}
         </Link>)}
+
+        <figure>
+          <SVG />
+        </figure>
       </nav>
     </nav>
   </>

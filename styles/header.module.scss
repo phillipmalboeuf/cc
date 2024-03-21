@@ -83,6 +83,11 @@
     button {
       background-color: transparent;
       border: none;
+
+      &:hover,
+      &:focus {
+        color: black;
+      }
     }
   }
 
@@ -107,7 +112,7 @@
     }
 
     a {
-      padding: calc(var(--gap) * 0.5);
+      padding: calc(var(--gap) * 0.5) calc(var(--base));
       border-bottom: 1px solid;
       width: 100%;
 
@@ -125,18 +130,25 @@
   }
 
   nav.menuFooter {
-    flex: 1;
+    // flex: 1;
     width: 100%;
-    align-items: end;
-    justify-content: end;
+
+    margin-top: auto;
+    // flex-direction: column;
+    gap: 0;
+    flex-wrap: wrap;
+    padding: var(--base);
+    border-top: 1px solid;
 
     a {
+      padding: calc(var(--base) * 0.15) 0;
       border: none;
-      width: auto;
+      width: 50%;
+    }
 
-      &:first-child {
-        flex: 1;
-      }
+    figure {
+      width: 100%;
+      margin: calc(var(--gap) * 2) 0 0;
     }
   }
 
