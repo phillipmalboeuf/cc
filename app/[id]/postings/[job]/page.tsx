@@ -10,19 +10,19 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Link from 'next/link'
 
 export default async function Job({ params }) {
+  // const jobs = await (await fetch('https://boards-api.greenhouse.io/v1/boards/cloudchamberen/jobs', {
+  //   headers: {
+  //   //  'Authorization': `Basic ${Buffer.from(process.env.CONTENTFUL_SPACE_ID).toString('base64')}`
+  //   }
+  // })).json()
+  // console.log(jobs)
+
   const [job, form] = await Promise.all([
     ContentService.job(params.job),
     contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.LOCALE })
   ])
 
   form.fields.action = `${form.fields.action}${job.fields.greenhouseId}`
-  form.fields.fields = form.fields.fields.map(field => ({
-    ...field,
-    fields: {
-      ...field.fields,
-      name: `job_application[${field.fields.name}]`
-    }
-  }))
 
   return (
     <article className={styles.article}>

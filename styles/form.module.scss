@@ -156,6 +156,7 @@
       width: 100%;
       background-color: white;
       border: none;
+      padding: calc(var(--base) / 1.2);
 
       &:hover,
       &:focus {
