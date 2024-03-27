@@ -5,11 +5,12 @@ import { useFormStatus } from 'react-dom'
  
 export const SubmitButton: FunctionComponent<{
   label: string
-}> = ({ label }) => {
+  disabled?: boolean
+}> = ({ label, disabled }) => {
   const { pending } = useFormStatus()
  
   return (
-    <button type="submit" disabled={pending} aria-disabled={pending}>
+    <button type="submit" disabled={pending || disabled} aria-disabled={pending || disabled}>
       {pending ? 'One moment...' : label}
     </button>
   )

@@ -1,17 +1,19 @@
+'use client'
+
 import { Form as ContentForm } from '@/services/content'
-import { Fragment, FunctionComponent } from 'react'
+import { Fragment, FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import styles from '@/styles/form.module.scss'
 import { Media } from './media'
 import { SubmitButton } from './submit'
+import { SVG } from './svgs'
 
 export const WholeForm: FunctionComponent<{
   form: ContentForm
 }> = ({ form }) => {
   return <article className={styles.form}>
-      
       <main>
         <header>
           {form.top && documentToReactComponents(form.top)}
@@ -32,43 +34,23 @@ export const WholeForm: FunctionComponent<{
 export const Form: FunctionComponent<{
   title?: string
   form: ContentForm
-}> = ({ title, form }) => {
-
-  async function submit(url: string, formData: FormData) {
-    "use server"
-
-    const application = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ${Buffer.from(process.env.GREENHOUSE_KEY).toString('base64')}`
-      },
-      body: JSON.stringify({
-        "first_name": formData.get("first_name"),
-        "last_name": formData.get("last_name"),
-        "email": formData.get("email"),
-        "location": formData.get("location"),
-        "phone": formData.get("phone"),
-        ...((formData.get("resume") as File).size) ? {
-          "resume_content": await (formData.get("resume") as File).text(),
-          "resume_content_filename": (formData.get("resume") as File).name
-        } : {},
-        ...((formData.get("cover_letter") as File).size) ? {
-          "cover_letter_content": await (formData.get("cover_letter") as File).text(),
-          "cover_letter_content_filename": (formData.get("cover_letter") as File).name
-        } : {}
-      })
-    })
-    console.log(application)
-  }
+  action?: (formData: FormData) => Promise<void>
+}> = ({ title, form, action }) => {
+  const [success, setSucces] = useState(true)
   
-  return <form action={submit.bind(null, form.action)}>
+  return <form action={action ? async (formData: FormData) => {
+    await action(formData)
+    setSucces(true)
+  } : form.action}>
     <fieldset>
-      {title && <h4>{title}</h4>}
+      {title && <h4>{success ? 'Your application has been sent!' : title}</h4>}
+      {success && <figure>
+        <SVG />
+      </figure>}
     </fieldset>
 
     <fieldset>
-      {form.fields?.map(field => <label key={field.fields.name} className={styles[field.fields.type]}>
+      {!success && form.fields?.map(field => <label key={field.fields.name} className={styles[field.fields.type]}>
         {{
           'Text': <input name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
           'Email': <input type='email' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
@@ -81,7 +63,7 @@ export const Form: FunctionComponent<{
     </fieldset>
 
     <fieldset>
-      <SubmitButton label='Send' />
+      <SubmitButton label={success ? 'Sent' : 'Send'} disabled={success} />
     </fieldset>
   </form>
 }

@@ -24,6 +24,34 @@ export default async function Job({ params }) {
 
   form.fields.action = `${form.fields.action}${job.fields.greenhouseId}`
 
+  async function submit(url: string, formData: FormData) {
+    "use server"
+
+    const application = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${Buffer.from(process.env.GREENHOUSE_KEY).toString('base64')}`
+      },
+      body: JSON.stringify({
+        "first_name": formData.get("first_name"),
+        "last_name": formData.get("last_name"),
+        "email": formData.get("email"),
+        "location": formData.get("location"),
+        "phone": formData.get("phone"),
+        ...((formData.get("resume") as File).size) ? {
+          "resume_content": await (formData.get("resume") as File).text(),
+          "resume_content_filename": (formData.get("resume") as File).name
+        } : {},
+        ...((formData.get("cover_letter") as File).size) ? {
+          "cover_letter_content": await (formData.get("cover_letter") as File).text(),
+          "cover_letter_content_filename": (formData.get("cover_letter") as File).name
+        } : {}
+      })
+    })
+    console.log(application)
+  }
+
   return (
     <article className={styles.article}>
       <main>
@@ -55,7 +83,7 @@ export default async function Job({ params }) {
         {/* <Link href={`/${params.id}`}>Back</Link> */}
       </main>
       <div className={formStyles.form} id="apply">
-        <Form title={form.fields.title} form={form.fields} />
+        <Form title={form.fields.title} form={form.fields} action={submit.bind(null, form.fields.action)} />
       </div>
     </article>
   )
