@@ -6,6 +6,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import styles from '@/styles/text.module.scss'
 import { Media } from './media'
 import Link from 'next/link'
+import { Arrow } from './svgs'
 
 export const Text: FunctionComponent<{
   text: ContentText
@@ -25,8 +26,8 @@ export const Text: FunctionComponent<{
       {text.secondBody && <div>{documentToReactComponents(text.secondBody)}</div>}
 
       {text.buttons && <nav>
-        {text.buttons.map(button => <Link className='button' key={button.fields.path} href={button.fields.path}>
-          {button.fields.label}
+        {text.buttons.map(button => <Link className='button' target={button.fields.external ? '_blank' : undefined} key={button.fields.path} href={button.fields.path}>
+          {button.fields.label} {button.fields.external && <Arrow />}
         </Link>)}  
       </nav>}
     </main>
@@ -54,9 +55,9 @@ export const Text: FunctionComponent<{
     </main>
 
     {text.buttons && <nav>
-      {text.buttons.map(button => <Link className='button' key={button.fields.path} href={button.fields.path}>
-        {button.fields.label}
-      </Link>)}
+      {text.buttons.map(button => <Link className='button' target={button.fields.external ? '_blank' : undefined} key={button.fields.path} href={button.fields.path}>
+          {button.fields.label} {button.fields.external && <Arrow />}
+        </Link>)}
     </nav>}
   </section>
 }

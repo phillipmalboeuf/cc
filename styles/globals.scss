@@ -63,13 +63,14 @@ h1, .h1 {
   line-height: 0.88;
 
   @media (max-width: 888px) {
-    font-size: calc(var(--base) * 4.25);
+    font-size: calc(var(--base) * 4);
     letter-spacing: -0.01em;
   }
 }
 
 h2, .h2 {
-  font-size: calc(var(--base) * 4.25);
+  font-size: calc(var(--base) * 4);
+  line-height: 1;
   letter-spacing: -0.01em;
 
   @media (max-width: 888px) {
@@ -115,6 +116,7 @@ p {
 }
 
 hr {
+  appearance: none;
   border: none;
   height: 1px;
   background-color: currentColor;
@@ -136,13 +138,15 @@ a {
 button,
 .button {
   cursor: pointer;
-  display: inline-block;
-  font-size: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.88em;
   color: currentColor;
   line-height: 1;
   padding: calc(var(--gap) / 5) calc(var(--gap) / 3);
   border: 1px solid;
-  border-radius: 0.5em;
+  border-radius: 0.33em;
 
   &.button--flat {
     border-color: transparent;
@@ -151,7 +155,8 @@ button,
   &:hover,
   &:focus {
     color: white;
-    background-color: black;
+    background-color: black !important;
+    border-color: transparent;
   }
 
   &[disabled] {
@@ -184,7 +189,7 @@ time {
   line-height: 1;
   padding: calc(var(--base) * 0.5);
   background-color: var(--grey);
-  border-radius: 0.5em;
+  border-radius: 0.33em;
 }
 
 figure {

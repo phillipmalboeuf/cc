@@ -28,6 +28,7 @@ export interface Index {
 
 export interface Text {
   title: string
+  id: string
   layout: string
   color: string
   body: Document

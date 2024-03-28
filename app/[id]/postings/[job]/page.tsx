@@ -76,6 +76,8 @@ export default async function Job({ params }) {
           {/* <aside>
             <Time d={job.fields.publishedAt} />
           </aside> */}
+          <hr />
+          <h3>About</h3>
           <p>{job.fields.excerpt}</p>
           {job.fields.text && documentToReactComponents(job.fields.text)}
         </footer>

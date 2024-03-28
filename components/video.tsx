@@ -27,7 +27,7 @@ export const Video: FunctionComponent<{
         </div>
 
         <a href='#skip'>
-          <svg width="37" height="17" viewBox="0 0 37 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L18.4043 15.5036L35.8086 1" stroke="white"/></svg>
+          <svg width="34" height="14" viewBox="0 0 37 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L18.4043 15.5036L35.8086 1" stroke="white"/></svg>
         </a>
 
         <div></div>

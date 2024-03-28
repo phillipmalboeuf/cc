@@ -50,6 +50,11 @@
           margin-top: 14vh;
         }
       }
+
+      &.disabled {
+        pointer-events: none;
+        color: fade-out($color: black, $amount: 0.7);
+      }
     }
   }
 }

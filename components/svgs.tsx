@@ -7,3 +7,17 @@ export const SVG: FunctionComponent = () => {
 </svg>
 
 }
+
+export const Arrow: FunctionComponent = () => {
+  return <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line y1="-0.5" x2="12.3345" y2="-0.5" transform="matrix(0.729659 -0.683811 0.729659 0.683811 1 10)" stroke="currentColor"/>
+    <path d="M1.60755 1L9.5625 1L9.5625 8.4551" stroke="currentColor"/>
+  </svg>
+}
+
+export const Plus: FunctionComponent = () => {
+  return <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <line x1="13.7969" y1="6.8702" x2="1.00911" y2="6.8702" stroke="currentColor" stroke-width="0.943521"/>
+  <line y1="-0.47176" x2="12.7878" y2="-0.47176" transform="matrix(0 -1 -1 0 7.19531 13)" stroke="currentColor" stroke-width="0.943521"/>
+  </svg>
+}

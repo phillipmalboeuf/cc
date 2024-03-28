@@ -12,6 +12,7 @@ import styles from '@/styles/cards.module.scss'
 import { Entry } from 'contentful'
 import { Slider } from './slider'
 import Link from 'next/link'
+import { Arrow } from './svgs'
 
 export const Cards: FunctionComponent<{
   cards: ContentCards
@@ -32,7 +33,7 @@ export const Card: FunctionComponent<{
   card: Entry<Text>
 }> = ({ card }) => {
 
-  return <li>
+  return <li className={card.fields.id === 'in-development' ? styles.disabled : undefined}>
     {card.fields.media && <figure>
       <Media media={card.fields.media} sizes='(max-width: 888px) 100vw, 25vw' fill />
     </figure>}
@@ -44,8 +45,8 @@ export const Card: FunctionComponent<{
     </main>
 
     {card.fields.buttons && <nav>
-      {card.fields.buttons.map(button => <Link className='button' key={button.fields.path} href={button.fields.path}>
-        {button.fields.label}
+      {card.fields.buttons.map(button => <Link className='button' target={button.fields.external ? '_blank' : undefined} key={button.fields.path} href={button.fields.path}>
+        {button.fields.label} {button.fields.external && <Arrow />}
       </Link>)}  
     </nav>}
   </li>

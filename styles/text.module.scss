@@ -131,7 +131,7 @@
     border-radius: 0.5em;
     background-color: var(--blue);
     
-    padding: calc(var(--base) * 0.5) calc(var(--base));
+    padding: calc(var(--base) * 0.5) calc(var(--base) * 0.5) calc(var(--base) * 0.5) calc(var(--base));
 
     @media (max-width: 888px) {
       padding: calc(var(--base) * 0.5);

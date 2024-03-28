@@ -96,7 +96,7 @@
     label {
       position: relative;
       display: block;
-      width: calc(50% - (var(--gap) * 0.5));
+      width: calc(50% - (var(--gap) * 0.5) + ((var(--gap) * 0.5) / 2));
       font-size: var(--base);
 
       @media (max-width: 888px) {
@@ -132,7 +132,7 @@
       cursor: text;
       width: 100%;
       border: none;
-      border-radius: 0.5em;
+      border-radius: 0.33em;
       background-color: white;
 
       &::placeholder {
@@ -153,7 +153,14 @@
     }
 
     input[type="file"] {
+      cursor: pointer;
       padding-top: calc(33vh - 2em);
+
+      &:hover,
+      &:focus {
+        color: white;
+        background-color: black;
+      }
     }
 
     button {

@@ -35,7 +35,7 @@ export const Header: FunctionComponent<{
           </li>)}
         </ul>
 
-        <div><LocaleSwitch currentLocale={locale} /><br/><br/></div>
+        <div><LocaleSwitch currentLocale={locale} /></div>
       </nav>
 
       <Menu links={nav.fields.links} footer={footer.fields.links} />

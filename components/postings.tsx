@@ -11,6 +11,7 @@ import Link from 'next/link'
 
 import { Time } from './time'
 import { usePhone } from '@/helpers/devices'
+import { Arrow, Plus } from './svgs'
 
 export const JobsPostings: FunctionComponent<{
   jobs: EntryCollection<Job>['items'],
@@ -55,7 +56,7 @@ export const JobsPostings: FunctionComponent<{
               {job.fields.department.fields.label}
             </span>
             <Link className='button' href={`/jobs/postings/${job.fields.id}`}>
-              See more
+              See more <Plus />
             </Link>
           </td>}
         </tr>

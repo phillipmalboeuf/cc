@@ -5,6 +5,7 @@ import { JobsPostings } from './postings'
 
 import styles from '@/styles/jobs.module.scss'
 import { Entry } from 'contentful'
+import { Arrow } from './svgs'
 
 {/* @ts-expect-error Async Server Component */}
 export const Jobs: FunctionComponent<{
@@ -36,7 +37,7 @@ export const Jobs: FunctionComponent<{
       <hr />
       <nav className={styles.nav}>
         <h2>{jobsList.title}</h2>
-        <a href='/jobs' className='button'>See all job opportunities</a>
+        <a href='/jobs' className='button'>See all job opportunities <Arrow /></a>
       </nav>
     </>}
 

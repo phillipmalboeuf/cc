@@ -36,7 +36,7 @@ export const Form: FunctionComponent<{
   form: ContentForm
   action?: (formData: FormData) => Promise<void>
 }> = ({ title, form, action }) => {
-  const [success, setSucces] = useState(true)
+  const [success, setSucces] = useState(false)
   
   return <form action={action ? async (formData: FormData) => {
     await action(formData)
@@ -60,9 +60,7 @@ export const Form: FunctionComponent<{
         }[field.fields.type || "Text"]}
         {field.fields.label && <span>{field.fields.label}</span>}
       </label>)}
-    </fieldset>
-
-    <fieldset>
+      
       <SubmitButton label={success ? 'Sent' : 'Send'} disabled={success} />
     </fieldset>
   </form>
