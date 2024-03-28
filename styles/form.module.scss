@@ -154,12 +154,18 @@
 
     input[type="file"] {
       cursor: pointer;
+      color: var(--dark-grey);
       padding-top: calc(33vh - 2em);
 
       &:hover,
       &:focus {
         color: white;
         background-color: black;
+
+        &::file-selector-button {
+          color: black;
+          background-color: white !important;
+        }
       }
     }
 

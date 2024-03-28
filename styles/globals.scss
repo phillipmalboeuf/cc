@@ -137,7 +137,8 @@ a {
 }
 
 button,
-.button {
+.button,
+input[type="file"]::file-selector-button {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -145,6 +146,7 @@ button,
   gap: 0.5em;
   font-size: 0.88em;
   color: currentColor;
+  background-color: transparent;
   line-height: 1;
   padding: calc(var(--gap) / 5) calc(var(--gap) / 3);
   border: 1px solid;
