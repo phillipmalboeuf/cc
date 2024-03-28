@@ -47,6 +47,10 @@
       padding: 0;
       margin: 0;
 
+      li:before {
+        display: none;
+      }
+
       a {
         display: flex;
         justify-content: space-between;
