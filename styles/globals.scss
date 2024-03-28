@@ -214,7 +214,21 @@ ul, ol {
 }
 
 ul {
-  list-style: circle;
+  list-style: none;
+
+  li {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      right: calc(100% + (var(--base) / 2));
+      top: 0.15em;
+      border-radius: 50%;
+      border: 1px solid;
+      width: 0.66em;
+      height: 0.66em;
+    }
+  }
 }
 
 table {

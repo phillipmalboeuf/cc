@@ -84,6 +84,9 @@
       a {
         width: 50%;
         font-size: calc(var(--base) * 0.88);
+        @media (max-width: 888px) {
+          line-height: 1.05;
+        }
         // &:first-child {
         //   flex: 1;
         // }
@@ -94,10 +97,7 @@
         justify-content: flex-end;
 
         @media (max-width: 888px) {
-          width: 100%;
-          order: 99;
-          justify-content: flex-start;
-          font-size: calc(var(--base) * 0.75);
+          display: none;
         }
 
         a {

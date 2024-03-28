@@ -11,7 +11,7 @@ import { Arrow } from './svgs'
 export const Text: FunctionComponent<{
   text: ContentText
 }> = ({ text }) => {
-  return text.layout === 'Accordeon' ? <details className={`${styles.text} ${styles[text.layout]}`}>
+  return text.layout === 'Accordeon' ? <details id={text.id} className={`${styles.text} ${styles[text.layout]}`}>
     <summary>
       <h2 className='h3'>{text.title}</h2>
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@ export const Text: FunctionComponent<{
         </Link>)}  
       </nav>}
     </main>
-  </details> : <section className={`${styles.text} ${styles[text.layout]}${text.background ? ` ${styles.background}` : ''}`}>
+  </details> : <section id={text.id} className={`${styles.text} ${styles[text.layout]}${text.background ? ` ${styles.background}` : ''}`}>
     {text.background && <figure className={styles.back}>
       <Media media={text.background} sizes='100vw' fill={false} no3D eager />
     </figure>}
@@ -55,7 +55,7 @@ export const Text: FunctionComponent<{
     </main>
 
     {text.buttons && <nav>
-      {text.buttons.map(button => <Link className='button' target={button.fields.external ? '_blank' : undefined} key={button.fields.path} href={button.fields.path}>
+      {text.buttons.map(button => <Link className='button' target={(button.fields.external && !button.fields.path.startsWith('#')) ? '_blank' : undefined} key={button.fields.path} href={button.fields.path}>
           {button.fields.label} {button.fields.external && <Arrow />}
         </Link>)}
     </nav>}

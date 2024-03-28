@@ -52,7 +52,7 @@
     min-height: 50vh;
 
     @media (max-width: 888px) {
-      min-height: 100vh;
+      min-height: 85vh;
     }
 
     header {
@@ -85,15 +85,17 @@
     main {
       display: flex;
       flex-wrap: wrap;
+      row-gap: calc(var(--gap) * 2);
       // padding: 0 var(--gap);
 
       > * {
         width: 50%;
         border-top: 1px solid;
-        padding: calc(var(--base) * 0.5) var(--base) var(--base) 0;
+        padding: calc(var(--base) * 0.5) calc(var(--gap) * 2) var(--base) 0;
 
         @media (max-width: 888px) {
           width: 100%;
+          padding-right: 0;
           // border-top: none;
         }
       }
@@ -107,6 +109,15 @@
     nav {
       @media (min-width: 888px) {
         padding: 0 var(--gap);
+      }
+    }
+
+    &:not(.background) {
+      @media (min-width: 888px) {
+        nav {
+          padding: 0;
+          margin-left: 50%;
+        }
       }
     }
 
