@@ -11,7 +11,7 @@ export default async function Home() {
   const page = await ContentService.page('home')
 
   return (
-    <main style={{ minHeight: '88vh' }}>
+    <main className='home' style={{ minHeight: '88vh' }}>
       {/* <Logo /> */}
       {page.fields.video && <Video media={page.fields.video} />}
       <Content content={page.fields.content} />
