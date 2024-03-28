@@ -25,7 +25,7 @@ export const Footer: FunctionComponent<{
       <main>
         <small>
           <p>{copyright.fields.description}</p>
-          <p>© 2024 cloudchamber</p>
+          <p><a href='http://caserne.com' target='_blank' rel='noopener noreferrer'>Design par Caserne</a></p>
         </small>
         
         <nav>
@@ -37,9 +37,6 @@ export const Footer: FunctionComponent<{
         <figure>
           <SVG />
         </figure>
-        <nav className={styles.caserne}>
-          <a href='http://caserne.com' target='_blank' rel='noopener noreferrer'>Design par Caserne</a>
-        </nav>
       </main>
     </footer>
   </>

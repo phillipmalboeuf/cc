@@ -81,11 +81,8 @@
 
       @media (max-width: 888px) {
         width: 100%;
-
-        &:first-of-type {
-          order: -2;
-          margin-bottom: calc(var(--gap) * 2);
-        }
+        order: -2;
+        margin-bottom: var(--gap);
       }
 
       a {
