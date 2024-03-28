@@ -25,22 +25,20 @@ export const Footer: FunctionComponent<{
       <main>
         <small>
           <p>{copyright.fields.description}</p>
+          <p>© 2024 cloudchamber</p>
         </small>
         
         <nav>
           <ActiveNavigation links={nav.fields.links} />
+        </nav>
+        <nav>
+          <ActiveNavigation links={copyright.fields.links} />
         </nav>
         <figure>
           <SVG />
         </figure>
         <nav className={styles.caserne}>
           <a href='http://caserne.com' target='_blank' rel='noopener noreferrer'>Design par Caserne</a>
-        </nav>
-        <nav>
-          <small>© 2024 cloudchamber</small>
-          <small>
-            <ActiveNavigation links={copyright.fields.links} />
-          </small>
         </nav>
       </main>
     </footer>

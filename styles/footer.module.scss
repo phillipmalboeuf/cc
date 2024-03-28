@@ -38,9 +38,12 @@
 
   main {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
 
     > small {
+      display: flex;
+      flex-direction: column;
       width: 50%;
       // margin-right: auto;
 
@@ -50,6 +53,10 @@
 
       p {
         max-width: 470px;
+
+        &:last-child {
+          margin-top: auto;
+        }
       }
     }
 
@@ -65,9 +72,9 @@
     nav {
       display: flex;
       flex-wrap: wrap;
-      align-self: start;
-      justify-content: flex-end;
-      width: 33%;
+      flex-direction: column;
+      // justify-content: flex-end;
+      flex: 1;
       // flex-direction: column;
       // gap: calc(var(--gap) * 0.1);
       // justify-content: flex-end;
@@ -82,7 +89,7 @@
       }
 
       a {
-        width: 50%;
+        // width: 50%;
         font-size: calc(var(--base) * 0.88);
         @media (max-width: 888px) {
           line-height: 1.05;
@@ -93,7 +100,7 @@
       }
 
       &.caserne {
-        width: 17%;
+        flex: 1;
         justify-content: flex-end;
 
         @media (max-width: 888px) {

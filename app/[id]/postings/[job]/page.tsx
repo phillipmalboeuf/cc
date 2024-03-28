@@ -59,7 +59,7 @@ export default async function Job({ params }) {
            {job.fields.department && <Link className='button button--flat' style={{ backgroundColor: job.fields.department.fields.color }} href={`/jobs?department=${job.fields.department.fields.id}`}>{job.fields.department.fields.label}</Link>}
           <h2>{job.fields.title}</h2>
 
-          <Link className={styles.back} href={`/${params.id}`}>
+          <Link className={styles.back} href={`/${params.id}#jobs`}>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="1" y="1" width="38" height="38" rx="5.5" stroke="currentColor"/>
               <line x1="35" y1="20" x2="4" y2="20" stroke="currentColor"/>

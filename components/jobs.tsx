@@ -41,6 +41,8 @@ export const Jobs: FunctionComponent<{
       </nav>
     </>}
 
+    <a id="jobs"></a>
+
     {jobsList?.grouped
       ? Object.entries(groups).map(([tag, jobs]) => <div className={styles.group}>
         <h3>{tag}</h3>
