@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { Time } from './time'
 import { usePhone } from '@/helpers/devices'
 import { Arrow, Plus } from './svgs'
+import { useLocale } from '@/helpers/locales'
 
 export const JobsPostings: FunctionComponent<{
   jobs: EntryCollection<Job>['items'],
@@ -23,6 +24,7 @@ export const JobsPostings: FunctionComponent<{
   const router = useRouter()
 
   const phone = usePhone()
+  const locale = useLocale()
 
   return <section className={`${styles.jobs} ${tight ? styles.tight : undefined}`}>
     <table>
@@ -56,7 +58,7 @@ export const JobsPostings: FunctionComponent<{
               {job.fields.department.fields.label}
             </span>
             <Link className='button' href={`/jobs/postings/${job.fields.id}`}>
-              See more <Plus />
+              {locale === 'fr-CA' ? 'Voir plus' : 'See more'} <Plus />
             </Link>
           </td>}
         </tr>
@@ -80,11 +82,11 @@ export const JobsPostings: FunctionComponent<{
         <table>
           <tbody>
             <tr>
-              <td>Team</td>
+              <td>{locale === 'fr-CA' ? 'Équipe' : 'Team'}</td>
               <td>{current.fields.department?.fields.label}</td>
             </tr>
             <tr>
-              <td>Location</td>
+              <td>{locale === 'fr-CA' ? 'Endroit' : 'Location'}</td>
               <td>{current.fields.office.fields.city}, {current.fields.office.fields.country}</td>
             </tr>
           </tbody>

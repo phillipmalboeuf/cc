@@ -19,7 +19,7 @@ export default async function Job({ params }) {
 
   const [job, form] = await Promise.all([
     ContentService.job(params.job),
-    contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.LOCALE })
+    contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.NEXT_PUBLIC_LOCALE })
   ])
 
   form.fields.action = `${form.fields.action}${job.fields.greenhouseId}`

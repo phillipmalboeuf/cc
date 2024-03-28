@@ -6,6 +6,7 @@ import { JobsPostings } from './postings'
 import styles from '@/styles/jobs.module.scss'
 import { Entry } from 'contentful'
 import { Arrow } from './svgs'
+import { useLocale } from '@/helpers/locales'
 
 {/* @ts-expect-error Async Server Component */}
 export const Jobs: FunctionComponent<{
@@ -14,6 +15,7 @@ export const Jobs: FunctionComponent<{
   limit?: number
 }> = async ({ jobsList, tight, limit }) => {
   const jobs = await ContentService.jobs(0, null, null, limit)
+  const locale = useLocale()
 
   const groups = jobs.items.reduce<{
     [tag: string]: Entry<Job>[]
@@ -37,7 +39,7 @@ export const Jobs: FunctionComponent<{
       <hr />
       <nav className={styles.nav}>
         <h2>{jobsList.title}</h2>
-        <a href='/jobs' className='button'>See all job opportunities <Arrow /></a>
+        <a href='/jobs' className='button'>{locale === 'fr-CA' ? 'Voir tout les emplois disponibles' : 'See all job opportunities'} <Arrow /></a>
       </nav>
     </>}
 

@@ -154,7 +154,7 @@ export interface Jobs {
   jobs: Entry<Job>[]
 }
 
-const envLocale = process.env.LOCALE
+const envLocale = process.env.NEXT_PUBLIC_LOCALE
 const limit = 42
 
 export const ContentService = {

@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import AutoHeight from 'embla-carousel-auto-height'
 
 import styles from '@/styles/slider.module.scss'
+import { useLocale } from '@/helpers/locales'
 
 export const Slider: FunctionComponent<{
   // slider: ContentGallery
@@ -14,6 +15,7 @@ export const Slider: FunctionComponent<{
   buttons?: boolean
 }> = ({ slides, align, buttons, particlesToShow }) => {
   const [emblaRef, embla] = useEmblaCarousel({ loop: true, align }, [])
+  const locale = useLocale()
 
   return <div ref={emblaRef} className={`${styles.slider}`} style={{
     ['--w' as any]: `${100/particlesToShow}%`
@@ -22,8 +24,8 @@ export const Slider: FunctionComponent<{
       {slides}
     </ol>
     {buttons && <nav>
-      <button onClick={() => embla.scrollPrev()}>Previous</button>
-      <button onClick={() => embla.scrollNext()}>Next</button>
+      <button onClick={() => embla.scrollPrev()}>{locale === 'fr-CA' ? 'Précédent' : 'Previous'}</button>
+      <button onClick={() => embla.scrollNext()}>{locale === 'fr-CA' ? 'Suivant' : 'Next'}</button>
     </nav>}
   </div>
 }
