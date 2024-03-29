@@ -2,6 +2,7 @@ import { contentful } from '@/clients/contentful'
 import { Content } from '@/components/content'
 import { Form } from '@/components/form'
 import { Time } from '@/components/time'
+import { useLocale } from '@/helpers/locales'
 import { ContentService, Form as ContentForm } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
@@ -17,8 +18,9 @@ export default async function Job({ params }) {
   // })).json()
   // console.log(jobs)
 
+  const locale = useLocale()
   const [job, form] = await Promise.all([
-    ContentService.job(params.job),
+    ContentService.job(params.job, locale),
     contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.NEXT_PUBLIC_LOCALE })
   ])
 

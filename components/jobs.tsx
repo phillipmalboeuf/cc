@@ -14,8 +14,8 @@ export const Jobs: FunctionComponent<{
   tight?: boolean
   limit?: number
 }> = async ({ jobsList, tight, limit }) => {
-  const jobs = await ContentService.jobs(0, null, null, limit)
   const locale = useLocale()
+  const jobs = await ContentService.jobs(0, null, locale, limit)
 
   const groups = jobs.items.reduce<{
     [tag: string]: Entry<Job>[]
