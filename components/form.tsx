@@ -9,6 +9,7 @@ import styles from '@/styles/form.module.scss'
 import { Media } from './media'
 import { SubmitButton } from './submit'
 import { SVG } from './svgs'
+import { useLocale } from '@/helpers/locales'
 
 export const WholeForm: FunctionComponent<{
   form: ContentForm
@@ -36,6 +37,7 @@ export const Form: FunctionComponent<{
   form: ContentForm
   action?: (formData: FormData) => Promise<void>
 }> = ({ title, form, action }) => {
+  const locale = useLocale()
   const [success, setSucces] = useState(false)
   
   return <form action={action ? async (formData: FormData) => {
@@ -61,7 +63,7 @@ export const Form: FunctionComponent<{
         {field.fields.label && <span>{field.fields.label}</span>}
       </label>)}
       
-      <SubmitButton label={success ? 'Sent' : 'Send'} disabled={success} />
+      <SubmitButton label={success ? locale === 'fr-CA' ? 'Soumis' : 'Sent' : locale === 'fr-CA' ? 'Soumettre' : 'Send'} disabled={success} />
     </fieldset>
   </form>
 }
