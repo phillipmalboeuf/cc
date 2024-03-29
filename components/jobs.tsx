@@ -15,9 +15,9 @@ export const Jobs: FunctionComponent<{
   limit?: number
 }> = async ({ jobsList, tight, limit }) => {
   const locale = useLocale()
-  const jobs = await ContentService.jobs(0, null, locale, limit)
+  const jobs = jobsList?.jobs?.length ? jobsList?.jobs : (await ContentService.jobs(0, null, locale, limit)).items
 
-  const groups = jobs.items.reduce<{
+  const groups = jobs.reduce<{
     [tag: string]: Entry<Job>[]
   }>((groups, job) => {
     const tag = job.fields.department.fields.label
@@ -50,7 +50,7 @@ export const Jobs: FunctionComponent<{
         <h3>{tag}</h3>
         <JobsPostings jobs={jobs} tight={jobsList?.tight || tight} />
       </div>)
-      : <JobsPostings jobs={jobsList?.jobs || jobs.items} tight={jobsList?.tight || tight} />}
+      : <JobsPostings jobs={jobsList?.jobs || jobs} tight={jobsList?.tight || tight} />}
     
   </>
 }
