@@ -51,7 +51,12 @@ export default async function Job({ params }) {
         } : {}
       })
     })
+    
+    console.log(application.ok, url)
     console.log(application)
+    if (!application.ok) {
+      throw new Error("An error has occured")
+    }
   }
 
   return (
