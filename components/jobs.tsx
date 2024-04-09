@@ -14,6 +14,12 @@ export const Jobs: FunctionComponent<{
   tight?: boolean
   limit?: number
 }> = async ({ jobsList, tight, limit }) => {
+  const greenhouseJobs: { jobs: { id: number }[] } = await (await fetch('https://boards-api.greenhouse.io/v1/boards/cloudchamberen/jobs?content=true', {
+    headers: {
+    }
+  })).json()
+  console.log(JSON.stringify(greenhouseJobs, null, 2))
+
   const locale = useLocale()
   const jobs = jobsList?.jobs?.length ? jobsList?.jobs : (await ContentService.jobs(0, null, locale, limit)).items
 
@@ -44,13 +50,12 @@ export const Jobs: FunctionComponent<{
     </>}
 
     <a id="jobs"></a>
-
     {jobsList?.grouped
-      ? Object.entries(groups).map(([tag, jobs]) => <div className={styles.group}>
-        <h3>{tag}</h3>
-        <JobsPostings jobs={jobs} tight={jobsList?.tight || tight} />
+      ? Object.entries(groups).map(([tag, jobs]) => ([tag, jobs.filter(job => greenhouseJobs.jobs.find(j => j.id.toString() === job.fields.greenhouseId))])).filter(([tag, jobs]) => jobs.length > 0).map(([tag, jobs]) => <div className={styles.group}>
+        <h3>{tag as string}</h3>
+        <JobsPostings jobs={jobs as Entry<Job>[]} tight={jobsList?.tight || tight} />
       </div>)
-      : <JobsPostings jobs={jobsList?.jobs || jobs} tight={jobsList?.tight || tight} />}
+      : <JobsPostings jobs={(jobsList?.jobs || jobs).filter(job => greenhouseJobs.jobs.find(j => j.id.toString() === job.fields.greenhouseId))} tight={jobsList?.tight || tight} />}
     
   </>
 }
