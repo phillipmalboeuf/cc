@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1, .h1 {
-  font-size: calc(var(--base) * 10.625);
+  font-size: calc(var(--base) * 10);
   line-height: 0.88;
 
   @media (max-width: 888px) {
