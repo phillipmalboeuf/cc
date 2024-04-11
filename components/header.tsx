@@ -29,7 +29,7 @@ export const Header: FunctionComponent<{
         <ActiveNavigation links={nav.fields.links} />
       </nav>
       <nav>
-        <ul>
+        <ul className={styles.offices}>
           {offices.items.map(office => <li key={office.sys.id}>
             <Link href={office.fields.link || '/'}>{office.fields.initials}&nbsp;<Time office={office.fields} /></Link>
           </li>)}

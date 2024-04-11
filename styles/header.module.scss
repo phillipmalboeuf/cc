@@ -57,6 +57,14 @@
         padding: 0 calc(var(--gap) / 4);
         gap: calc(var(--gap) / 4);
       }
+
+      &.offices {
+        time {
+          display: inline-block;
+          width: calc(var(--gap) * 3);
+          // text-align: right;
+        }
+      }
     }
 
     a {
