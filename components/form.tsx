@@ -54,9 +54,9 @@ export const Form: FunctionComponent<{
     <fieldset>
       {!success && form.fields?.map(field => <label key={field.fields.name} className={styles[field.fields.type]}>
         {{
-          'Text': <input defaultValue={'Phil'} name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
-          'Email': <input type='email' defaultValue={'phil@phils.computer'} name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
-          'Phone': <input type='tel' defaultValue={'4383954421'} name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
+          'Text': <input name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
+          'Email': <input type='email' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
+          'Phone': <input type='tel' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
           'Textarea': <textarea name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
           'File': <input type='file' name={field.fields.name} placeholder={field.fields.label} required={!field.fields.optional} />,
         }[field.fields.type || "Text"]}
