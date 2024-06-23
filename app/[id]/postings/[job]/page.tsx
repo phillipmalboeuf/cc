@@ -3,7 +3,7 @@ import { Content } from '@/components/content'
 import { Form } from '@/components/form'
 import { Time } from '@/components/time'
 import { useLocale } from '@/helpers/locales'
-import { ContentService, Form as ContentForm } from '@/services/content'
+import { ContentService, Form as ContentForm, Text } from '@/services/content'
 
 import styles from '@/styles/article.module.scss'
 import formStyles from '@/styles/form.module.scss'
@@ -19,9 +19,10 @@ export default async function Job({ params }) {
   // console.log(jobs)
 
   const locale = useLocale()
-  const [job, form] = await Promise.all([
+  const [job, form, text] = await Promise.all([
     ContentService.job(params.job, locale),
-    contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.NEXT_PUBLIC_LOCALE })
+    contentful.getEntry<ContentForm>('17HakL4DkFWepV2wp9JxiH', { locale: process.env.NEXT_PUBLIC_LOCALE }),
+    contentful.getEntry<Text>('5Xah2xYW79dVNZimm5wFyu', { locale: process.env.NEXT_PUBLIC_LOCALE })
   ])
 
   form.fields.action = `${form.fields.action}${job.fields.greenhouseId}`
@@ -29,31 +30,46 @@ export default async function Job({ params }) {
   async function submit(url: string, formData: FormData) {
     "use server"
 
+    const { first_name, last_name, email, location, phone, ...rest } = Object.fromEntries(formData) as { [key: string]: string }
+    const { resume, cover_letter } = Object.fromEntries(formData) as { [key: string]: File }
+
+    delete rest['resume']
+    delete rest['cover_letter']
+    delete rest['background']
+    delete rest['privacy']
+
+    const attributes = rest && Object.values(rest)
+    const body = {
+        first_name,
+        last_name,
+        email,
+        location,
+        phone,
+        ...attributes?.length ? {
+          attributes: attributes.map(a => ({ text_value: a }))
+        } : {},
+        ...(resume.size) ? {
+          "resume_content": await resume.text(),
+          "resume_content_filename": resume.name
+        } : {},
+        ...(cover_letter.size) ? {
+          "cover_letter_content": await cover_letter.text(),
+          "cover_letter_content_filename": cover_letter.name
+        } : {}
+      }
+    // console.log(JSON.stringify(body, null, 2))
+
     const application = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Basic ${Buffer.from(process.env.GREENHOUSE_KEY).toString('base64')}`
       },
-      body: JSON.stringify({
-        "first_name": formData.get("first_name"),
-        "last_name": formData.get("last_name"),
-        "email": formData.get("email"),
-        "location": formData.get("location"),
-        "phone": formData.get("phone"),
-        ...((formData.get("resume") as File).size) ? {
-          "resume_content": await (formData.get("resume") as File).text(),
-          "resume_content_filename": (formData.get("resume") as File).name
-        } : {},
-        ...((formData.get("cover_letter") as File).size) ? {
-          "cover_letter_content": await (formData.get("cover_letter") as File).text(),
-          "cover_letter_content_filename": (formData.get("cover_letter") as File).name
-        } : {}
-      })
+      body: JSON.stringify(body)
     })
     
-    console.log(application.ok, url)
-    console.log(application)
+    // console.log(application.ok, url)
+    // console.log(application)
     if (!application.ok) {
       throw new Error("An error has occured")
     }
@@ -83,16 +99,21 @@ export default async function Job({ params }) {
           {/* <aside>
             <Time d={job.fields.publishedAt} />
           </aside> */}
-          <hr />
-          <h3>About</h3>
+          {/* <hr /> */}
           <p>{job.fields.excerpt}</p>
           {job.fields.text && documentToReactComponents(job.fields.text)}
+
+          {text && <>
+            <hr />
+            <h3>{text.fields.title}</h3>
+            {text.fields.body && documentToReactComponents(text.fields.body)}
+          </>}
         </footer>
 
         {/* <Link href={`/${params.id}`}>Back</Link> */}
       </main>
       <div className={formStyles.form} id="apply">
-        <Form title={form.fields.title} form={form.fields} action={submit.bind(null, form.fields.action)} />
+        <Form title={form.fields.title} form={form.fields} fields={job.fields.extraFields} consent action={submit.bind(null, form.fields.action)} />
       </div>
     </article>
   )

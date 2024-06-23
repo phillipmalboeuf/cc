@@ -120,7 +120,25 @@
       }
 
       &.File {
-        height: 33vh;
+        width: 100%;
+        order: 99;
+        // height: 33vh;
+      }
+
+      &.consent {
+        order: 99;
+        cursor: pointer;
+        display: flex;
+        align-items: flex-start;
+        gap: calc(var(--base) / 1.5);
+
+        input {
+          width: auto;
+        }
+      }
+
+      &.wide {
+        width: 100%;
       }
     }
 
@@ -155,7 +173,8 @@
     input[type="file"] {
       cursor: pointer;
       color: var(--dark-grey);
-      padding-top: calc(33vh - 2em);
+      // padding-top: calc(3em);
+      padding-left: 50%;
 
       &:hover,
       &:focus {
@@ -174,6 +193,7 @@
       background-color: white;
       border: none;
       padding: calc(var(--base) / 1.2);
+      order: 100;
 
       &:hover,
       &:focus {

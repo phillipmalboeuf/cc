@@ -145,6 +145,7 @@ export interface Job {
   excerpt: string
   publishedAt: string
   text: Document
+  extraFields: Entry<Field>[]
 }
 
 export interface Jobs {

@@ -18,7 +18,7 @@ export const Jobs: FunctionComponent<{
     headers: {
     }
   })).json()
-  console.log(JSON.stringify(greenhouseJobs, null, 2))
+  // console.log(JSON.stringify(greenhouseJobs, null, 2))
 
   const locale = useLocale()
   const jobs = jobsList?.jobs?.length ? jobsList?.jobs : (await ContentService.jobs(0, null, locale, limit)).items

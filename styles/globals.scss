@@ -169,6 +169,23 @@ input[type="file"]::file-selector-button {
   }
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer !important;
+  appearance: none;
+  width: auto;
+  padding: 1em;
+
+  color: currentColor;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 50%;
+
+  &:checked {
+    background-color: currentColor !important;
+  }
+}
+
 details {
 	
 	summary {
