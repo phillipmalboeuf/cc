@@ -37,7 +37,7 @@ export const Text: FunctionComponent<{
     </figure>}
 
     {text.tag && <nav>
-      <span className='button button--flat' style={{ backgroundColor: text.tag.fields.color, ...text.tag.fields.color === '#FFF' ? { borderColor: 'transparent' } : {} }}>{text.tag.fields.label}</span>
+      <span className='button button--flat' style={{ backgroundColor: text.tag.fields.color }}>{text.tag.fields.label}</span>
     </nav>}
 
     <main>

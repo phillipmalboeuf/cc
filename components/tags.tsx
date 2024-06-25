@@ -12,14 +12,12 @@ export const Tags: FunctionComponent<{
   return <>
     {tags.filter(tag => tag?.fields && !['culture', 'news'].includes(tag.fields.id)).map(tag => noLinks
     ? <span className='button button--flat' key={tag.fields.id} style={{
-      backgroundColor: tag.fields.color,
-      ...tag.fields.color === '#FFF' ? { borderColor: 'transparent' } : {}
+      backgroundColor: tag.fields.color
     }}>
       {tag.fields.label}
     </span>
     : <Link className='button button--flat' key={tag.fields.id} style={{
-      backgroundColor: tag.fields.color,
-      ...tag.fields.color === '#FFF' ? { borderColor: 'transparent' } : {}
+      backgroundColor: tag.fields.color
     }} href={`${path}?tag=${tag.fields.id}`}>
       {tag.fields.label}
     </Link>)}

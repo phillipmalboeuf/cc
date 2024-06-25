@@ -152,10 +152,6 @@ input[type="file"]::file-selector-button {
   border: 1px solid;
   border-radius: 0.33em;
 
-  &.button--flat {
-    border-color: transparent;
-  }
-
   &:hover,
   &:focus {
     color: white;
@@ -168,6 +164,10 @@ input[type="file"]::file-selector-button {
     color: var(--dark-grey);
   }
 }
+
+.button--flat {
+    border: 1px solid transparent !important;
+  }
 
 input[type="radio"],
 input[type="checkbox"] {
