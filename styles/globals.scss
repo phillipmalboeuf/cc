@@ -177,9 +177,9 @@ input[type="checkbox"] {
   padding: 1em;
 
   color: currentColor;
-  background-color: transparent;
-  border: 1px solid;
-  border-radius: 50%;
+  background-color: transparent !important;
+  border: 1px solid !important;
+  border-radius: 50% !important;
 
   &:checked {
     background-color: currentColor !important;
