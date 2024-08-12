@@ -14,11 +14,19 @@ export const Jobs: FunctionComponent<{
   tight?: boolean
   limit?: number
 }> = async ({ jobsList, tight, limit }) => {
-  const greenhouseJobs: { jobs: { id: number }[] } = await (await fetch('https://boards-api.greenhouse.io/v1/boards/cloudchamberen/jobs?content=true', {
+  const greenhouseJobs: { jobs: { id: number }[] } = (await (await fetch('https://boards-api.greenhouse.io/v1/boards/cloudchamberen/jobs', {
+    cache: "no-cache",
     headers: {
     }
-  })).json()
-  // console.log(JSON.stringify(greenhouseJobs, null, 2))
+  })).json())
+  // const activeGreenhouseJobs: { id: number }[] = (await Promise.all(greenhouseJobs.jobs.map(async job => {
+  //     const greenhouseJob: any = await (await fetch(`https://boards-api.greenhouse.io/v1/boards/cloudchamberen/jobs/${job.id}`)).json()
+
+  //     // console.log(greenhouseJob)
+  //     return greenhouseJob
+  // }))).filter(job => job.status !== 404)
+  // console.log(greenhouseJobs.jobs.length, JSON.stringify(greenhouseJobs.jobs.map(j => j.id), null, 2))
+  
 
   const locale = useLocale()
   const jobs = jobsList?.jobs?.length ? jobsList?.jobs : (await ContentService.jobs(0, null, locale, limit)).items
